@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pygame
 from PySide6.QtWidgets import (
-    QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
+    QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QTextEdit, QComboBox, QSpinBox, QCheckBox, QPushButton,
     QDoubleSpinBox, QMessageBox, QProgressBar, QToolButton,
     QGraphicsDropShadowEffect, QSizePolicy, QSlider
@@ -27,32 +27,49 @@ class TextAnimatorWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Cozy Animator – Frame Sequence 🌱")
-        self.resize(1000, 780)  # wider for side-by-side layout
+        self.resize(1000, 780)
         self.setStyleSheet(f"background-color: {BG_COLOR}; color: {TEXT_COLOR};")
 
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
-        self.main_layout = QHBoxLayout(self.central_widget)  # horizontal split
+        self.main_layout = QVBoxLayout(self.central_widget)
         self.main_layout.setContentsMargins(24, 24, 24, 24)
-        self.main_layout.setSpacing(24)
+        self.main_layout.setSpacing(16)
 
-        # Left side: input + controls
+        # Progress and status early (used in preview)
+        self.progress = QProgressBar()
+        self.progress.setVisible(False)
+        self.status_label = QLabel("Ready")
+        self.status_label.setAlignment(Qt.AlignCenter)
+        self.status_label.setStyleSheet(f"color:{ACCENT_MUTED};")
+
+        # Horizontal split for left/right panels
+        split_layout = QHBoxLayout()
+        split_layout.setSpacing(24)
+
+        # Left panel
         self.left_panel = QWidget()
         self.left_layout = QVBoxLayout(self.left_panel)
         self.left_layout.setContentsMargins(0, 0, 0, 0)
         self.left_layout.setSpacing(16)
 
         self._setup_left_panel()
-        self.main_layout.addWidget(self.left_panel, stretch=1)
+        split_layout.addWidget(self.left_panel, stretch=1)
 
-        # Right side: preview
+        # Right panel
         self.right_panel = QWidget()
         self.right_layout = QVBoxLayout(self.right_panel)
         self.right_layout.setContentsMargins(0, 0, 0, 0)
         self.right_layout.setSpacing(16)
 
         self._setup_right_panel()
-        self.main_layout.addWidget(self.right_panel, stretch=1)
+        split_layout.addWidget(self.right_panel, stretch=1)
+
+        self.main_layout.addLayout(split_layout, stretch=1)
+
+        # Status & progress at bottom
+        self.main_layout.addWidget(self.progress)
+        self.main_layout.addWidget(self.status_label)
 
         self._setup_timers()
         self._setup_connections()
@@ -65,6 +82,13 @@ class TextAnimatorWindow(QMainWindow):
 
         load_settings(self)
         self.update_count_label()
+
+        # Shadow
+        shadow = QGraphicsDropShadowEffect()
+        shadow.setBlurRadius(20)
+        shadow.setOffset(0, 6)
+        shadow.setColor(SHADOW_COLOR)
+        self.central_widget.setGraphicsEffect(shadow)
 
     def _setup_left_panel(self):
         # Top bar with emoji tools
@@ -90,7 +114,7 @@ class TextAnimatorWindow(QMainWindow):
         title.setAlignment(Qt.AlignCenter)
         self.left_layout.addWidget(title)
 
-        # Input container (text + custom scrollbar)
+        # Input container
         input_container = QWidget()
         input_layout = QHBoxLayout(input_container)
         input_layout.setContentsMargins(0, 0, 0, 0)
@@ -182,13 +206,6 @@ class TextAnimatorWindow(QMainWindow):
         self.generate_btn.clicked.connect(self.generate_frames)
         btn_row.addWidget(self.generate_btn)
         self.left_layout.addLayout(btn_row)
-
-        # Shadow
-        shadow = QGraphicsDropShadowEffect()
-        shadow.setBlurRadius(20)
-        shadow.setOffset(0, 6)
-        shadow.setColor(SHADOW_COLOR)
-        self.central_widget.setGraphicsEffect(shadow)
 
     def _setup_right_panel(self):
         preview_title = QLabel("Preview (wrapped for readability)")
@@ -376,7 +393,6 @@ class TextAnimatorWindow(QMainWindow):
     def generate_frames(self):
         # Placeholder for export
         QMessageBox.information(self, "Export", "PNG sequence generation not implemented yet.")
-        # Implement your export code here
 
     def _update_input_font_size(self):
         size = self.input_font_slider.value()
