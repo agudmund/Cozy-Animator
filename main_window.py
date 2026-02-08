@@ -7,7 +7,7 @@ from PySide6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QTextEdit, QComboBox, QSpinBox, QCheckBox, QPushButton,
     QDoubleSpinBox, QMessageBox, QProgressBar, QToolButton,
-    QGraphicsDropShadowEffect, QSizePolicy, QSlider, QApplication  # ← added here
+    QGraphicsDropShadowEffect, QSizePolicy, QSlider
 )
 from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QFont, QColor, QImage, QPixmap
@@ -20,8 +20,6 @@ from styles.theme import (
 from utils.settings import load_settings, save_settings
 from utils.helpers import wrap_text, render_wrapped_text, pygame_surf_to_pixmap
 
-
-
 pygame.init()
 pygame.font.init()
 
@@ -29,16 +27,33 @@ class TextAnimatorWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Cozy Animator – Frame Sequence 🌱")
-        self.resize(720, 780)
+        self.resize(1000, 780)  # wider for side-by-side layout
         self.setStyleSheet(f"background-color: {BG_COLOR}; color: {TEXT_COLOR};")
 
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
-        self.layout = QVBoxLayout(self.central_widget)
-        self.layout.setContentsMargins(24, 24, 24, 24)
-        self.layout.setSpacing(16)
+        self.main_layout = QHBoxLayout(self.central_widget)  # horizontal split
+        self.main_layout.setContentsMargins(24, 24, 24, 24)
+        self.main_layout.setSpacing(24)
 
-        self._setup_ui()
+        # Left side: input + controls
+        self.left_panel = QWidget()
+        self.left_layout = QVBoxLayout(self.left_panel)
+        self.left_layout.setContentsMargins(0, 0, 0, 0)
+        self.left_layout.setSpacing(16)
+
+        self._setup_left_panel()
+        self.main_layout.addWidget(self.left_panel, stretch=1)
+
+        # Right side: preview
+        self.right_panel = QWidget()
+        self.right_layout = QVBoxLayout(self.right_panel)
+        self.right_layout.setContentsMargins(0, 0, 0, 0)
+        self.right_layout.setSpacing(16)
+
+        self._setup_right_panel()
+        self.main_layout.addWidget(self.right_panel, stretch=1)
+
         self._setup_timers()
         self._setup_connections()
 
@@ -51,7 +66,7 @@ class TextAnimatorWindow(QMainWindow):
         load_settings(self)
         self.update_count_label()
 
-    def _setup_ui(self):
+    def _setup_left_panel(self):
         # Top bar with emoji tools
         top_bar = QWidget()
         top_layout = QHBoxLayout(top_bar)
@@ -67,13 +82,13 @@ class TextAnimatorWindow(QMainWindow):
             btn.setFixedSize(36, 36)
             btn.setToolTip(tooltip)
             top_layout.addWidget(btn)
-        self.layout.addWidget(top_bar)
+        self.left_layout.addWidget(top_bar)
 
         # Title
         title = QLabel("Generate Animated Text Frames")
         title.setFont(QFont("Segoe UI", 18, QFont.Bold))
         title.setAlignment(Qt.AlignCenter)
-        self.layout.addWidget(title)
+        self.left_layout.addWidget(title)
 
         # Input container (text + custom scrollbar)
         input_container = QWidget()
@@ -88,11 +103,10 @@ class TextAnimatorWindow(QMainWindow):
             f"background: #2a2a2a; border:1px solid {BUTTON_BORDER}; border-radius:10px; "
             f"padding:14px; color:{TEXT_COLOR}; line-height:140%;"
         )
-        self.text_edit.viewport().setStyleSheet(CUSTOM_SCROLLBAR_STYLE)  # Apply scrollbar style here
+        self.text_edit.viewport().setStyleSheet(CUSTOM_SCROLLBAR_STYLE)
         self.text_edit.setMinimumHeight(140)
         input_layout.addWidget(self.text_edit, stretch=1)
 
-        # Custom vertical scroll slider
         slider_container = QWidget()
         slider_container.setFixedWidth(30)
         slider_layout = QVBoxLayout(slider_container)
@@ -107,7 +121,7 @@ class TextAnimatorWindow(QMainWindow):
         slider_layout.addWidget(self.scroll_slider)
         input_layout.addWidget(slider_container)
 
-        self.layout.addWidget(input_container, stretch=1)
+        self.left_layout.addWidget(input_container, stretch=1)
 
         # Input font size slider
         font_row = QHBoxLayout()
@@ -120,11 +134,11 @@ class TextAnimatorWindow(QMainWindow):
         self.input_font_slider.setTickInterval(2)
         font_row.addWidget(font_lbl)
         font_row.addWidget(self.input_font_slider)
-        self.layout.addLayout(font_row)
+        self.left_layout.addLayout(font_row)
 
         self.count_label = QLabel("Words: 0 • Characters: 0")
         self.count_label.setStyleSheet(f"color: {ACCENT_MUTED}; font-size: 13px; text-align: right;")
-        self.layout.addWidget(self.count_label)
+        self.left_layout.addWidget(self.count_label)
 
         # Controls
         controls = QVBoxLayout()
@@ -157,9 +171,9 @@ class TextAnimatorWindow(QMainWindow):
         res_row.addWidget(lbl_x); res_row.addWidget(self.height_spin)
         controls.addLayout(res_row)
 
-        self.layout.addLayout(controls)
+        self.left_layout.addLayout(controls)
 
-        # Generate button (preview is auto)
+        # Generate button
         btn_row = QHBoxLayout()
         self.generate_btn = QPushButton("Generate PNG Sequence")
         self.generate_btn.setFixedHeight(48)
@@ -167,13 +181,19 @@ class TextAnimatorWindow(QMainWindow):
                                         f"color:{TEXT_COLOR}; font-weight:bold;")
         self.generate_btn.clicked.connect(self.generate_frames)
         btn_row.addWidget(self.generate_btn)
-        self.layout.addLayout(btn_row)
+        self.left_layout.addLayout(btn_row)
 
-        # Preview section
-        preview_container = QVBoxLayout()
+        # Shadow
+        shadow = QGraphicsDropShadowEffect()
+        shadow.setBlurRadius(20)
+        shadow.setOffset(0, 6)
+        shadow.setColor(SHADOW_COLOR)
+        self.central_widget.setGraphicsEffect(shadow)
+
+    def _setup_right_panel(self):
         preview_title = QLabel("Preview (wrapped for readability)")
         preview_title.setStyleSheet(f"color:{ACCENT_MUTED}; font-size:13px;")
-        preview_container.addWidget(preview_title)
+        self.right_layout.addWidget(preview_title)
 
         wrap_row = QHBoxLayout()
         wrap_lbl = QLabel("Wrap preview lines at:")
@@ -184,14 +204,14 @@ class TextAnimatorWindow(QMainWindow):
         self.wrap_spin.setSuffix(" chars")
         wrap_row.addWidget(wrap_lbl)
         wrap_row.addWidget(self.wrap_spin)
-        preview_container.addLayout(wrap_row)
+        self.right_layout.addLayout(wrap_row)
 
         self.preview_label = QLabel()
         self.preview_label.setAlignment(Qt.AlignTop | Qt.AlignLeft)
         self.preview_label.setStyleSheet("background:#111; border:1px solid #333; border-radius:8px; padding:10px;")
         self.preview_label.setMinimumHeight(360)
         self.preview_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        preview_container.addWidget(self.preview_label)
+        self.right_layout.addWidget(self.preview_label, stretch=1)
 
         # Scrubber
         scrub_row = QHBoxLayout()
@@ -210,32 +230,13 @@ class TextAnimatorWindow(QMainWindow):
         self.scrub_slider.valueChanged.connect(self.scrub_to_frame)
         scrub_row.addWidget(scrub_lbl)
         scrub_row.addWidget(self.scrub_slider)
-        preview_container.addLayout(scrub_row)
+        self.right_layout.addLayout(scrub_row)
 
         self.play_pause_btn = QPushButton("Pause Preview")
         self.play_pause_btn.setFixedHeight(36)
         self.play_pause_btn.setStyleSheet(f"background:{BUTTON_BG}; border:1px solid {BUTTON_BORDER}; border-radius:8px; color:{TEXT_COLOR};")
         self.play_pause_btn.clicked.connect(self.toggle_play_pause)
-        preview_container.addWidget(self.play_pause_btn, alignment=Qt.AlignCenter)
-
-        self.layout.addLayout(preview_container, stretch=1)
-
-        # Status
-        self.progress = QProgressBar()
-        self.progress.setVisible(False)
-        self.layout.addWidget(self.progress)
-
-        self.status_label = QLabel("Ready")
-        self.status_label.setAlignment(Qt.AlignCenter)
-        self.status_label.setStyleSheet(f"color:{ACCENT_MUTED};")
-        self.layout.addWidget(self.status_label)
-
-        # Shadow
-        shadow = QGraphicsDropShadowEffect()
-        shadow.setBlurRadius(20)
-        shadow.setOffset(0, 6)
-        shadow.setColor(SHADOW_COLOR)
-        self.central_widget.setGraphicsEffect(shadow)
+        self.right_layout.addWidget(self.play_pause_btn, alignment=Qt.AlignCenter)
 
     def _setup_timers(self):
         self.preview_timer = QTimer(self)
@@ -373,9 +374,9 @@ class TextAnimatorWindow(QMainWindow):
         self.current_frame_idx = (self.current_frame_idx + 1) % len(self.preview_frames)
 
     def generate_frames(self):
-        # Placeholder for your export logic
+        # Placeholder for export
         QMessageBox.information(self, "Export", "PNG sequence generation not implemented yet.")
-        # Implement your actual export code here
+        # Implement your export code here
 
     def _update_input_font_size(self):
         size = self.input_font_slider.value()
