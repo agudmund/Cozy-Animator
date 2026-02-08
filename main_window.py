@@ -1,27 +1,26 @@
 # main_window.py
-import os
-import json
 import random
-import textwrap
 from pathlib import Path
 
 import pygame
 from PySide6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QTextEdit, QComboBox, QSpinBox, QCheckBox, QPushButton,
-    QDoubleSpinBox, QFileDialog, QMessageBox, QProgressBar, QToolButton,
-    QGraphicsDropShadowEffect, QSizePolicy, QSlider
+    QDoubleSpinBox, QMessageBox, QProgressBar, QToolButton,
+    QGraphicsDropShadowEffect, QSizePolicy, QSlider, QApplication  # ← added here
 )
 from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QFont, QColor, QImage, QPixmap
 
 from styles.theme import (
     BG_COLOR, TEXT_COLOR, ACCENT_MUTED, BUTTON_BG, BUTTON_BORDER,
-    BUTTON_HOVER, SHADOW_COLOR, SETTINGS_FILE, CUSTOM_SCROLLBAR_STYLE,
-    CUSTOM_VERTICAL_SLIDER_STYLE
+    BUTTON_HOVER, SHADOW_COLOR, CUSTOM_SCROLLBAR_STYLE,
+    CUSTOM_VERTICAL_SLIDER_STYLE, SETTINGS_FILE
 )
 from utils.settings import load_settings, save_settings
 from utils.helpers import wrap_text, render_wrapped_text, pygame_surf_to_pixmap
+
+
 
 pygame.init()
 pygame.font.init()
@@ -29,7 +28,7 @@ pygame.font.init()
 class TextAnimatorWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Text Animator – Frame Sequence 🌱")
+        self.setWindowTitle("Cozy Animator – Frame Sequence 🌱")
         self.resize(720, 780)
         self.setStyleSheet(f"background-color: {BG_COLOR}; color: {TEXT_COLOR};")
 
@@ -49,7 +48,7 @@ class TextAnimatorWindow(QMainWindow):
         self.is_paused = False
         self.is_scrubbing = False
 
-        self.load_settings()
+        load_settings(self)
         self.update_count_label()
 
     def _setup_ui(self):
@@ -87,9 +86,9 @@ class TextAnimatorWindow(QMainWindow):
         self.text_edit.setAcceptRichText(False)
         self.text_edit.setStyleSheet(
             f"background: #2a2a2a; border:1px solid {BUTTON_BORDER}; border-radius:10px; "
-            f"padding:14px; color:{TEXT_COLOR}; line-height:140%; "
-            "QScrollBar:vertical {width:0px;} QScrollBar:horizontal {height:0px;}"
+            f"padding:14px; color:{TEXT_COLOR}; line-height:140%;"
         )
+        self.text_edit.viewport().setStyleSheet(CUSTOM_SCROLLBAR_STYLE)  # Apply scrollbar style here
         self.text_edit.setMinimumHeight(140)
         input_layout.addWidget(self.text_edit, stretch=1)
 
@@ -104,12 +103,7 @@ class TextAnimatorWindow(QMainWindow):
         self.scroll_slider.setRange(0, 100)
         self.scroll_slider.setValue(0)
         self.scroll_slider.setInvertedAppearance(True)
-        self.scroll_slider.setStyleSheet("""
-            QSlider::groove:vertical {background:#3a3a3a; width:6px; border-radius:3px; margin:0px;}
-            QSlider::handle:vertical {background:#6b5a47; border:1px solid #8a7a67; height:18px; width:18px;
-                                      margin:-6px -6px -6px -6px; border-radius:9px;}
-            QSlider::handle:vertical:hover {background:#8a7a67;}
-        """)
+        self.scroll_slider.setStyleSheet(CUSTOM_VERTICAL_SLIDER_STYLE)
         slider_layout.addWidget(self.scroll_slider)
         input_layout.addWidget(slider_container)
 
@@ -238,8 +232,10 @@ class TextAnimatorWindow(QMainWindow):
 
         # Shadow
         shadow = QGraphicsDropShadowEffect()
-        shadow.setBlurRadius(20); shadow.setOffset(0, 6); shadow.setColor(SHADOW_COLOR)
-        central.setGraphicsEffect(shadow)
+        shadow.setBlurRadius(20)
+        shadow.setOffset(0, 6)
+        shadow.setColor(SHADOW_COLOR)
+        self.central_widget.setGraphicsEffect(shadow)
 
     def _setup_timers(self):
         self.preview_timer = QTimer(self)
@@ -344,11 +340,11 @@ class TextAnimatorWindow(QMainWindow):
                     factor = 1 + random.uniform(-flicker_strength, flicker_strength) if flicker else 1.0
 
                     current_text = prev_text + unit_to_add[:int(len(unit_to_add) * (i + 1) / frames_per_unit)]
-                    wrapped = self._wrap_text(current_text, wrap_width)
+                    wrapped = wrap_text(current_text, wrap_width)
 
                     surf = pygame.Surface((width, height), pygame.SRCALPHA)
-                    self._render_wrapped_text(surf, wrapped, font, fixed_x, base_y, (255,255,255, 255))
-                    pixmap = self._pygame_surf_to_pixmap(surf)
+                    render_wrapped_text(surf, wrapped, font, fixed_x, base_y, (255,255,255, 255))
+                    pixmap = pygame_surf_to_pixmap(surf)
                     frames.append(pixmap.scaled(640, 360, Qt.KeepAspectRatio, Qt.SmoothTransformation))
 
                 prev_text += unit_to_add
@@ -359,42 +355,14 @@ class TextAnimatorWindow(QMainWindow):
                     factor = 1 + random.uniform(-flicker_strength, flicker_strength) if flicker else 1.0
                     col = tuple(min(255, int(255 * factor)) for _ in range(3))
 
-                    wrapped = self._wrap_text(prev_text, wrap_width)
+                    wrapped = wrap_text(prev_text, wrap_width)
 
                     surf = pygame.Surface((width, height), pygame.SRCALPHA)
-                    self._render_wrapped_text(surf, wrapped, font, fixed_x, base_y, col + (255,))
-                    pixmap = self._pygame_surf_to_pixmap(surf)
+                    render_wrapped_text(surf, wrapped, font, fixed_x, base_y, col + (255,))
+                    pixmap = pygame_surf_to_pixmap(surf)
                     frames.append(pixmap.scaled(640, 360, Qt.KeepAspectRatio, Qt.SmoothTransformation))
 
         return frames
-
-    def _wrap_text(self, text, width):
-        lines = text.splitlines(keepends=True)
-        wrapped_lines = []
-        for line in lines:
-            if line == '\n':
-                wrapped_lines.append('')
-                continue
-            wrapped = textwrap.wrap(line.rstrip('\n'), width=width, break_long_words=False)
-            wrapped_lines.extend(wrapped)
-        return '\n'.join(wrapped_lines)
-
-    def _render_wrapped_text(self, surf, wrapped_text, font, x, y_start, color):
-        lines = wrapped_text.split('\n')
-        y = y_start
-        line_height = font.get_linesize()
-        for line in lines:
-            if not line:
-                y += line_height
-                continue
-            line_surf = font.render(line, True, color)
-            surf.blit(line_surf, (x, y))
-            y += line_height
-
-    def _pygame_surf_to_pixmap(self, surf):
-        img_str = pygame.image.tostring(surf, 'RGBA')
-        qimg = QImage(img_str, surf.get_width(), surf.get_height(), QImage.Format_RGBA8888)
-        return QPixmap.fromImage(qimg)
 
     def update_preview_frame(self):
         if not self.preview_frames:
@@ -405,8 +373,9 @@ class TextAnimatorWindow(QMainWindow):
         self.current_frame_idx = (self.current_frame_idx + 1) % len(self.preview_frames)
 
     def generate_frames(self):
-        # Your export logic here
-        pass
+        # Placeholder for your export logic
+        QMessageBox.information(self, "Export", "PNG sequence generation not implemented yet.")
+        # Implement your actual export code here
 
     def _update_input_font_size(self):
         size = self.input_font_slider.value()
@@ -425,6 +394,12 @@ class TextAnimatorWindow(QMainWindow):
     def update_scroll_slider_range(self):
         max_scroll = self.text_edit.verticalScrollBar().maximum()
         self.scroll_slider.setRange(0, max_scroll if max_scroll > 0 else 100)
+
+    def update_count_label(self):
+        text = self.text_edit.toPlainText().strip()
+        words = len(text.split())
+        chars = len(text)
+        self.count_label.setText(f"Words: {words} • Characters: {chars}")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

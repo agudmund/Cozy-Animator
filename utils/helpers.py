@@ -2,6 +2,9 @@
 """Helper functions for text wrapping and rendering."""
 
 import pygame
+import textwrap
+
+from PySide6.QtGui import QImage, QPixmap  # ← added here
 
 def wrap_text(text, width):
     """Soft-wrap text at word boundaries, preserve explicit newlines."""
