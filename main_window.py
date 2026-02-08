@@ -36,7 +36,7 @@ class TextAnimatorWindow(QMainWindow):
         self.main_layout.setContentsMargins(24, 24, 24, 24)
         self.main_layout.setSpacing(16)
 
-        # Progress and status early (used in preview)
+        # Status label and progress early
         self.progress = QProgressBar()
         self.progress.setVisible(False)
         self.status_label = QLabel("Ready")
@@ -56,7 +56,7 @@ class TextAnimatorWindow(QMainWindow):
         self._setup_left_panel()
         split_layout.addWidget(self.left_panel, stretch=1)
 
-        # Right panel
+        # Right panel: preview
         self.right_panel = QWidget()
         self.right_layout = QVBoxLayout(self.right_panel)
         self.right_layout.setContentsMargins(0, 0, 0, 0)
@@ -67,9 +67,15 @@ class TextAnimatorWindow(QMainWindow):
 
         self.main_layout.addLayout(split_layout, stretch=1)
 
-        # Status & progress at bottom
-        self.main_layout.addWidget(self.progress)
-        self.main_layout.addWidget(self.status_label)
+        # Footer
+        footer_layout = QHBoxLayout()
+        footer_layout.setContentsMargins(0, 8, 0, 0)
+        footer_layout.setSpacing(16)
+        footer_layout.addWidget(self.progress, stretch=1)
+        footer_layout.addWidget(self.status_label, stretch=0)
+        footer_widget = QWidget()
+        footer_widget.setLayout(footer_layout)
+        self.main_layout.addWidget(footer_widget)
 
         self._setup_timers()
         self._setup_connections()
@@ -89,6 +95,10 @@ class TextAnimatorWindow(QMainWindow):
         shadow.setOffset(0, 6)
         shadow.setColor(SHADOW_COLOR)
         self.central_widget.setGraphicsEffect(shadow)
+
+    def closeEvent(self, event):
+        save_settings(self)
+        super().closeEvent(event)
 
     def _setup_left_panel(self):
         # Top bar with emoji tools
@@ -114,7 +124,7 @@ class TextAnimatorWindow(QMainWindow):
         title.setAlignment(Qt.AlignCenter)
         self.left_layout.addWidget(title)
 
-        # Input container
+        # Input container (text + custom scrollbar)
         input_container = QWidget()
         input_layout = QHBoxLayout(input_container)
         input_layout.setContentsMargins(0, 0, 0, 0)
@@ -226,9 +236,11 @@ class TextAnimatorWindow(QMainWindow):
         self.preview_label = QLabel()
         self.preview_label.setAlignment(Qt.AlignTop | Qt.AlignLeft)
         self.preview_label.setStyleSheet("background:#111; border:1px solid #333; border-radius:8px; padding:10px;")
-        self.preview_label.setMinimumHeight(360)
-        self.preview_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        self.right_layout.addWidget(self.preview_label, stretch=1)
+        self.preview_label.setMinimumHeight(480)
+        self.preview_label.setMaximumHeight(480)  # lock height
+        self.preview_label.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        self.preview_label.setFixedWidth(640)  # 4:3 ratio
+        self.right_layout.addWidget(self.preview_label, stretch=0)
 
         # Scrubber
         scrub_row = QHBoxLayout()
@@ -268,6 +280,12 @@ class TextAnimatorWindow(QMainWindow):
         self.text_edit.textChanged.connect(self._trigger_preview_update)
         self.text_edit.verticalScrollBar().valueChanged.connect(self.sync_slider_from_text)
         self.scroll_slider.valueChanged.connect(self.sync_text_from_slider)
+
+        self.frames_spin.valueChanged.connect(self._update_preview_on_settings_change)
+        self.strength_spin.valueChanged.connect(self._update_preview_on_settings_change)
+
+    def _update_preview_on_settings_change(self):
+        self.preview_update_timer.start(100)
 
     def _trigger_preview_update(self):
         self.preview_update_timer.start(300)
@@ -310,7 +328,12 @@ class TextAnimatorWindow(QMainWindow):
         if self.preview_frames:
             self.current_frame_idx = value
             pix = self.preview_frames[self.current_frame_idx]
-            self.preview_label.setPixmap(pix)
+            self.preview_label.setPixmap(pix.scaled(
+                self.preview_label.width(),
+                self.preview_label.height(),
+                Qt.KeepAspectRatio,
+                Qt.SmoothTransformation
+            ))
 
     def toggle_play_pause(self):
         if not self.preview_frames:
@@ -363,7 +386,7 @@ class TextAnimatorWindow(QMainWindow):
                     surf = pygame.Surface((width, height), pygame.SRCALPHA)
                     render_wrapped_text(surf, wrapped, font, fixed_x, base_y, (255,255,255, 255))
                     pixmap = pygame_surf_to_pixmap(surf)
-                    frames.append(pixmap.scaled(640, 360, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+                    frames.append(pixmap.scaled(640, 480, Qt.KeepAspectRatio, Qt.SmoothTransformation))
 
                 prev_text += unit_to_add
 
@@ -378,7 +401,7 @@ class TextAnimatorWindow(QMainWindow):
                     surf = pygame.Surface((width, height), pygame.SRCALPHA)
                     render_wrapped_text(surf, wrapped, font, fixed_x, base_y, col + (255,))
                     pixmap = pygame_surf_to_pixmap(surf)
-                    frames.append(pixmap.scaled(640, 360, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+                    frames.append(pixmap.scaled(640, 480, Qt.KeepAspectRatio, Qt.SmoothTransformation))
 
         return frames
 
@@ -386,13 +409,19 @@ class TextAnimatorWindow(QMainWindow):
         if not self.preview_frames:
             return
         pix = self.preview_frames[self.current_frame_idx]
-        self.preview_label.setPixmap(pix)
+        self.preview_label.setPixmap(pix.scaled(
+            self.preview_label.width(),
+            self.preview_label.height(),
+            Qt.KeepAspectRatio,
+            Qt.SmoothTransformation
+        ))
         self.scrub_slider.setValue(self.current_frame_idx)
         self.current_frame_idx = (self.current_frame_idx + 1) % len(self.preview_frames)
 
     def generate_frames(self):
-        # Placeholder for export
+        # Placeholder for your export logic
         QMessageBox.information(self, "Export", "PNG sequence generation not implemented yet.")
+        # Implement your actual export code here
 
     def _update_input_font_size(self):
         size = self.input_font_slider.value()
