@@ -9,7 +9,7 @@ from PySide6.QtWidgets import (
     QDoubleSpinBox, QMessageBox, QProgressBar, QToolButton,
     QGraphicsDropShadowEffect, QSizePolicy, QSlider
 )
-from PySide6.QtCore import Qt, QTimer
+from PySide6.QtCore import Qt, QTimer, QThread, Signal
 from PySide6.QtGui import QFont, QColor, QImage, QPixmap
 
 from styles.theme import (
@@ -22,6 +22,81 @@ from utils.helpers import wrap_text, render_wrapped_text, pygame_surf_to_pixmap
 
 pygame.init()
 pygame.font.init()
+
+MAX_FRAMES = 500  # Safety cap to prevent blow-up on very long text
+
+class PreviewWorker(QThread):
+    """Background thread for generating preview frames."""
+    frames_ready = Signal(list)  # list of QPixmap
+    error = Signal(str)
+
+    def __init__(self, text, unit_type, transition, frames_per_unit, flicker, flicker_strength, width, height, wrap_width):
+        super().__init__()
+        self.text = text
+        self.unit_type = unit_type
+        self.transition = transition
+        self.frames_per_unit = frames_per_unit
+        self.flicker = flicker
+        self.flicker_strength = flicker_strength
+        self.width = width
+        self.height = height
+        self.wrap_width = wrap_width
+
+    def run(self):
+        try:
+            frames = []
+            preview_margin = 60
+            font = pygame.font.SysFont(None, 80)
+
+            if self.unit_type == 'word':
+                units = self.text.split()
+            else:
+                units = list(self.text)
+
+            total_units = len(units)
+            total_frames = total_units * self.frames_per_unit
+            if total_frames > MAX_FRAMES:
+                self.error.emit(f"Too many frames ({total_frames} > {MAX_FRAMES} max). Shorten text or reduce Frames/unit.")
+                return
+
+            prev_text = ''
+            fixed_x = preview_margin
+            base_y = 80
+
+            for idx, unit in enumerate(units):
+                unit_to_add = unit + ' ' if self.unit_type == 'word' and idx < len(units)-1 else unit
+
+                if self.transition == 'fade':
+                    for i in range(self.frames_per_unit):
+                        alpha = int(255 * (i + 1) / self.frames_per_unit)
+                        factor = 1 + random.uniform(-self.flicker_strength, self.flicker_strength) if self.flicker else 1.0
+
+                        current_text = prev_text + unit_to_add[:int(len(unit_to_add) * (i + 1) / self.frames_per_unit)]
+                        wrapped = wrap_text(current_text, self.wrap_width)
+
+                        surf = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+                        render_wrapped_text(surf, wrapped, font, fixed_x, base_y, (255,255,255, 255))
+                        pixmap = pygame_surf_to_pixmap(surf)
+                        frames.append(pixmap.scaled(640, 480, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+
+                    prev_text += unit_to_add
+
+                else:
+                    prev_text += unit_to_add
+                    for _ in range(self.frames_per_unit):
+                        factor = 1 + random.uniform(-self.flicker_strength, self.flicker_strength) if self.flicker else 1.0
+                        col = tuple(min(255, int(255 * factor)) for _ in range(3))
+
+                        wrapped = wrap_text(prev_text, self.wrap_width)
+
+                        surf = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+                        render_wrapped_text(surf, wrapped, font, fixed_x, base_y, col + (255,))
+                        pixmap = pygame_surf_to_pixmap(surf)
+                        frames.append(pixmap.scaled(640, 480, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+
+            self.frames_ready.emit(frames)
+        except Exception as e:
+            self.error.emit(str(e))
 
 class TextAnimatorWindow(QMainWindow):
     def __init__(self):
@@ -67,7 +142,7 @@ class TextAnimatorWindow(QMainWindow):
 
         self.main_layout.addLayout(split_layout, stretch=1)
 
-        # Footer
+        # Footer at bottom
         footer_layout = QHBoxLayout()
         footer_layout.setContentsMargins(0, 8, 0, 0)
         footer_layout.setSpacing(16)
@@ -85,6 +160,7 @@ class TextAnimatorWindow(QMainWindow):
         self.is_preview_active = False
         self.is_paused = False
         self.is_scrubbing = False
+        self.preview_worker = None
 
         load_settings(self)
         self.update_count_label()
@@ -95,10 +171,6 @@ class TextAnimatorWindow(QMainWindow):
         shadow.setOffset(0, 6)
         shadow.setColor(SHADOW_COLOR)
         self.central_widget.setGraphicsEffect(shadow)
-
-    def closeEvent(self, event):
-        save_settings(self)
-        super().closeEvent(event)
 
     def _setup_left_panel(self):
         # Top bar with emoji tools
@@ -138,6 +210,7 @@ class TextAnimatorWindow(QMainWindow):
             f"padding:14px; color:{TEXT_COLOR}; line-height:140%;"
         )
         self.text_edit.viewport().setStyleSheet(CUSTOM_SCROLLBAR_STYLE)
+        self.text_edit.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)  # Force hide native scrollbar
         self.text_edit.setMinimumHeight(140)
         input_layout.addWidget(self.text_edit, stretch=1)
 
@@ -207,7 +280,7 @@ class TextAnimatorWindow(QMainWindow):
 
         self.left_layout.addLayout(controls)
 
-        # Generate button
+        # Buttons row: Generate + Clear Text
         btn_row = QHBoxLayout()
         self.generate_btn = QPushButton("Generate PNG Sequence")
         self.generate_btn.setFixedHeight(48)
@@ -215,6 +288,14 @@ class TextAnimatorWindow(QMainWindow):
                                         f"color:{TEXT_COLOR}; font-weight:bold;")
         self.generate_btn.clicked.connect(self.generate_frames)
         btn_row.addWidget(self.generate_btn)
+
+        clear_btn = QPushButton("Clear Text")
+        clear_btn.setFixedHeight(48)
+        clear_btn.setStyleSheet(f"background:#444444; border:1px solid {BUTTON_BORDER}; border-radius:10px; "
+                                f"color:#e0e0e0; font-weight:bold;")
+        clear_btn.clicked.connect(self.clear_text)
+        btn_row.addWidget(clear_btn)
+
         self.left_layout.addLayout(btn_row)
 
     def _setup_right_panel(self):
@@ -237,9 +318,9 @@ class TextAnimatorWindow(QMainWindow):
         self.preview_label.setAlignment(Qt.AlignTop | Qt.AlignLeft)
         self.preview_label.setStyleSheet("background:#111; border:1px solid #333; border-radius:8px; padding:10px;")
         self.preview_label.setMinimumHeight(480)
-        self.preview_label.setMaximumHeight(480)  # lock height
+        self.preview_label.setMaximumHeight(480)
         self.preview_label.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        self.preview_label.setFixedWidth(640)  # 4:3 ratio
+        self.preview_label.setFixedWidth(640)
         self.right_layout.addWidget(self.preview_label, stretch=0)
 
         # Scrubber
@@ -273,7 +354,7 @@ class TextAnimatorWindow(QMainWindow):
 
         self.preview_update_timer = QTimer(self)
         self.preview_update_timer.setSingleShot(True)
-        self.preview_update_timer.timeout.connect(self._regenerate_preview)
+        self.preview_update_timer.timeout.connect(self._start_preview_worker)
 
     def _setup_connections(self):
         self.text_edit.textChanged.connect(self.update_count_label)
@@ -284,13 +365,17 @@ class TextAnimatorWindow(QMainWindow):
         self.frames_spin.valueChanged.connect(self._update_preview_on_settings_change)
         self.strength_spin.valueChanged.connect(self._update_preview_on_settings_change)
 
-    def _update_preview_on_settings_change(self):
-        self.preview_update_timer.start(100)
-
     def _trigger_preview_update(self):
+        if self.is_paused:
+            return
         self.preview_update_timer.start(300)
 
-    def _regenerate_preview(self):
+    def _update_preview_on_settings_change(self):
+        if self.is_paused:
+            return
+        self.preview_update_timer.start(100)
+
+    def _start_preview_worker(self):
         text = self.text_edit.toPlainText().strip()
         if not text:
             self.preview_label.setPixmap(QPixmap())
@@ -299,21 +384,56 @@ class TextAnimatorWindow(QMainWindow):
             self.status_label.setText("Ready")
             return
 
-        self.status_label.setText("Regenerating preview...")
+        # Safety check for very long text
+        if len(text) > 2000:
+            reply = QMessageBox.question(self, "Large Text", 
+                                         "Text is very long — preview may take time or lag. Proceed?",
+                                         QMessageBox.Yes | QMessageBox.No)
+            if reply == QMessageBox.No:
+                self.status_label.setText("Ready")
+                return
+
+        self.status_label.setText("Generating preview...")
         QApplication.processEvents()
 
-        self.preview_frames = self._generate_in_memory_frames()
-        if not self.preview_frames:
+        # Stop any running worker
+        if self.preview_worker and self.preview_worker.isRunning():
+            self.preview_worker.quit()
+            self.preview_worker.wait()
+
+        self.preview_worker = PreviewWorker(
+            text,
+            self.unit_combo.currentText(),
+            self.trans_combo.currentText(),
+            self.frames_spin.value(),
+            self.flicker_check.isChecked(),
+            self.strength_spin.value(),
+            self.width_spin.value(),
+            self.height_spin.value(),
+            self.wrap_spin.value()
+        )
+        self.preview_worker.frames_ready.connect(self._on_frames_ready)
+        self.preview_worker.error.connect(self._on_preview_error)
+        self.preview_worker.start()
+
+    def _on_frames_ready(self, frames):
+        self.preview_frames = frames
+        if not frames:
             self.status_label.setText("Preview failed")
             return
 
-        self.scrub_slider.setRange(0, len(self.preview_frames) - 1)
+        self.scrub_slider.setRange(0, len(frames) - 1)
         self.current_frame_idx = 0
-        self.preview_timer.start(66)
-        self.is_preview_active = True
-        self.is_paused = False
-        self.play_pause_btn.setText("Pause Preview")
-        self.status_label.setText("Preview playing…")
+        if not self.is_paused:
+            self.preview_timer.start(66)
+            self.is_preview_active = True
+            self.play_pause_btn.setText("Pause Preview")
+            self.status_label.setText("Preview playing…")
+        else:
+            self.status_label.setText("Preview paused")
+
+    def _on_preview_error(self, error_msg):
+        self.status_label.setText(f"Preview error: {error_msg}")
 
     def pause_on_scrub(self):
         self.is_scrubbing = True
@@ -339,10 +459,8 @@ class TextAnimatorWindow(QMainWindow):
         if not self.preview_frames:
             return
         if self.is_paused:
-            self.preview_timer.start(66)
-            self.play_pause_btn.setText("Pause Preview")
-            self.is_paused = False
-            self.status_label.setText("Preview playing…")
+            # Regenerate on resume
+            self._start_preview_worker()
         else:
             self.preview_timer.stop()
             self.play_pause_btn.setText("Resume Preview")
@@ -422,6 +540,20 @@ class TextAnimatorWindow(QMainWindow):
         # Placeholder for your export logic
         QMessageBox.information(self, "Export", "PNG sequence generation not implemented yet.")
         # Implement your actual export code here
+
+    def clear_text(self):
+        """Clear input text, reset preview, scrubber, count, and status."""
+        self.text_edit.clear()
+        self.preview_label.setPixmap(QPixmap())
+        self.scrub_slider.setRange(0, 0)
+        self.preview_frames = []
+        self.current_frame_idx = 0
+        self.preview_timer.stop()
+        self.is_preview_active = False
+        self.is_paused = False
+        self.play_pause_btn.setText("Pause Preview")
+        self.status_label.setText("Ready")
+        self.update_count_label()
 
     def _update_input_font_size(self):
         size = self.input_font_slider.value()
