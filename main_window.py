@@ -1,0 +1,430 @@
+# main_window.py
+import os
+import json
+import random
+import textwrap
+from pathlib import Path
+
+import pygame
+from PySide6.QtWidgets import (
+    QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
+    QLabel, QTextEdit, QComboBox, QSpinBox, QCheckBox, QPushButton,
+    QDoubleSpinBox, QFileDialog, QMessageBox, QProgressBar, QToolButton,
+    QGraphicsDropShadowEffect, QSizePolicy, QSlider
+)
+from PySide6.QtCore import Qt, QTimer
+from PySide6.QtGui import QFont, QColor, QImage, QPixmap
+
+from styles.theme import (
+    BG_COLOR, TEXT_COLOR, ACCENT_MUTED, BUTTON_BG, BUTTON_BORDER,
+    BUTTON_HOVER, SHADOW_COLOR, SETTINGS_FILE
+)
+
+pygame.init()
+pygame.font.init()
+
+class TextAnimatorWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Text Animator – Frame Sequence 🌱")
+        self.resize(720, 780)
+        self.setStyleSheet(f"background-color: {BG_COLOR}; color: {TEXT_COLOR};")
+
+        self.central_widget = QWidget()
+        self.setCentralWidget(self.central_widget)
+        self.layout = QVBoxLayout(self.central_widget)
+        self.layout.setContentsMargins(24, 24, 24, 24)
+        self.layout.setSpacing(16)
+
+        self._setup_ui()
+        self._setup_timers()
+        self._setup_connections()
+
+        self.preview_frames = []
+        self.current_frame_idx = 0
+        self.is_preview_active = False
+        self.is_paused = False
+        self.is_scrubbing = False
+
+        self.load_settings()
+        self.update_count_label()
+
+    def _setup_ui(self):
+        # Top bar with emoji tools
+        top_bar = QWidget()
+        top_layout = QHBoxLayout(top_bar)
+        top_layout.addStretch()
+        for symbol, tooltip in [("📜", "Log"), ("📋", "Features"), ("⚙", "Settings")]:
+            btn = QToolButton()
+            btn.setText(symbol)
+            btn.setFont(QFont("Segoe UI Emoji", 18))
+            btn.setStyleSheet(
+                f"QToolButton {{background:transparent; color:{ACCENT_MUTED}; border:none;}} "
+                f"QToolButton:hover {{color:{TEXT_COLOR};}}"
+            )
+            btn.setFixedSize(36, 36)
+            btn.setToolTip(tooltip)
+            top_layout.addWidget(btn)
+        self.layout.addWidget(top_bar)
+
+        # Title
+        title = QLabel("Generate Animated Text Frames")
+        title.setFont(QFont("Segoe UI", 18, QFont.Bold))
+        title.setAlignment(Qt.AlignCenter)
+        self.layout.addWidget(title)
+
+        # Input container (text + custom scrollbar)
+        input_container = QWidget()
+        input_layout = QHBoxLayout(input_container)
+        input_layout.setContentsMargins(0, 0, 0, 0)
+        input_layout.setSpacing(0)
+
+        self.text_edit = QTextEdit()
+        self.text_edit.setPlaceholderText("Type or paste your poem / phrase here...")
+        self.text_edit.setAcceptRichText(False)
+        self.text_edit.setStyleSheet(
+            f"background: #2a2a2a; border:1px solid {BUTTON_BORDER}; border-radius:10px; "
+            f"padding:14px; color:{TEXT_COLOR}; line-height:140%; "
+            "QScrollBar:vertical {width:0px;} QScrollBar:horizontal {height:0px;}"
+        )
+        self.text_edit.setMinimumHeight(140)
+        input_layout.addWidget(self.text_edit, stretch=1)
+
+        # Custom vertical scroll slider
+        slider_container = QWidget()
+        slider_container.setFixedWidth(30)
+        slider_layout = QVBoxLayout(slider_container)
+        slider_layout.setContentsMargins(0, 0, 0, 0)
+        slider_layout.setSpacing(0)
+
+        self.scroll_slider = QSlider(Qt.Vertical)
+        self.scroll_slider.setRange(0, 100)
+        self.scroll_slider.setValue(0)
+        self.scroll_slider.setInvertedAppearance(True)
+        self.scroll_slider.setStyleSheet("""
+            QSlider::groove:vertical {background:#3a3a3a; width:6px; border-radius:3px; margin:0px;}
+            QSlider::handle:vertical {background:#6b5a47; border:1px solid #8a7a67; height:18px; width:18px;
+                                      margin:-6px -6px -6px -6px; border-radius:9px;}
+            QSlider::handle:vertical:hover {background:#8a7a67;}
+        """)
+        slider_layout.addWidget(self.scroll_slider)
+        input_layout.addWidget(slider_container)
+
+        self.layout.addWidget(input_container, stretch=1)
+
+        # Input font size slider
+        font_row = QHBoxLayout()
+        font_lbl = QLabel("Input font size:")
+        font_lbl.setStyleSheet(f"color:{ACCENT_MUTED};")
+        self.input_font_slider = QSlider(Qt.Horizontal)
+        self.input_font_slider.setRange(12, 32)
+        self.input_font_slider.setValue(18)
+        self.input_font_slider.setTickPosition(QSlider.TicksBelow)
+        self.input_font_slider.setTickInterval(2)
+        font_row.addWidget(font_lbl)
+        font_row.addWidget(self.input_font_slider)
+        self.layout.addLayout(font_row)
+
+        self.count_label = QLabel("Words: 0 • Characters: 0")
+        self.count_label.setStyleSheet(f"color: {ACCENT_MUTED}; font-size: 13px; text-align: right;")
+        self.layout.addWidget(self.count_label)
+
+        # Controls
+        controls = QVBoxLayout()
+        controls.setSpacing(10)
+
+        self.unit_combo = QComboBox(); self.unit_combo.addItems(["letter", "word"])
+        self.trans_combo = QComboBox(); self.trans_combo.addItems(["fade", "stamp"])
+        self.frames_spin = QSpinBox(); self.frames_spin.setRange(1, 30); self.frames_spin.setValue(4)
+        self.flicker_check = QCheckBox("Brightness flicker"); self.flicker_check.setChecked(True)
+        self.strength_spin = QDoubleSpinBox(); self.strength_spin.setRange(0.0, 0.5); self.strength_spin.setValue(0.08)
+        self.width_spin = QSpinBox(); self.width_spin.setRange(640, 3840); self.width_spin.setValue(1920)
+        self.height_spin = QSpinBox(); self.height_spin.setRange(480, 2160); self.height_spin.setValue(1080)
+
+        row1 = QHBoxLayout()
+        for lbl_text, w in [("Per:", self.unit_combo), ("Transition:", self.trans_combo), ("Frames/unit:", self.frames_spin)]:
+            lbl = QLabel(lbl_text); lbl.setStyleSheet(f"color:{ACCENT_MUTED};")
+            row1.addWidget(lbl); row1.addWidget(w)
+        controls.addLayout(row1)
+
+        row2 = QHBoxLayout()
+        row2.addWidget(self.flicker_check)
+        lbl_str = QLabel("Strength:"); lbl_str.setStyleSheet(f"color:{ACCENT_MUTED};")
+        row2.addWidget(lbl_str); row2.addWidget(self.strength_spin)
+        controls.addLayout(row2)
+
+        res_row = QHBoxLayout()
+        lbl_res = QLabel("Resolution:"); lbl_res.setStyleSheet(f"color:{ACCENT_MUTED};")
+        res_row.addWidget(lbl_res); res_row.addWidget(self.width_spin)
+        lbl_x = QLabel("×"); lbl_x.setStyleSheet(f"color:{ACCENT_MUTED};")
+        res_row.addWidget(lbl_x); res_row.addWidget(self.height_spin)
+        controls.addLayout(res_row)
+
+        self.layout.addLayout(controls)
+
+        # Generate button (preview is auto)
+        btn_row = QHBoxLayout()
+        self.generate_btn = QPushButton("Generate PNG Sequence")
+        self.generate_btn.setFixedHeight(48)
+        self.generate_btn.setStyleSheet(f"background:{BUTTON_BG}; border:1px solid {BUTTON_BORDER}; border-radius:10px; "
+                                        f"color:{TEXT_COLOR}; font-weight:bold;")
+        self.generate_btn.clicked.connect(self.generate_frames)
+        btn_row.addWidget(self.generate_btn)
+        self.layout.addLayout(btn_row)
+
+        # Preview section
+        preview_container = QVBoxLayout()
+        preview_title = QLabel("Preview (wrapped for readability)")
+        preview_title.setStyleSheet(f"color:{ACCENT_MUTED}; font-size:13px;")
+        preview_container.addWidget(preview_title)
+
+        wrap_row = QHBoxLayout()
+        wrap_lbl = QLabel("Wrap preview lines at:")
+        wrap_lbl.setStyleSheet(f"color:{ACCENT_MUTED};")
+        self.wrap_spin = QSpinBox()
+        self.wrap_spin.setRange(40, 120)
+        self.wrap_spin.setValue(60)
+        self.wrap_spin.setSuffix(" chars")
+        wrap_row.addWidget(wrap_lbl)
+        wrap_row.addWidget(self.wrap_spin)
+        preview_container.addLayout(wrap_row)
+
+        self.preview_label = QLabel()
+        self.preview_label.setAlignment(Qt.AlignTop | Qt.AlignLeft)
+        self.preview_label.setStyleSheet("background:#111; border:1px solid #333; border-radius:8px; padding:10px;")
+        self.preview_label.setMinimumHeight(360)
+        self.preview_label.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        preview_container.addWidget(self.preview_label)
+
+        # Scrubber
+        scrub_row = QHBoxLayout()
+        scrub_lbl = QLabel("Scrub frame:")
+        scrub_lbl.setStyleSheet(f"color:{ACCENT_MUTED};")
+        self.scrub_slider = QSlider(Qt.Horizontal)
+        self.scrub_slider.setRange(0, 0)
+        self.scrub_slider.setStyleSheet("""
+            QSlider::groove:horizontal {background:#3a3a3a; height:6px; border-radius:3px;}
+            QSlider::handle:horizontal {background:#6b5a47; border:1px solid #8a7a67; width:18px; height:18px;
+                                        margin:-6px -6px -6px -6px; border-radius:9px;}
+            QSlider::handle:horizontal:hover {background:#8a7a67;}
+        """)
+        self.scrub_slider.sliderPressed.connect(self.pause_on_scrub)
+        self.scrub_slider.sliderReleased.connect(self.resume_after_scrub)
+        self.scrub_slider.valueChanged.connect(self.scrub_to_frame)
+        scrub_row.addWidget(scrub_lbl)
+        scrub_row.addWidget(self.scrub_slider)
+        preview_container.addLayout(scrub_row)
+
+        self.play_pause_btn = QPushButton("Pause Preview")
+        self.play_pause_btn.setFixedHeight(36)
+        self.play_pause_btn.setStyleSheet(f"background:{BUTTON_BG}; border:1px solid {BUTTON_BORDER}; border-radius:8px; color:{TEXT_COLOR};")
+        self.play_pause_btn.clicked.connect(self.toggle_play_pause)
+        preview_container.addWidget(self.play_pause_btn, alignment=Qt.AlignCenter)
+
+        self.layout.addLayout(preview_container, stretch=1)
+
+        # Status
+        self.progress = QProgressBar()
+        self.progress.setVisible(False)
+        self.layout.addWidget(self.progress)
+
+        self.status_label = QLabel("Ready")
+        self.status_label.setAlignment(Qt.AlignCenter)
+        self.status_label.setStyleSheet(f"color:{ACCENT_MUTED};")
+        self.layout.addWidget(self.status_label)
+
+        # Shadow
+        shadow = QGraphicsDropShadowEffect()
+        shadow.setBlurRadius(20); shadow.setOffset(0, 6); shadow.setColor(SHADOW_COLOR)
+        central.setGraphicsEffect(shadow)
+
+    def _setup_timers(self):
+        self.preview_timer = QTimer(self)
+        self.preview_timer.timeout.connect(self.update_preview_frame)
+
+        self.preview_update_timer = QTimer(self)
+        self.preview_update_timer.setSingleShot(True)
+        self.preview_update_timer.timeout.connect(self._regenerate_preview)
+
+    def _setup_connections(self):
+        self.text_edit.textChanged.connect(self.update_count_label)
+        self.text_edit.textChanged.connect(self._trigger_preview_update)
+        self.text_edit.verticalScrollBar().valueChanged.connect(self.sync_slider_from_text)
+        self.scroll_slider.valueChanged.connect(self.sync_text_from_slider)
+
+    def _trigger_preview_update(self):
+        self.preview_update_timer.start(300)
+
+    def _regenerate_preview(self):
+        text = self.text_edit.toPlainText().strip()
+        if not text:
+            self.preview_label.setPixmap(QPixmap())
+            self.scrub_slider.setRange(0, 0)
+            self.preview_frames = []
+            self.status_label.setText("Ready")
+            return
+
+        self.status_label.setText("Regenerating preview...")
+        QApplication.processEvents()
+
+        self.preview_frames = self._generate_in_memory_frames()
+        if not self.preview_frames:
+            self.status_label.setText("Preview failed")
+            return
+
+        self.scrub_slider.setRange(0, len(self.preview_frames) - 1)
+        self.current_frame_idx = 0
+        self.preview_timer.start(66)
+        self.is_preview_active = True
+        self.is_paused = False
+        self.play_pause_btn.setText("Pause Preview")
+        self.status_label.setText("Preview playing…")
+
+    def pause_on_scrub(self):
+        self.is_scrubbing = True
+        self.preview_timer.stop()
+
+    def resume_after_scrub(self):
+        self.is_scrubbing = False
+        if self.is_preview_active and not self.is_paused:
+            self.preview_timer.start(66)
+
+    def scrub_to_frame(self, value):
+        if self.preview_frames:
+            self.current_frame_idx = value
+            pix = self.preview_frames[self.current_frame_idx]
+            self.preview_label.setPixmap(pix)
+
+    def toggle_play_pause(self):
+        if not self.preview_frames:
+            return
+        if self.is_paused:
+            self.preview_timer.start(66)
+            self.play_pause_btn.setText("Pause Preview")
+            self.is_paused = False
+            self.status_label.setText("Preview playing…")
+        else:
+            self.preview_timer.stop()
+            self.play_pause_btn.setText("Resume Preview")
+            self.is_paused = True
+            self.status_label.setText("Preview paused")
+
+    def _generate_in_memory_frames(self):
+        frames = []
+        text = self.text_edit.toPlainText().strip()
+        unit_type = self.unit_combo.currentText()
+        transition = self.trans_combo.currentText()
+        frames_per_unit = self.frames_spin.value()
+        flicker = self.flicker_check.isChecked()
+        flicker_strength = self.strength_spin.value()
+        width, height = self.width_spin.value(), self.height_spin.value()
+        wrap_width = self.wrap_spin.value()
+        preview_margin = 60
+
+        font = pygame.font.SysFont(None, 80)
+
+        if unit_type == 'word':
+            units = text.split()
+        else:
+            units = list(text)
+
+        prev_text = ''
+        fixed_x = preview_margin
+        base_y = 80
+
+        for idx, unit in enumerate(units):
+            unit_to_add = unit + ' ' if unit_type == 'word' and idx < len(units)-1 else unit
+
+            if transition == 'fade':
+                for i in range(frames_per_unit):
+                    alpha = int(255 * (i + 1) / frames_per_unit)
+                    factor = 1 + random.uniform(-flicker_strength, flicker_strength) if flicker else 1.0
+
+                    current_text = prev_text + unit_to_add[:int(len(unit_to_add) * (i + 1) / frames_per_unit)]
+                    wrapped = self._wrap_text(current_text, wrap_width)
+
+                    surf = pygame.Surface((width, height), pygame.SRCALPHA)
+                    self._render_wrapped_text(surf, wrapped, font, fixed_x, base_y, (255,255,255, 255))
+                    pixmap = self._pygame_surf_to_pixmap(surf)
+                    frames.append(pixmap.scaled(640, 360, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+
+                prev_text += unit_to_add
+
+            else:
+                prev_text += unit_to_add
+                for _ in range(frames_per_unit):
+                    factor = 1 + random.uniform(-flicker_strength, flicker_strength) if flicker else 1.0
+                    col = tuple(min(255, int(255 * factor)) for _ in range(3))
+
+                    wrapped = self._wrap_text(prev_text, wrap_width)
+
+                    surf = pygame.Surface((width, height), pygame.SRCALPHA)
+                    self._render_wrapped_text(surf, wrapped, font, fixed_x, base_y, col + (255,))
+                    pixmap = self._pygame_surf_to_pixmap(surf)
+                    frames.append(pixmap.scaled(640, 360, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+
+        return frames
+
+    def _wrap_text(self, text, width):
+        lines = text.splitlines(keepends=True)
+        wrapped_lines = []
+        for line in lines:
+            if line == '\n':
+                wrapped_lines.append('')
+                continue
+            wrapped = textwrap.wrap(line.rstrip('\n'), width=width, break_long_words=False)
+            wrapped_lines.extend(wrapped)
+        return '\n'.join(wrapped_lines)
+
+    def _render_wrapped_text(self, surf, wrapped_text, font, x, y_start, color):
+        lines = wrapped_text.split('\n')
+        y = y_start
+        line_height = font.get_linesize()
+        for line in lines:
+            if not line:
+                y += line_height
+                continue
+            line_surf = font.render(line, True, color)
+            surf.blit(line_surf, (x, y))
+            y += line_height
+
+    def _pygame_surf_to_pixmap(self, surf):
+        img_str = pygame.image.tostring(surf, 'RGBA')
+        qimg = QImage(img_str, surf.get_width(), surf.get_height(), QImage.Format_RGBA8888)
+        return QPixmap.fromImage(qimg)
+
+    def update_preview_frame(self):
+        if not self.preview_frames:
+            return
+        pix = self.preview_frames[self.current_frame_idx]
+        self.preview_label.setPixmap(pix)
+        self.scrub_slider.setValue(self.current_frame_idx)
+        self.current_frame_idx = (self.current_frame_idx + 1) % len(self.preview_frames)
+
+    def generate_frames(self):
+        # Your export logic here
+        pass
+
+    def _update_input_font_size(self):
+        size = self.input_font_slider.value()
+        font = QFont("Segoe UI", size)
+        self.text_edit.setCurrentFont(font)
+        self.text_edit.setFont(font)
+
+    def sync_slider_from_text(self, value):
+        self.scroll_slider.blockSignals(True)
+        self.scroll_slider.setValue(value)
+        self.scroll_slider.blockSignals(False)
+
+    def sync_text_from_slider(self, value):
+        self.text_edit.verticalScrollBar().setValue(value)
+
+    def update_scroll_slider_range(self):
+        max_scroll = self.text_edit.verticalScrollBar().maximum()
+        self.scroll_slider.setRange(0, max_scroll if max_scroll > 0 else 100)
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = TextAnimatorWindow()
+    window.show()
+    sys.exit(app.exec())
