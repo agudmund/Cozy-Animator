@@ -17,8 +17,11 @@ from PySide6.QtGui import QFont, QColor, QImage, QPixmap
 
 from styles.theme import (
     BG_COLOR, TEXT_COLOR, ACCENT_MUTED, BUTTON_BG, BUTTON_BORDER,
-    BUTTON_HOVER, SHADOW_COLOR, SETTINGS_FILE
+    BUTTON_HOVER, SHADOW_COLOR, SETTINGS_FILE, CUSTOM_SCROLLBAR_STYLE,
+    CUSTOM_VERTICAL_SLIDER_STYLE
 )
+from utils.settings import load_settings, save_settings
+from utils.helpers import wrap_text, render_wrapped_text, pygame_surf_to_pixmap
 
 pygame.init()
 pygame.font.init()
