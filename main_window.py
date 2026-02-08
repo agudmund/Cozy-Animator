@@ -6,11 +6,11 @@ import pygame
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QTextEdit, QComboBox, QSpinBox, QCheckBox, QPushButton,
-    QDoubleSpinBox, QMessageBox, QProgressBar, QToolButton,
-    QGraphicsDropShadowEffect, QSizePolicy, QSlider
+    QDoubleSpinBox, QMessageBox, QProgressBar, QToolButton, QMenu,
+    QSlider, QSizePolicy, QGraphicsDropShadowEffect
 )
-from PySide6.QtCore import Qt, QTimer, QThread, Signal
-from PySide6.QtGui import QFont, QColor, QImage, QPixmap
+from PySide6.QtCore import Qt, QTimer
+from PySide6.QtGui import QFont, QColor, QImage, QPixmap, QTextCursor
 
 from styles.theme import (
     BG_COLOR, TEXT_COLOR, ACCENT_MUTED, BUTTON_BG, BUTTON_BORDER,
@@ -19,84 +19,10 @@ from styles.theme import (
 )
 from utils.settings import load_settings, save_settings
 from utils.helpers import wrap_text, render_wrapped_text, pygame_surf_to_pixmap
+from utils.spellchecker import SpellHighlighter, show_spell_suggestions
 
 pygame.init()
 pygame.font.init()
-
-MAX_FRAMES = 500  # Safety cap to prevent blow-up on very long text
-
-class PreviewWorker(QThread):
-    """Background thread for generating preview frames."""
-    frames_ready = Signal(list)  # list of QPixmap
-    error = Signal(str)
-
-    def __init__(self, text, unit_type, transition, frames_per_unit, flicker, flicker_strength, width, height, wrap_width):
-        super().__init__()
-        self.text = text
-        self.unit_type = unit_type
-        self.transition = transition
-        self.frames_per_unit = frames_per_unit
-        self.flicker = flicker
-        self.flicker_strength = flicker_strength
-        self.width = width
-        self.height = height
-        self.wrap_width = wrap_width
-
-    def run(self):
-        try:
-            frames = []
-            preview_margin = 60
-            font = pygame.font.SysFont(None, 80)
-
-            if self.unit_type == 'word':
-                units = self.text.split()
-            else:
-                units = list(self.text)
-
-            total_units = len(units)
-            total_frames = total_units * self.frames_per_unit
-            if total_frames > MAX_FRAMES:
-                self.error.emit(f"Too many frames ({total_frames} > {MAX_FRAMES} max). Shorten text or reduce Frames/unit.")
-                return
-
-            prev_text = ''
-            fixed_x = preview_margin
-            base_y = 80
-
-            for idx, unit in enumerate(units):
-                unit_to_add = unit + ' ' if self.unit_type == 'word' and idx < len(units)-1 else unit
-
-                if self.transition == 'fade':
-                    for i in range(self.frames_per_unit):
-                        alpha = int(255 * (i + 1) / self.frames_per_unit)
-                        factor = 1 + random.uniform(-self.flicker_strength, self.flicker_strength) if self.flicker else 1.0
-
-                        current_text = prev_text + unit_to_add[:int(len(unit_to_add) * (i + 1) / self.frames_per_unit)]
-                        wrapped = wrap_text(current_text, self.wrap_width)
-
-                        surf = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
-                        render_wrapped_text(surf, wrapped, font, fixed_x, base_y, (255,255,255, 255))
-                        pixmap = pygame_surf_to_pixmap(surf)
-                        frames.append(pixmap.scaled(640, 480, Qt.KeepAspectRatio, Qt.SmoothTransformation))
-
-                    prev_text += unit_to_add
-
-                else:
-                    prev_text += unit_to_add
-                    for _ in range(self.frames_per_unit):
-                        factor = 1 + random.uniform(-self.flicker_strength, self.flicker_strength) if self.flicker else 1.0
-                        col = tuple(min(255, int(255 * factor)) for _ in range(3))
-
-                        wrapped = wrap_text(prev_text, self.wrap_width)
-
-                        surf = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
-                        render_wrapped_text(surf, wrapped, font, fixed_x, base_y, col + (255,))
-                        pixmap = pygame_surf_to_pixmap(surf)
-                        frames.append(pixmap.scaled(640, 480, Qt.KeepAspectRatio, Qt.SmoothTransformation))
-
-            self.frames_ready.emit(frames)
-        except Exception as e:
-            self.error.emit(str(e))
 
 class TextAnimatorWindow(QMainWindow):
     def __init__(self):
@@ -122,7 +48,7 @@ class TextAnimatorWindow(QMainWindow):
         split_layout = QHBoxLayout()
         split_layout.setSpacing(24)
 
-        # Left panel
+        # Left panel: input + controls
         self.left_panel = QWidget()
         self.left_layout = QVBoxLayout(self.left_panel)
         self.left_layout.setContentsMargins(0, 0, 0, 0)
@@ -152,6 +78,12 @@ class TextAnimatorWindow(QMainWindow):
         footer_widget.setLayout(footer_layout)
         self.main_layout.addWidget(footer_widget)
 
+        # Spellcheck debounce timer (1 second inactivity)
+        self.spellcheck_timer = QTimer(self)
+        self.spellcheck_timer.setSingleShot(True)
+        self.spellcheck_timer.timeout.connect(self._run_spellcheck)
+        self.spellcheck_timer.setInterval(1000)  # 1 second
+
         self._setup_timers()
         self._setup_connections()
 
@@ -160,7 +92,9 @@ class TextAnimatorWindow(QMainWindow):
         self.is_preview_active = False
         self.is_paused = False
         self.is_scrubbing = False
-        self.preview_worker = None
+
+        # Spellchecker highlighter
+        self.spell_highlighter = SpellHighlighter(self.text_edit.document())
 
         load_settings(self)
         self.update_count_label()
@@ -173,7 +107,6 @@ class TextAnimatorWindow(QMainWindow):
         self.central_widget.setGraphicsEffect(shadow)
 
     def _setup_left_panel(self):
-        # Top bar with emoji tools
         top_bar = QWidget()
         top_layout = QHBoxLayout(top_bar)
         top_layout.addStretch()
@@ -190,13 +123,11 @@ class TextAnimatorWindow(QMainWindow):
             top_layout.addWidget(btn)
         self.left_layout.addWidget(top_bar)
 
-        # Title
         title = QLabel("Generate Animated Text Frames")
         title.setFont(QFont("Segoe UI", 18, QFont.Bold))
         title.setAlignment(Qt.AlignCenter)
         self.left_layout.addWidget(title)
 
-        # Input container (text + custom scrollbar)
         input_container = QWidget()
         input_layout = QHBoxLayout(input_container)
         input_layout.setContentsMargins(0, 0, 0, 0)
@@ -210,7 +141,7 @@ class TextAnimatorWindow(QMainWindow):
             f"padding:14px; color:{TEXT_COLOR}; line-height:140%;"
         )
         self.text_edit.viewport().setStyleSheet(CUSTOM_SCROLLBAR_STYLE)
-        self.text_edit.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)  # Force hide native scrollbar
+        self.text_edit.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.text_edit.setMinimumHeight(140)
         input_layout.addWidget(self.text_edit, stretch=1)
 
@@ -230,7 +161,6 @@ class TextAnimatorWindow(QMainWindow):
 
         self.left_layout.addWidget(input_container, stretch=1)
 
-        # Input font size slider
         font_row = QHBoxLayout()
         font_lbl = QLabel("Input font size:")
         font_lbl.setStyleSheet(f"color:{ACCENT_MUTED};")
@@ -247,7 +177,6 @@ class TextAnimatorWindow(QMainWindow):
         self.count_label.setStyleSheet(f"color: {ACCENT_MUTED}; font-size: 13px; text-align: right;")
         self.left_layout.addWidget(self.count_label)
 
-        # Controls
         controls = QVBoxLayout()
         controls.setSpacing(10)
 
@@ -280,7 +209,6 @@ class TextAnimatorWindow(QMainWindow):
 
         self.left_layout.addLayout(controls)
 
-        # Buttons row: Generate + Clear Text
         btn_row = QHBoxLayout()
         self.generate_btn = QPushButton("Generate PNG Sequence")
         self.generate_btn.setFixedHeight(48)
@@ -323,7 +251,6 @@ class TextAnimatorWindow(QMainWindow):
         self.preview_label.setFixedWidth(640)
         self.right_layout.addWidget(self.preview_label, stretch=0)
 
-        # Scrubber
         scrub_row = QHBoxLayout()
         scrub_lbl = QLabel("Scrub frame:")
         scrub_lbl.setStyleSheet(f"color:{ACCENT_MUTED};")
@@ -354,28 +281,37 @@ class TextAnimatorWindow(QMainWindow):
 
         self.preview_update_timer = QTimer(self)
         self.preview_update_timer.setSingleShot(True)
-        self.preview_update_timer.timeout.connect(self._start_preview_worker)
+        self.preview_update_timer.timeout.connect(self._regenerate_preview)
 
     def _setup_connections(self):
         self.text_edit.textChanged.connect(self.update_count_label)
         self.text_edit.textChanged.connect(self._trigger_preview_update)
+        self.text_edit.textChanged.connect(self._reset_spellcheck_timer)
         self.text_edit.verticalScrollBar().valueChanged.connect(self.sync_slider_from_text)
         self.scroll_slider.valueChanged.connect(self.sync_text_from_slider)
 
         self.frames_spin.valueChanged.connect(self._update_preview_on_settings_change)
         self.strength_spin.valueChanged.connect(self._update_preview_on_settings_change)
 
-    def _trigger_preview_update(self):
-        if self.is_paused:
-            return
-        self.preview_update_timer.start(300)
+        self.text_edit.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.text_edit.customContextMenuRequested.connect(self.show_spell_menu)
+
+    def _reset_spellcheck_timer(self):
+        self.spellcheck_timer.start(1000)  # 1 second debounce
+
+    def _run_spellcheck(self):
+        self.spell_highlighter.rehighlight()
+
+    def show_spell_menu(self, pos):
+        show_spell_suggestions(self.text_edit, pos)
 
     def _update_preview_on_settings_change(self):
-        if self.is_paused:
-            return
         self.preview_update_timer.start(100)
 
-    def _start_preview_worker(self):
+    def _trigger_preview_update(self):
+        self.preview_update_timer.start(300)
+
+    def _regenerate_preview(self):
         text = self.text_edit.toPlainText().strip()
         if not text:
             self.preview_label.setPixmap(QPixmap())
@@ -384,56 +320,21 @@ class TextAnimatorWindow(QMainWindow):
             self.status_label.setText("Ready")
             return
 
-        # Safety check for very long text
-        if len(text) > 2000:
-            reply = QMessageBox.question(self, "Large Text", 
-                                         "Text is very long — preview may take time or lag. Proceed?",
-                                         QMessageBox.Yes | QMessageBox.No)
-            if reply == QMessageBox.No:
-                self.status_label.setText("Ready")
-                return
-
-        self.status_label.setText("Generating preview...")
+        self.status_label.setText("Regenerating preview...")
         QApplication.processEvents()
 
-        # Stop any running worker
-        if self.preview_worker and self.preview_worker.isRunning():
-            self.preview_worker.quit()
-            self.preview_worker.wait()
-
-        self.preview_worker = PreviewWorker(
-            text,
-            self.unit_combo.currentText(),
-            self.trans_combo.currentText(),
-            self.frames_spin.value(),
-            self.flicker_check.isChecked(),
-            self.strength_spin.value(),
-            self.width_spin.value(),
-            self.height_spin.value(),
-            self.wrap_spin.value()
-        )
-        self.preview_worker.frames_ready.connect(self._on_frames_ready)
-        self.preview_worker.error.connect(self._on_preview_error)
-        self.preview_worker.start()
-
-    def _on_frames_ready(self, frames):
-        self.preview_frames = frames
-        if not frames:
+        self.preview_frames = self._generate_in_memory_frames()
+        if not self.preview_frames:
             self.status_label.setText("Preview failed")
             return
 
-        self.scrub_slider.setRange(0, len(frames) - 1)
+        self.scrub_slider.setRange(0, len(self.preview_frames) - 1)
         self.current_frame_idx = 0
-        if not self.is_paused:
-            self.preview_timer.start(66)
-            self.is_preview_active = True
-            self.play_pause_btn.setText("Pause Preview")
-            self.status_label.setText("Preview playing…")
-        else:
-            self.status_label.setText("Preview paused")
-
-    def _on_preview_error(self, error_msg):
-        self.status_label.setText(f"Preview error: {error_msg}")
+        self.preview_timer.start(66)
+        self.is_preview_active = True
+        self.is_paused = False
+        self.play_pause_btn.setText("Pause Preview")
+        self.status_label.setText("Preview playing…")
 
     def pause_on_scrub(self):
         self.is_scrubbing = True
@@ -459,8 +360,10 @@ class TextAnimatorWindow(QMainWindow):
         if not self.preview_frames:
             return
         if self.is_paused:
-            # Regenerate on resume
-            self._start_preview_worker()
+            self.preview_timer.start(66)
+            self.play_pause_btn.setText("Pause Preview")
+            self.is_paused = False
+            self.status_label.setText("Preview playing…")
         else:
             self.preview_timer.stop()
             self.play_pause_btn.setText("Resume Preview")
@@ -537,12 +440,9 @@ class TextAnimatorWindow(QMainWindow):
         self.current_frame_idx = (self.current_frame_idx + 1) % len(self.preview_frames)
 
     def generate_frames(self):
-        # Placeholder for your export logic
         QMessageBox.information(self, "Export", "PNG sequence generation not implemented yet.")
-        # Implement your actual export code here
 
     def clear_text(self):
-        """Clear input text, reset preview, scrubber, count, and status."""
         self.text_edit.clear()
         self.preview_label.setPixmap(QPixmap())
         self.scrub_slider.setRange(0, 0)
