@@ -1,0 +1,199 @@
+[2026-02-10 21:31:00] [INFO] Cozy Animator launched
+[2026-02-10 21:36:50] [INFO] Cozy Animator launched
+[2026-02-10 21:36:50] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 21:36:50] [CRITICAL] Starting Cozy Animator catastrophically failed: 'TextAnimatorWindow' object has no attribute 'update_preview_frame'
+Traceback (most recent call last):
+  File "C:\Users\thisg\Desktop\Cozy Animator\Code\main.py", line 14, in <module>
+    window = TextAnimatorWindow()
+  File "C:\Users\thisg\Desktop\Cozy Animator\Code\main_window.py", line 90, in __init__
+    self._setup_timers()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\thisg\Desktop\Cozy Animator\Code\main_window.py", line 285, in _setup_timers
+    self.preview_timer.timeout.connect(self.update_preview_frame)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'TextAnimatorWindow' object has no attribute 'update_preview_frame'
+[2026-02-10 21:39:37] [INFO] Cozy Animator launched
+[2026-02-10 21:39:37] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 21:39:37] [INFO] TextAnimatorWindow ready
+[2026-02-10 21:39:37] [DEBUG] → _regenerate_preview()
+[2026-02-10 21:39:37] [INFO] Preview cleared (empty input)
+[2026-02-10 21:39:37] [DEBUG] ← _regenerate_preview → None  (0.002s)
+[2026-02-10 21:39:40] [DEBUG] → _regenerate_preview()
+[2026-02-10 21:39:40] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 21:39:40] [DEBUG] ← _generate_in_memory_frames → …  (0.052s)
+[2026-02-10 21:39:40] [INFO] Preview regenerated successfully – 4 frames
+[2026-02-10 21:39:40] [DEBUG] ← _regenerate_preview → None  (0.059s)
+[2026-02-10 21:39:41] [DEBUG] → _regenerate_preview()
+[2026-02-10 21:39:41] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 21:39:41] [DEBUG] ← _generate_in_memory_frames → …  (0.047s)
+[2026-02-10 21:39:41] [INFO] Preview regenerated successfully – 4 frames
+[2026-02-10 21:39:41] [DEBUG] ← _regenerate_preview → None  (0.053s)
+[2026-02-10 21:39:41] [DEBUG] → _regenerate_preview()
+[2026-02-10 21:39:41] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 21:39:41] [DEBUG] ← _generate_in_memory_frames → …  (0.047s)
+[2026-02-10 21:39:41] [INFO] Preview regenerated successfully – 4 frames
+[2026-02-10 21:39:41] [DEBUG] ← _regenerate_preview → None  (0.053s)
+[2026-02-10 21:39:43] [DEBUG] → _regenerate_preview()
+[2026-02-10 21:39:43] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 21:39:43] [DEBUG] ← _generate_in_memory_frames → …  (0.159s)
+[2026-02-10 21:39:43] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:39:43] [DEBUG] ← _regenerate_preview → None  (0.164s)
+[2026-02-10 21:39:44] [DEBUG] → _regenerate_preview()
+[2026-02-10 21:39:44] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 21:39:44] [DEBUG] ← _generate_in_memory_frames → …  (0.159s)
+[2026-02-10 21:39:44] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:39:44] [DEBUG] ← _regenerate_preview → None  (0.165s)
+[2026-02-10 21:39:45] [DEBUG] → _regenerate_preview()
+[2026-02-10 21:39:45] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 21:39:45] [DEBUG] ← _generate_in_memory_frames → …  (0.158s)
+[2026-02-10 21:39:45] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:39:45] [DEBUG] ← _regenerate_preview → None  (0.165s)
+[2026-02-10 21:39:46] [DEBUG] → _regenerate_preview()
+[2026-02-10 21:39:46] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 21:39:46] [DEBUG] ← _generate_in_memory_frames → …  (0.160s)
+[2026-02-10 21:39:46] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:39:46] [DEBUG] ← _regenerate_preview → None  (0.167s)
+[2026-02-10 21:45:48] [INFO] Cozy Animator launched (debug mode: False)
+[2026-02-10 21:45:48] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 21:45:48] [INFO] TextAnimatorWindow ready
+[2026-02-10 21:45:48] [INFO] Preview cleared (empty input)
+[2026-02-10 21:45:55] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:45:56] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:45:57] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:45:58] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:45:59] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:00] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:01] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:02] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:03] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:04] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:05] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:06] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:07] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:08] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:09] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:10] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:11] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:12] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:13] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:14] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:15] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:16] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:17] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:18] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:19] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:20] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:21] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:22] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:23] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:24] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:25] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:26] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:27] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:28] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:29] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:30] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:31] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:32] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:33] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:34] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:35] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:36] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:37] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:38] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:39] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:40] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:41] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:42] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:43] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:44] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:45] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:46] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:47] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:48] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:49] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:50] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:51] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:52] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:53] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:54] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:55] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:56] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:57] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:58] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:46:59] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:00] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:01] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:02] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:03] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:04] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:05] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:06] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:07] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:08] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:09] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:10] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:11] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:12] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:13] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:14] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:15] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:16] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:17] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:18] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:19] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:20] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:21] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:22] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:23] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:24] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:25] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:26] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:27] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:28] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:29] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:30] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:31] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:32] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:33] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:34] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:35] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:36] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:37] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:38] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:39] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:40] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:41] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:42] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:43] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:44] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:45] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:46] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:47] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:48] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:49] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:50] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:51] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:52] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:53] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:54] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:55] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:56] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:57] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:58] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:47:59] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:48:00] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:48:01] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:48:02] [INFO] Preview regenerated successfully – 14 frames
+[2026-02-10 21:52:19] [INFO] Cozy Animator launched (debug mode: False)
+[2026-02-10 21:52:19] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 21:52:19] [INFO] TextAnimatorWindow ready
+[2026-02-10 21:53:08] [INFO] Cozy Animator launched (debug mode: False)
+[2026-02-10 21:53:08] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 21:53:08] [INFO] TextAnimatorWindow ready
+[2026-02-10 22:00:09] [INFO] Cozy Animator launched (debug mode: False)
+[2026-02-10 22:00:09] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 22:00:09] [INFO] TextAnimatorWindow ready
+[2026-02-10 22:06:38] [INFO] Cozy Animator launched (debug mode: False)
+[2026-02-10 22:06:38] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 22:06:38] [INFO] TextAnimatorWindow ready

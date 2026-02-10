@@ -1,6 +1,7 @@
 # main_window.py
 import random
 from pathlib import Path
+import logging
 
 import pygame
 from PySide6.QtWidgets import (
@@ -20,6 +21,7 @@ from styles.theme import (
 from utils.settings import load_settings, save_settings
 from utils.helpers import wrap_text, render_wrapped_text, pygame_surf_to_pixmap
 from utils.spellchecker import SpellHighlighter, show_spell_suggestions
+from utils.logging import log_call
 
 pygame.init()
 pygame.font.init()
@@ -27,6 +29,11 @@ pygame.font.init()
 class TextAnimatorWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.logger = logging.getLogger("cozy_animator")
+        self.preview_logger = self.logger.getChild("preview")   # ← new child logger
+
+        self.logger.info("TextAnimatorWindow initializing...")
+
         self.setWindowTitle("Cozy Animator – Frame Sequence 🌱")
         self.resize(1000, 780)
         self.setStyleSheet(f"background-color: {BG_COLOR}; color: {TEXT_COLOR};")
@@ -99,12 +106,14 @@ class TextAnimatorWindow(QMainWindow):
         load_settings(self)
         self.update_count_label()
 
-        # Shadow
+        # Shadow effect
         shadow = QGraphicsDropShadowEffect()
         shadow.setBlurRadius(20)
         shadow.setOffset(0, 6)
         shadow.setColor(SHADOW_COLOR)
         self.central_widget.setGraphicsEffect(shadow)
+
+        self.logger.info("TextAnimatorWindow ready")
 
     def _setup_left_panel(self):
         top_bar = QWidget()
@@ -297,7 +306,7 @@ class TextAnimatorWindow(QMainWindow):
         self.text_edit.customContextMenuRequested.connect(self.show_spell_menu)
 
     def _reset_spellcheck_timer(self):
-        self.spellcheck_timer.start(1000)  # 1 second debounce
+        self.spellcheck_timer.start(1000)
 
     def _run_spellcheck(self):
         self.spell_highlighter.rehighlight()
@@ -311,6 +320,7 @@ class TextAnimatorWindow(QMainWindow):
     def _trigger_preview_update(self):
         self.preview_update_timer.start(300)
 
+    @log_call
     def _regenerate_preview(self):
         text = self.text_edit.toPlainText().strip()
         if not text:
@@ -318,6 +328,7 @@ class TextAnimatorWindow(QMainWindow):
             self.scrub_slider.setRange(0, 0)
             self.preview_frames = []
             self.status_label.setText("Ready")
+            self.preview_logger.debug("Preview cleared (empty input)")
             return
 
         self.status_label.setText("Regenerating preview...")
@@ -326,6 +337,7 @@ class TextAnimatorWindow(QMainWindow):
         self.preview_frames = self._generate_in_memory_frames()
         if not self.preview_frames:
             self.status_label.setText("Preview failed")
+            self.preview_logger.debug("Preview regeneration failed – no frames produced")
             return
 
         self.scrub_slider.setRange(0, len(self.preview_frames) - 1)
@@ -335,6 +347,7 @@ class TextAnimatorWindow(QMainWindow):
         self.is_paused = False
         self.play_pause_btn.setText("Pause Preview")
         self.status_label.setText("Preview playing…")
+        self.preview_logger.debug("Preview regenerated successfully – %d frames", len(self.preview_frames))
 
     def pause_on_scrub(self):
         self.is_scrubbing = True
@@ -364,12 +377,15 @@ class TextAnimatorWindow(QMainWindow):
             self.play_pause_btn.setText("Pause Preview")
             self.is_paused = False
             self.status_label.setText("Preview playing…")
+            self.logger.info("Preview playback resumed")
         else:
             self.preview_timer.stop()
             self.play_pause_btn.setText("Resume Preview")
             self.is_paused = True
             self.status_label.setText("Preview paused")
+            self.logger.info("Preview playback paused by user")
 
+    @log_call
     def _generate_in_memory_frames(self):
         frames = []
         text = self.text_edit.toPlainText().strip()
@@ -440,6 +456,7 @@ class TextAnimatorWindow(QMainWindow):
         self.current_frame_idx = (self.current_frame_idx + 1) % len(self.preview_frames)
 
     def generate_frames(self):
+        self.logger.info("Generate PNG sequence requested (placeholder – not yet implemented)")
         QMessageBox.information(self, "Export", "PNG sequence generation not implemented yet.")
 
     def clear_text(self):
@@ -454,6 +471,7 @@ class TextAnimatorWindow(QMainWindow):
         self.play_pause_btn.setText("Pause Preview")
         self.status_label.setText("Ready")
         self.update_count_label()
+        self.logger.info("Text area cleared by user")
 
     def _update_input_font_size(self):
         size = self.input_font_slider.value()
