@@ -23,6 +23,9 @@ from utils.helpers import wrap_text, render_wrapped_text, pygame_surf_to_pixmap
 from utils.spellchecker import SpellHighlighter, show_spell_suggestions
 from utils.logging import log_call
 
+# Log viewer integration
+from widgets.log_viewer_dialog import LogViewerDialog
+
 pygame.init()
 pygame.font.init()
 
@@ -30,7 +33,7 @@ class TextAnimatorWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.logger = logging.getLogger("cozy_animator")
-        self.preview_logger = self.logger.getChild("preview")   # ← new child logger
+        self.preview_logger = self.logger.getChild("preview")
 
         self.logger.info("TextAnimatorWindow initializing...")
 
@@ -44,18 +47,15 @@ class TextAnimatorWindow(QMainWindow):
         self.main_layout.setContentsMargins(24, 24, 24, 24)
         self.main_layout.setSpacing(16)
 
-        # Status label and progress early
         self.progress = QProgressBar()
         self.progress.setVisible(False)
         self.status_label = QLabel("Ready")
         self.status_label.setAlignment(Qt.AlignCenter)
         self.status_label.setStyleSheet(f"color:{ACCENT_MUTED};")
 
-        # Horizontal split for left/right panels
         split_layout = QHBoxLayout()
         split_layout.setSpacing(24)
 
-        # Left panel: input + controls
         self.left_panel = QWidget()
         self.left_layout = QVBoxLayout(self.left_panel)
         self.left_layout.setContentsMargins(0, 0, 0, 0)
@@ -64,7 +64,6 @@ class TextAnimatorWindow(QMainWindow):
         self._setup_left_panel()
         split_layout.addWidget(self.left_panel, stretch=1)
 
-        # Right panel: preview
         self.right_panel = QWidget()
         self.right_layout = QVBoxLayout(self.right_panel)
         self.right_layout.setContentsMargins(0, 0, 0, 0)
@@ -75,7 +74,6 @@ class TextAnimatorWindow(QMainWindow):
 
         self.main_layout.addLayout(split_layout, stretch=1)
 
-        # Footer at bottom
         footer_layout = QHBoxLayout()
         footer_layout.setContentsMargins(0, 8, 0, 0)
         footer_layout.setSpacing(16)
@@ -85,13 +83,12 @@ class TextAnimatorWindow(QMainWindow):
         footer_widget.setLayout(footer_layout)
         self.main_layout.addWidget(footer_widget)
 
-        # Spellcheck debounce timer (1 second inactivity)
         self.spellcheck_timer = QTimer(self)
         self.spellcheck_timer.setSingleShot(True)
         self.spellcheck_timer.timeout.connect(self._run_spellcheck)
-        self.spellcheck_timer.setInterval(1000)  # 1 second
+        self.spellcheck_timer.setInterval(1000)
 
-        self._setup_timers()
+        self._setup_timers()       # create timers only
         self._setup_connections()
 
         self.preview_frames = []
@@ -100,13 +97,11 @@ class TextAnimatorWindow(QMainWindow):
         self.is_paused = False
         self.is_scrubbing = False
 
-        # Spellchecker highlighter
         self.spell_highlighter = SpellHighlighter(self.text_edit.document())
 
         load_settings(self)
         self.update_count_label()
 
-        # Shadow effect
         shadow = QGraphicsDropShadowEffect()
         shadow.setBlurRadius(20)
         shadow.setOffset(0, 6)
@@ -114,6 +109,9 @@ class TextAnimatorWindow(QMainWindow):
         self.central_widget.setGraphicsEffect(shadow)
 
         self.logger.info("TextAnimatorWindow ready")
+
+        # Final step: connect timers after all methods exist
+        self._connect_timers()
 
     def _setup_left_panel(self):
         top_bar = QWidget()
@@ -129,6 +127,10 @@ class TextAnimatorWindow(QMainWindow):
             )
             btn.setFixedSize(36, 36)
             btn.setToolTip(tooltip)
+
+            if symbol == "📜":
+                btn.clicked.connect(self._open_log_viewer)
+
             top_layout.addWidget(btn)
         self.left_layout.addWidget(top_bar)
 
@@ -286,11 +288,15 @@ class TextAnimatorWindow(QMainWindow):
 
     def _setup_timers(self):
         self.preview_timer = QTimer(self)
-        self.preview_timer.timeout.connect(self.update_preview_frame)
+        # connection moved to _connect_timers()
 
         self.preview_update_timer = QTimer(self)
         self.preview_update_timer.setSingleShot(True)
         self.preview_update_timer.timeout.connect(self._regenerate_preview)
+
+    def _connect_timers(self):
+        # Called at end of __init__ — all methods now exist
+        self.preview_timer.timeout.connect(self.update_preview_frame)
 
     def _setup_connections(self):
         self.text_edit.textChanged.connect(self.update_count_label)
@@ -496,6 +502,10 @@ class TextAnimatorWindow(QMainWindow):
         words = len(text.split())
         chars = len(text)
         self.count_label.setText(f"Words: {words} • Characters: {chars}")
+
+    def _open_log_viewer(self):
+        dialog = LogViewerDialog(parent=self)
+        dialog.exec()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

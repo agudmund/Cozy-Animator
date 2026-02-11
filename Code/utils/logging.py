@@ -32,10 +32,7 @@ def setup_logging(debug: bool = False):
     logger.addHandler(console)
 
     # File handler — always full detail
-    log_dir = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-        "logs"
-    )
+    log_dir = os.path.join(os.getcwd(), "logs")
     os.makedirs(log_dir, exist_ok=True)
     today = datetime.now().strftime("%Y-%m-%d")
     file_path = os.path.join(log_dir, f"cozy_animator_{today}.log")

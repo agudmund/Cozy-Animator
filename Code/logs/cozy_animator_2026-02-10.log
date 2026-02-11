@@ -197,3 +197,232 @@ AttributeError: 'TextAnimatorWindow' object has no attribute 'update_preview_fra
 [2026-02-10 22:06:38] [INFO] Cozy Animator launched (debug mode: False)
 [2026-02-10 22:06:38] [INFO] TextAnimatorWindow initializing...
 [2026-02-10 22:06:38] [INFO] TextAnimatorWindow ready
+[2026-02-10 22:20:31] [INFO] Cozy Animator launched (debug mode: False)
+[2026-02-10 22:20:31] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 22:20:31] [INFO] TextAnimatorWindow ready
+[2026-02-10 22:54:33] [INFO] Cozy Animator launched (debug mode: False)
+[2026-02-10 22:54:33] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 22:54:33] [INFO] TextAnimatorWindow ready
+[2026-02-10 22:58:54] [INFO] Cozy Animator launched (debug mode: False)
+[2026-02-10 22:58:54] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 22:58:54] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:08:35] [INFO] Cozy Animator launched (debug mode: False)
+[2026-02-10 23:08:35] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:08:35] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:08:43] [INFO] Text area cleared by user
+[2026-02-10 23:08:44] [INFO] Text area cleared by user
+[2026-02-10 23:09:27] [INFO] Cozy Animator launched (debug mode: False)
+[2026-02-10 23:09:27] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:09:27] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:10:04] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:10:04] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:10:04] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:10:04] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:10:04] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:10:04] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:10:09] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:10:09] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:10:09] [DEBUG] ← _generate_in_memory_frames → …  (0.055s)
+[2026-02-10 23:10:09] [DEBUG] Preview regenerated successfully – 4 frames
+[2026-02-10 23:10:09] [DEBUG] ← _regenerate_preview → None  (0.057s)
+[2026-02-10 23:10:09] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:10:09] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:10:09] [DEBUG] ← _generate_in_memory_frames → …  (0.046s)
+[2026-02-10 23:10:09] [DEBUG] Preview regenerated successfully – 4 frames
+[2026-02-10 23:10:10] [DEBUG] ← _regenerate_preview → None  (0.047s)
+[2026-02-10 23:10:10] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:10:10] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:10:11] [DEBUG] ← _generate_in_memory_frames → …  (0.043s)
+[2026-02-10 23:10:11] [DEBUG] Preview regenerated successfully – 4 frames
+[2026-02-10 23:10:11] [DEBUG] ← _regenerate_preview → None  (0.045s)
+[2026-02-10 23:10:11] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:10:11] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:10:12] [DEBUG] ← _generate_in_memory_frames → …  (0.044s)
+[2026-02-10 23:10:12] [DEBUG] Preview regenerated successfully – 4 frames
+[2026-02-10 23:10:12] [DEBUG] ← _regenerate_preview → None  (0.045s)
+[2026-02-10 23:10:12] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:10:12] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:10:13] [DEBUG] ← _generate_in_memory_frames → …  (0.049s)
+[2026-02-10 23:10:13] [DEBUG] Preview regenerated successfully – 4 frames
+[2026-02-10 23:10:13] [DEBUG] ← _regenerate_preview → None  (0.050s)
+[2026-02-10 23:10:13] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:10:13] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:10:14] [DEBUG] ← _generate_in_memory_frames → …  (0.046s)
+[2026-02-10 23:10:14] [DEBUG] Preview regenerated successfully – 4 frames
+[2026-02-10 23:10:14] [DEBUG] ← _regenerate_preview → None  (0.047s)
+[2026-02-10 23:10:16] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:10:16] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:10:16] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:10:16] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:10:16] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:10:16] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:10:18] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:10:18] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:10:18] [DEBUG] ← _generate_in_memory_frames → …  (0.056s)
+[2026-02-10 23:10:18] [DEBUG] Preview regenerated successfully – 4 frames
+[2026-02-10 23:10:18] [DEBUG] ← _regenerate_preview → None  (0.057s)
+[2026-02-10 23:10:19] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:10:19] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:10:19] [DEBUG] ← _generate_in_memory_frames → …  (0.045s)
+[2026-02-10 23:10:19] [DEBUG] Preview regenerated successfully – 4 frames
+[2026-02-10 23:10:19] [DEBUG] ← _regenerate_preview → None  (0.048s)
+[2026-02-10 23:10:20] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:10:20] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:10:20] [DEBUG] ← _generate_in_memory_frames → …  (0.044s)
+[2026-02-10 23:10:20] [DEBUG] Preview regenerated successfully – 4 frames
+[2026-02-10 23:10:20] [DEBUG] ← _regenerate_preview → None  (0.046s)
+[2026-02-10 23:10:21] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:10:21] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:10:21] [DEBUG] ← _generate_in_memory_frames → …  (0.047s)
+[2026-02-10 23:10:21] [DEBUG] Preview regenerated successfully – 4 frames
+[2026-02-10 23:10:21] [DEBUG] ← _regenerate_preview → None  (0.062s)
+[2026-02-10 23:14:09] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:14:09] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:14:09] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:14:09] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:14:09] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:14:09] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:14:19] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:14:19] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:14:19] [DEBUG] ← _generate_in_memory_frames → …  (0.117s)
+[2026-02-10 23:14:19] [DEBUG] Preview regenerated successfully – 10 frames
+[2026-02-10 23:14:19] [DEBUG] ← _regenerate_preview → None  (0.119s)
+[2026-02-10 23:14:20] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:14:20] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:14:20] [DEBUG] ← _generate_in_memory_frames → …  (0.136s)
+[2026-02-10 23:14:20] [DEBUG] Preview regenerated successfully – 12 frames
+[2026-02-10 23:14:20] [DEBUG] ← _regenerate_preview → None  (0.138s)
+[2026-02-10 23:14:21] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:14:21] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:14:21] [DEBUG] ← _generate_in_memory_frames → …  (0.137s)
+[2026-02-10 23:14:21] [DEBUG] Preview regenerated successfully – 12 frames
+[2026-02-10 23:14:21] [DEBUG] ← _regenerate_preview → None  (0.138s)
+[2026-02-10 23:17:51] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:17:52] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:17:52] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:17:52] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:17:52] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:17:52] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:20:17] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:20:17] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:20:17] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:20:17] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:20:17] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:20:17] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:21:23] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:21:23] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:21:23] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:21:23] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:21:23] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:21:23] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:22:32] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:22:32] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:22:32] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:22:32] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:22:32] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:22:32] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:22:37] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:22:37] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:22:37] [DEBUG] ← _generate_in_memory_frames → …  (0.061s)
+[2026-02-10 23:22:37] [DEBUG] Preview regenerated successfully – 5 frames
+[2026-02-10 23:22:38] [DEBUG] ← _regenerate_preview → None  (0.063s)
+[2026-02-10 23:22:38] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:22:38] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:22:38] [DEBUG] ← _generate_in_memory_frames → …  (0.058s)
+[2026-02-10 23:22:38] [DEBUG] Preview regenerated successfully – 5 frames
+[2026-02-10 23:22:39] [DEBUG] ← _regenerate_preview → None  (0.061s)
+[2026-02-10 23:22:39] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:22:39] [DEBUG] → _generate_in_memory_frames()
+[2026-02-10 23:22:39] [DEBUG] ← _generate_in_memory_frames → …  (0.059s)
+[2026-02-10 23:22:39] [DEBUG] Preview regenerated successfully – 5 frames
+[2026-02-10 23:22:39] [DEBUG] ← _regenerate_preview → None  (0.061s)
+[2026-02-10 23:23:55] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:23:55] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:23:55] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:23:55] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:23:55] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:23:55] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:24:37] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:24:37] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:24:37] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:24:37] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:24:37] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:24:37] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:30:35] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:30:35] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:30:35] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:30:35] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:30:35] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:30:35] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:34:28] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:34:28] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:34:29] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:34:29] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:34:29] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:34:29] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:36:41] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:36:41] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:36:41] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:36:41] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:36:41] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:36:41] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:37:19] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:37:20] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:37:20] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:37:20] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:37:20] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:37:20] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:39:21] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:39:21] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:39:21] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:39:21] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:39:21] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:39:21] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:42:15] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:42:15] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:42:15] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:42:15] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:42:15] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:42:15] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:45:28] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:45:28] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:45:28] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:45:28] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:45:28] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:45:28] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:49:48] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:49:48] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:49:48] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:49:48] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:49:48] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:49:48] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:50:55] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:50:55] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:50:55] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:50:55] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:50:55] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:50:55] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:52:37] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:52:37] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:52:37] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:52:37] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:52:37] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:52:37] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:53:28] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:53:28] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:53:28] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:53:28] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:53:28] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:53:28] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:56:18] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:56:18] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:56:18] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:56:18] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:56:18] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:56:18] [DEBUG] ← _regenerate_preview → None  (0.000s)
+[2026-02-10 23:58:18] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-10 23:58:18] [INFO] TextAnimatorWindow initializing...
+[2026-02-10 23:58:18] [INFO] TextAnimatorWindow ready
+[2026-02-10 23:58:18] [DEBUG] → _regenerate_preview()
+[2026-02-10 23:58:18] [DEBUG] Preview cleared (empty input)
+[2026-02-10 23:58:18] [DEBUG] ← _regenerate_preview → None  (0.000s)

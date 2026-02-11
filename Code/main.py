@@ -9,7 +9,7 @@ appname = "Cozy Animator"
 
 # Toggle debug logging via environment variable
 # Usage: set COZY_DEBUG=1  then python main.py   (Windows: $env:COZY_DEBUG=1; python main.py)
-DEBUG_MODE = os.getenv("COZY_DEBUG", "0") == "1"
+DEBUG_MODE = os.getenv("COZY_DEBUG", "1") == "1"
 
 if __name__ == "__main__":
     logger = setup_logging(debug=DEBUG_MODE)
