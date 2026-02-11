@@ -1,23 +1,3 @@
-classic feline strategy: start small with the neighborhood perimeter, gather intel one pawprint at a time, then boom, global empire before we even finish our second cup.
-
-And it's that soft spot there between Im looking for, in regards to a thought process.  not product, just a little thing that makes my own life simpler
-
-how do I make my own little life corner just a tiny bit smoother without turning it into a whole project?
-
-the existing solutions are either overkill or miss your exact need by a mile
-
-it isnt actually minimalism at all, I'm an incredibly materialistic human being, but I have gone through years of my life on a spiritual quest of identifying my needs versus my wants and ended up in this lovely mindspace called minimal maximalism, the direct opposite of minimalism if you think about it.
-
-learning what it is that I actually need versus what are fleeting thought, reduce down to that, but then instead of aiming to live in a cave or something since we dont really need a lot in life as humans for basic survival, take those few things I then actually need and maximize them to their fullest potential.  its like saying I only need one car not a fleet, so it better be a lambo.  only ever the best of the best of the few things I actually need.
-
-more about "does this thing deserve to exist in my life exactly the way I want it?" If yes → describe → iterate → own it forever 
-
-the few true needs amplified without waste or fluff.
-
-No hoarding digital clutter; just the bits that spark.
-
- the most reliable path to "exactly as I want it" rather than "close enough, kinda cool though."
-
 Quick how-to / why this fits your questInput: Edit TEXT (or pass via CLI like --text "Your phrase" for quick tests). Single line only, as requested.
 Per word/letter: Set UNIT_TYPE—'word' treats spaces naturally (adds after each word except last).
 Fade or stamp: TRANSITION—fade ramps opacity over frames; stamp appears full instantly but holds/repeats the state for your frame count (with flicker variation if on).
@@ -491,4 +471,46 @@ Implement PNG export feature
 Qt threading best practices
 
 Add frame counter label
+
+Decide logging levels strategy  DEBUG: detailed calls (via decorator), frame-by-frame stuff (maybe toggleable).
+INFO: user actions (generate clicked, preview regenerated, text cleared).
+WARNING: minor issues (font fallback, spellcheck fails).
+ERROR/CRITICAL: crashes, file write failures.
+
+Optional nice-to-haves soon  Add a simple log viewer button (the  in top bar → open dialog with tail -n 200 of today's log).
+Settings toggle: log level filter, console only vs file+console.
+Rotate logs weekly/monthly if they grow.
+
+Integrate logging in main_window.py
+
+Add log viewer dialog
+
+Simplify decorator arg repr
+
+Implement PNG export with logging
+
+Add log viewer dialog
+
+Add more manual logs
+
+Add input font size connection
+
+Add rotating log files
+
+Implement settings UI toggle
+
+Add more concise comments
+
+
+  lets make a little python utility script outside this context that prints out a better folder structure report btw, I'm using powershell tree -F on Windows and it has lots of extra gunk in it like reporting __pychache__ and pyc files and such, we may as well while we are at it add a helper script for better printing of this
+
+  Optional variationsNon-modal (dialog stays open while you work in main window):python
+
+def _open_log_viewer(self):
+    if not hasattr(self, '_log_dialog') or self._log_dialog.isHidden():
+        self._log_dialog = LogViewerDialog(parent=self)
+    self._log_dialog.show()
+    self._log_dialog.raise_()   # bring to front if already open
+
+
 
