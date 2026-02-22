@@ -1,0 +1,26 @@
+[2026-02-22 07:07:19] [INFO] Cozy Animator launched (debug mode: True)
+[2026-02-22 07:07:19] [INFO] TextAnimatorWindow initializing...
+[2026-02-22 07:07:20] [INFO] TextAnimatorWindow ready
+[2026-02-22 07:07:20] [DEBUG] → _regenerate_preview()
+[2026-02-22 07:07:20] [DEBUG] Preview cleared (empty input)
+[2026-02-22 07:07:20] [DEBUG] ← _regenerate_preview → None  (0.001s)
+[2026-02-22 07:07:24] [DEBUG] → _regenerate_preview()
+[2026-02-22 07:07:24] [DEBUG] → _generate_in_memory_frames()
+[2026-02-22 07:07:24] [DEBUG] ← _generate_in_memory_frames → …  (0.087s)
+[2026-02-22 07:07:24] [DEBUG] Preview regenerated successfully – 4 frames
+[2026-02-22 07:07:24] [DEBUG] ← _regenerate_preview → None  (0.091s)
+[2026-02-22 07:07:25] [DEBUG] → _regenerate_preview()
+[2026-02-22 07:07:25] [DEBUG] → _generate_in_memory_frames()
+[2026-02-22 07:07:25] [DEBUG] ← _generate_in_memory_frames → …  (0.045s)
+[2026-02-22 07:07:25] [DEBUG] Preview regenerated successfully – 4 frames
+[2026-02-22 07:07:25] [DEBUG] ← _regenerate_preview → None  (0.046s)
+[2026-02-22 07:07:26] [DEBUG] → _regenerate_preview()
+[2026-02-22 07:07:26] [DEBUG] → _generate_in_memory_frames()
+[2026-02-22 07:07:26] [DEBUG] ← _generate_in_memory_frames → …  (0.050s)
+[2026-02-22 07:07:26] [DEBUG] Preview regenerated successfully – 4 frames
+[2026-02-22 07:07:26] [DEBUG] ← _regenerate_preview → None  (0.052s)
+[2026-02-22 07:07:27] [DEBUG] → _regenerate_preview()
+[2026-02-22 07:07:27] [DEBUG] → _generate_in_memory_frames()
+[2026-02-22 07:07:27] [DEBUG] ← _generate_in_memory_frames → …  (0.048s)
+[2026-02-22 07:07:27] [DEBUG] Preview regenerated successfully – 4 frames
+[2026-02-22 07:07:27] [DEBUG] ← _regenerate_preview → None  (0.050s)
