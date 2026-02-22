@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CozyMaui.MainPage"
+             Title=""
+             BackgroundColor="#1e1e1e"
+             Padding="24">
+
+    <Grid ColumnDefinitions="*, Auto, *">
+
+        <!-- Top bar with icons -->
+        <HorizontalStackLayout Grid.Column="0" Grid.ColumnSpan="3" 
+                               HorizontalOptions="End" Spacing="8" Margin="0,0,0,16">
+            <Button Text="📜" FontSize="20" WidthRequest="40" HeightRequest="40" 
+                    BackgroundColor="Transparent" TextColor="#888" Clicked="OnLogClicked"/>
+            <Button Text="📋" FontSize="20" WidthRequest="40" HeightRequest="40" 
+                    BackgroundColor="Transparent" TextColor="#888" Clicked="OnFeaturesClicked"/>
+            <Button Text="⚙" FontSize="20" WidthRequest="40" HeightRequest="40" 
+                    BackgroundColor="Transparent" TextColor="#888" Clicked="OnSettingsClicked"/>
+        </HorizontalStackLayout>
+
+        <!-- LEFT PANEL — rich & cozy -->
+        <VerticalStackLayout Grid.Column="0" Spacing="16" Margin="0,60,0,0">
+            <Label Text="Generate Animated Text Frames" 
+                   FontSize="24" FontAttributes="Bold" TextColor="#e0e0e0" HorizontalOptions="Center"/>
+
+            <Border Stroke="#444" StrokeThickness="1" StrokeShape="RoundRectangle 12" BackgroundColor="#2a2a2a" Padding="12">
+                <Editor x:Name="textEditor"
+                        Placeholder="Type or paste your poem / phrase here..."
+                        HeightRequest="180"
+                        TextColor="#e0e0e0"
+                        PlaceholderColor="#666"
+                        FontSize="16"/>
+            </Border>
+
+            <!-- Font size slider -->
+            <HorizontalStackLayout Spacing="8">
+                <Label Text="Input font size:" TextColor="#888" VerticalOptions="Center"/>
+                <Slider x:Name="fontSlider" Minimum="12" Maximum="32" Value="18" ThumbColor="#8a7a67"/>
+                <Label Text="{Binding Source={x:Reference fontSlider}, Path=Value, StringFormat='{0:F0}'}" 
+                       TextColor="#e0e0e0" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <!-- Word / Character count -->
+            <Label x:Name="countLabel" 
+                   Text="Words: 0 • Characters: 0"
+                   TextColor="#888" FontSize="13" HorizontalOptions="End"/>
+
+            <!-- Control rows -->
+            <HorizontalStackLayout Spacing="12">
+                <Label Text="Per:" TextColor="#888" VerticalOptions="Center"/>
+                <Picker x:Name="unitPicker" SelectedIndex="0" WidthRequest="100"/>
+                <Label Text="Transition:" TextColor="#888" VerticalOptions="Center"/>
+                <Picker x:Name="transitionPicker" SelectedIndex="0" WidthRequest="100"/>
+                <Label Text="Frames/unit:" TextColor="#888" VerticalOptions="Center"/>
+                <Entry x:Name="framesEntry" Text="4" WidthRequest="60" Keyboard="Numeric"/>
+            </HorizontalStackLayout>
+
+            <!-- Flicker row -->
+            <HorizontalStackLayout Spacing="8">
+                <CheckBox x:Name="flickerCheck" IsChecked="True" Color="#8a7a67"/>
+                <Label Text="Brightness flicker" TextColor="#e0e0e0" VerticalOptions="Center"/>
+                <Label Text="Strength:" TextColor="#888" VerticalOptions="Center" Margin="20,0,0,0"/>
+                <Entry x:Name="strengthEntry" Text="0.08" WidthRequest="60" Keyboard="Numeric"/>
+            </HorizontalStackLayout>
+
+            <!-- Resolution row -->
+            <HorizontalStackLayout Spacing="8">
+                <Label Text="Resolution:" TextColor="#888" VerticalOptions="Center"/>
+                <Entry x:Name="widthEntry" Text="1920" WidthRequest="80" Keyboard="Numeric"/>
+                <Label Text="×" TextColor="#666" VerticalOptions="Center"/>
+                <Entry x:Name="heightEntry" Text="1080" WidthRequest="80" Keyboard="Numeric"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+
+        <!-- RIGHT PANEL — Preview -->
+        <VerticalStackLayout Grid.Column="2" Spacing="16" Margin="0,60,0,0">
+            <Label Text="Preview (wrapped for readability)" 
+                   TextColor="#888" FontSize="14" HorizontalOptions="Center"/>
+            
+            <Border BackgroundColor="#111" Stroke="#333" StrokeThickness="1" Padding="12" HeightRequest="480">
+                <Label x:Name="previewLabel" 
+                       Text="Your beautiful animation will appear here..."
+                       TextColor="#e0e0e0"
+                       FontSize="18"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </Border>
+        </VerticalStackLayout>
+
+        <!-- BOTTOM BUTTONS — just like Python! -->
+        <HorizontalStackLayout Grid.Column="0" Grid.ColumnSpan="3" 
+                               HorizontalOptions="Center" Spacing="12" Margin="0,20,0,0">
+            <Button Text="Generate PNG Sequence" 
+                    BackgroundColor="#6b5a47" TextColor="#e0e0e0" 
+                    Padding="24,12" CornerRadius="8" FontAttributes="Bold"
+                    Clicked="OnGenerateClicked"/>
+            
+            <Button Text="Clear Text" 
+                    BackgroundColor="#444444" TextColor="#e0e0e0" 
+                    Padding="24,12" CornerRadius="8" FontAttributes="Bold"
+                    Clicked="OnClearClicked"/>
+            
+            <Button Text="Pause Preview" 
+                    BackgroundColor="#444444" TextColor="#e0e0e0" 
+                    Padding="24,12" CornerRadius="8"
+                    Clicked="OnPauseClicked"/>
+        </HorizontalStackLayout>
+
+    </Grid>
+</ContentPage>

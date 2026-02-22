@@ -4,5 +4,6 @@ __pycache__/
 *.pyo
 *.pyd
 *.log
+*.json
 
 last_draft.txt
