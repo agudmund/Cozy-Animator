@@ -1,6 +1,8 @@
+__init__.py
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.log
 
 last_draft.txt

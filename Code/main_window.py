@@ -23,6 +23,8 @@ from utils.helpers import wrap_text, render_wrapped_text, pygame_surf_to_pixmap
 from utils.spellchecker import SpellHighlighter, show_spell_suggestions
 from utils.logging import log_call
 
+from widgets.pixmap_convert import render_frame
+
 # Log viewer integration
 from widgets.log_viewer_dialog import LogViewerDialog
 
@@ -324,7 +326,7 @@ class TextAnimatorWindow(QMainWindow):
         self.preview_update_timer.start(100)
 
     def _trigger_preview_update(self):
-        self.preview_update_timer.start(300)
+        self.preview_update_timer.start(800)
 
     @log_call
     def _regenerate_preview(self):
@@ -393,6 +395,7 @@ class TextAnimatorWindow(QMainWindow):
 
     @log_call
     def _generate_in_memory_frames(self):
+        """Generate all preview frames using our new cozy helper — now reads like a poem!"""
         frames = []
         text = self.text_edit.toPlainText().strip()
         unit_type = self.unit_combo.currentText()
@@ -402,9 +405,6 @@ class TextAnimatorWindow(QMainWindow):
         flicker_strength = self.strength_spin.value()
         width, height = self.width_spin.value(), self.height_spin.value()
         wrap_width = self.wrap_spin.value()
-        preview_margin = 60
-
-        font = pygame.font.SysFont(None, 80)
 
         if unit_type == 'word':
             units = text.split()
@@ -412,9 +412,6 @@ class TextAnimatorWindow(QMainWindow):
             units = list(text)
 
         prev_text = ''
-        fixed_x = preview_margin
-        base_y = 80
-
         for idx, unit in enumerate(units):
             unit_to_add = unit + ' ' if unit_type == 'word' and idx < len(units)-1 else unit
 
@@ -422,18 +419,17 @@ class TextAnimatorWindow(QMainWindow):
                 for i in range(frames_per_unit):
                     alpha = int(255 * (i + 1) / frames_per_unit)
                     factor = 1 + random.uniform(-flicker_strength, flicker_strength) if flicker else 1.0
+                    col = tuple(min(255, int(255 * factor)) for _ in range(3))
 
                     current_text = prev_text + unit_to_add[:int(len(unit_to_add) * (i + 1) / frames_per_unit)]
                     wrapped = wrap_text(current_text, wrap_width)
 
-                    surf = pygame.Surface((width, height), pygame.SRCALPHA)
-                    render_wrapped_text(surf, wrapped, font, fixed_x, base_y, (255,255,255, 255))
-                    pixmap = pygame_surf_to_pixmap(surf)
-                    frames.append(pixmap.scaled(640, 480, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+                    pix = render_frame(wrapped, col, alpha, width, height)
+                    frames.append(pix)
 
                 prev_text += unit_to_add
 
-            else:
+            else:  # stamp
                 prev_text += unit_to_add
                 for _ in range(frames_per_unit):
                     factor = 1 + random.uniform(-flicker_strength, flicker_strength) if flicker else 1.0
@@ -441,10 +437,8 @@ class TextAnimatorWindow(QMainWindow):
 
                     wrapped = wrap_text(prev_text, wrap_width)
 
-                    surf = pygame.Surface((width, height), pygame.SRCALPHA)
-                    render_wrapped_text(surf, wrapped, font, fixed_x, base_y, col + (255,))
-                    pixmap = pygame_surf_to_pixmap(surf)
-                    frames.append(pixmap.scaled(640, 480, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+                    pix = render_frame(wrapped, col, 255, width, height)
+                    frames.append(pix)
 
         return frames
 
