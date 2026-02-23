@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CozyMaui")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+b54bdecacea898db34b6a8b43609e8e8c4bc5cc9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+9cbdf15cafbd1a68f132010f07219b9aee0907cb")]
 [assembly: System.Reflection.AssemblyProductAttribute("CozyMaui")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CozyMaui")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
