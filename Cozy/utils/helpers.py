@@ -30,9 +30,3 @@ def render_wrapped_text(surf, wrapped_text, font, x, y_start, color):
         line_surf = font.render(line, True, color)
         surf.blit(line_surf, (x, y))
         y += line_height
-
-def pygame_surf_to_pixmap(surf):
-    """Convert Pygame surface to QPixmap."""
-    img_str = pygame.image.tostring(surf, 'RGBA')
-    qimg = QImage(img_str, surf.get_width(), surf.get_height(), QImage.Format_RGBA8888)
-    return QPixmap.fromImage(qimg)

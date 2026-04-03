@@ -454,21 +454,11 @@ Pause-while-typing checkbox
 Subtle typing sound toggle  
 Reset-to-defaults button
 
-Implement threading for lag
-
-Qt QThread best practices
-
-more concise code examples
-
-Implement PNG export
-
 Add audio sync
 
 More detailed comments
 
 Implement PNG export feature
-
-Qt threading best practices
 
 Add frame counter label
 
