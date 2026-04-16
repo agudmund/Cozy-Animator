@@ -4,19 +4,17 @@
   "nodes": [
     {
       "node_id": 0,
-      "node_type": "about",
-      "title": "Intricate",
-      "uuid": "a0b6fda25f6f4b93b5987ffb07208fc6",
-      "x": 1126.8012504761878,
-      "y": -1230.376403854549,
-      "width": 121.57397706760855,
-      "height": 36.446986113815,
+      "node_type": "warm",
+      "title": "Gentle",
+      "uuid": "42df6c118b3b4639953c7740c4c26bc9",
+      "x": 2106.3191557459763,
+      "y": -1284.2075683453395,
+      "width": 273.8429402633333,
+      "height": 120.0,
       "z_value": 10.0,
       "ports_visible": false,
-      "shelf_visible": false,
-      "label": "Intricate",
-      "depth_front": true,
-      "node_tint": "#2a3a2f"
+      "shelf_visible": true,
+      "body_text": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">And that's how we get sweetums cookies</p></body></html>"
     },
     {
       "node_id": 0,
@@ -34,25 +32,27 @@
     },
     {
       "node_id": 0,
-      "node_type": "warm",
-      "title": "Gentle",
-      "uuid": "42df6c118b3b4639953c7740c4c26bc9",
-      "x": 2106.3191557459763,
-      "y": -1284.2075683453395,
-      "width": 273.8429402633333,
-      "height": 120.0,
+      "node_type": "about",
+      "title": "Intricate",
+      "uuid": "a0b6fda25f6f4b93b5987ffb07208fc6",
+      "x": 1126.8012504761878,
+      "y": -1230.376403854549,
+      "width": 121.57397706760855,
+      "height": 36.446986113815,
       "z_value": 10.0,
       "ports_visible": false,
-      "shelf_visible": true,
-      "body_text": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">And that's how we get sweetums cookies</p></body></html>"
+      "shelf_visible": false,
+      "label": "Intricate",
+      "depth_front": true,
+      "node_tint": "#2a3a2f"
     },
     {
       "node_id": 0,
       "node_type": "palette",
       "title": "Palette",
       "uuid": "ba67ff3ee7874e2e8a608f19ba581103",
-      "x": 946.2698205635475,
-      "y": -1098.3064858462988,
+      "x": 240.37553736625694,
+      "y": -1838.1551776024453,
       "width": 485.052199597023,
       "height": 771.7823992339445,
       "z_value": -9.831000000000094,
@@ -262,7 +262,7 @@
       "source_path": "C:\\Users\\thisg\\Desktop\\_asset\\Clippy,Blessed be his name\\Waving - Framed.mp4",
       "caption": "Waving - Framed",
       "volume": 50,
-      "playback_pos": 958,
+      "playback_pos": 1458,
       "looping": true,
       "muted": true,
       "show_border": true,
@@ -283,7 +283,7 @@
       "source_path": "C:\\Users\\thisg\\Desktop\\_asset\\Clippy,Blessed be his name\\grok-video-8202fa83-a3a0-4732-8fd7-77045e392c8a.mp4",
       "caption": "grok-video-8202fa83-a3a0-4732-8fd7-77045e392c8a",
       "volume": 50,
-      "playback_pos": 3738,
+      "playback_pos": 673,
       "looping": true,
       "muted": true,
       "show_border": true,
@@ -304,7 +304,7 @@
       "source_path": "C:\\Users\\thisg\\Desktop\\_asset\\Clippy,Blessed be his name\\grok-video-8202fa83-a3a0-4732-8fd7-77045e392c8a (1).mp4",
       "caption": "grok-video-8202fa83-a3a0-4732-8fd7-77045e392c8a (1)",
       "volume": 50,
-      "playback_pos": 5758,
+      "playback_pos": 5625,
       "looping": true,
       "muted": true,
       "show_border": true,
@@ -380,32 +380,32 @@
     {
       "node_id": 0,
       "node_type": "about",
-      "title": "Same energy, always",
-      "uuid": "505a9e23e3b44ad69d7604e4feed5f3a",
-      "x": 2337.539379298118,
-      "y": -214.09400492687732,
-      "width": 229.77942134898672,
-      "height": 48.89370162443123,
+      "title": "Note",
+      "uuid": "dce8cd34568f48cf8e066bf477ce7f2f",
+      "x": -0.55390489310048,
+      "y": -4.183383825978353,
+      "width": 101.52851028236543,
+      "height": 51.8396813048311,
       "z_value": -10.0,
       "ports_visible": false,
       "shelf_visible": false,
-      "label": "Same energy, always",
+      "label": "Elegant",
       "depth_front": false,
-      "node_tint": "#2a3a2f"
+      "node_tint": "#1e1e1e"
     },
     {
       "node_id": 0,
       "node_type": "about",
-      "title": "The space should feel like a comfortable home",
-      "uuid": "e4f4902c71c445f3b392ff798b861865",
-      "x": 1478.9028550321427,
-      "y": -461.87204288220505,
-      "width": 487.84705256103507,
-      "height": 37.98253838558901,
+      "title": "Note",
+      "uuid": "e5f2c854ab694391bdda9cb49fc91d98",
+      "x": 674.4518834749367,
+      "y": -446.64543182691904,
+      "width": 176.14666038916585,
+      "height": 44.314198542330416,
       "z_value": -10.0,
       "ports_visible": false,
       "shelf_visible": false,
-      "label": "The space should feel like a comfortable home",
+      "label": "Becoming Yours",
       "depth_front": false,
       "node_tint": ""
     },
@@ -428,87 +428,63 @@
     {
       "node_id": 0,
       "node_type": "about",
-      "title": "Note",
-      "uuid": "e5f2c854ab694391bdda9cb49fc91d98",
-      "x": 674.4518834749367,
-      "y": -446.64543182691904,
-      "width": 176.14666038916585,
-      "height": 44.314198542330416,
+      "title": "The space should feel like a comfortable home",
+      "uuid": "e4f4902c71c445f3b392ff798b861865",
+      "x": 1478.9028550321427,
+      "y": -461.87204288220505,
+      "width": 487.84705256103507,
+      "height": 37.98253838558901,
       "z_value": -10.0,
       "ports_visible": false,
       "shelf_visible": false,
-      "label": "Becoming Yours",
+      "label": "The space should feel like a comfortable home",
       "depth_front": false,
       "node_tint": ""
     },
     {
       "node_id": 0,
       "node_type": "about",
-      "title": "Note",
-      "uuid": "dce8cd34568f48cf8e066bf477ce7f2f",
-      "x": -0.55390489310048,
-      "y": -4.183383825978353,
-      "width": 101.52851028236543,
-      "height": 51.8396813048311,
+      "title": "Same energy, always",
+      "uuid": "505a9e23e3b44ad69d7604e4feed5f3a",
+      "x": 2337.539379298118,
+      "y": -214.09400492687732,
+      "width": 229.77942134898672,
+      "height": 48.89370162443123,
       "z_value": -10.0,
       "ports_visible": false,
       "shelf_visible": false,
-      "label": "Elegant",
+      "label": "Same energy, always",
       "depth_front": false,
-      "node_tint": "#1e1e1e"
+      "node_tint": "#2a3a2f"
     }
   ],
   "connections": [
     {
-      "start_uuid": "e4f4902c71c445f3b392ff798b861865",
-      "end_uuid": "7fcb85486786439a849bf0665b9fe079"
+      "start_uuid": "8757393b058d4b4394369bff1c00d652",
+      "end_uuid": "68c3480be6a042bf9833567ef8ee61e9"
     },
     {
-      "start_uuid": "a0b6fda25f6f4b93b5987ffb07208fc6",
-      "end_uuid": "e4f4902c71c445f3b392ff798b861865"
+      "start_uuid": "ea1d31317f7642319b1f755a340b8a3d",
+      "end_uuid": "42df6c118b3b4639953c7740c4c26bc9"
     },
     {
-      "start_uuid": "a0b6fda25f6f4b93b5987ffb07208fc6",
-      "end_uuid": "e5f2c854ab694391bdda9cb49fc91d98"
+      "start_uuid": "68c3480be6a042bf9833567ef8ee61e9",
+      "end_uuid": "ea1d31317f7642319b1f755a340b8a3d"
     },
     {
-      "start_uuid": "1860479eaeaa4b24817de3142623c4df",
-      "end_uuid": "a0b6fda25f6f4b93b5987ffb07208fc6"
+      "start_uuid": "d0cac3b26b9a4b37a17641cb2a73ce1d",
+      "end_uuid": "68c3480be6a042bf9833567ef8ee61e9"
     },
     {
-      "start_uuid": "e4f4902c71c445f3b392ff798b861865",
-      "end_uuid": "1860479eaeaa4b24817de3142623c4df"
+      "start_uuid": "8757393b058d4b4394369bff1c00d652",
+      "end_uuid": "d0cac3b26b9a4b37a17641cb2a73ce1d"
     },
     {
-      "start_uuid": "e5f2c854ab694391bdda9cb49fc91d98",
-      "end_uuid": "1860479eaeaa4b24817de3142623c4df"
+      "start_uuid": "281813bd9c044d1db994af6ef28967b8",
+      "end_uuid": "d0cac3b26b9a4b37a17641cb2a73ce1d"
     },
     {
-      "start_uuid": "c69ab4023abd4c6dacbdb6227a8920f4",
-      "end_uuid": "dce8cd34568f48cf8e066bf477ce7f2f"
-    },
-    {
-      "start_uuid": "7fcb85486786439a849bf0665b9fe079",
-      "end_uuid": "505a9e23e3b44ad69d7604e4feed5f3a"
-    },
-    {
-      "start_uuid": "dce8cd34568f48cf8e066bf477ce7f2f",
-      "end_uuid": "29d3a3b9c48a456db7357c731f2d8c7f"
-    },
-    {
-      "start_uuid": "1860479eaeaa4b24817de3142623c4df",
-      "end_uuid": "29d3a3b9c48a456db7357c731f2d8c7f"
-    },
-    {
-      "start_uuid": "c69ab4023abd4c6dacbdb6227a8920f4",
-      "end_uuid": "dfa2413a3f8745c68aa0af733e3decbe"
-    },
-    {
-      "start_uuid": "505a9e23e3b44ad69d7604e4feed5f3a",
-      "end_uuid": "9c9043dbf22b4e0f9fe9e597c1411973"
-    },
-    {
-      "start_uuid": "505a9e23e3b44ad69d7604e4feed5f3a",
+      "start_uuid": "60d40aff4eaa4c0db5c56a0abcb09ee2",
       "end_uuid": "57761091e148451ba9dca4932448393f"
     },
     {
@@ -516,38 +492,62 @@
       "end_uuid": "60d40aff4eaa4c0db5c56a0abcb09ee2"
     },
     {
-      "start_uuid": "60d40aff4eaa4c0db5c56a0abcb09ee2",
+      "start_uuid": "505a9e23e3b44ad69d7604e4feed5f3a",
       "end_uuid": "57761091e148451ba9dca4932448393f"
     },
     {
-      "start_uuid": "281813bd9c044d1db994af6ef28967b8",
-      "end_uuid": "d0cac3b26b9a4b37a17641cb2a73ce1d"
+      "start_uuid": "505a9e23e3b44ad69d7604e4feed5f3a",
+      "end_uuid": "9c9043dbf22b4e0f9fe9e597c1411973"
     },
     {
-      "start_uuid": "8757393b058d4b4394369bff1c00d652",
-      "end_uuid": "d0cac3b26b9a4b37a17641cb2a73ce1d"
+      "start_uuid": "c69ab4023abd4c6dacbdb6227a8920f4",
+      "end_uuid": "dfa2413a3f8745c68aa0af733e3decbe"
     },
     {
-      "start_uuid": "d0cac3b26b9a4b37a17641cb2a73ce1d",
-      "end_uuid": "68c3480be6a042bf9833567ef8ee61e9"
+      "start_uuid": "1860479eaeaa4b24817de3142623c4df",
+      "end_uuid": "29d3a3b9c48a456db7357c731f2d8c7f"
     },
     {
-      "start_uuid": "68c3480be6a042bf9833567ef8ee61e9",
-      "end_uuid": "ea1d31317f7642319b1f755a340b8a3d"
+      "start_uuid": "dce8cd34568f48cf8e066bf477ce7f2f",
+      "end_uuid": "29d3a3b9c48a456db7357c731f2d8c7f"
     },
     {
-      "start_uuid": "ea1d31317f7642319b1f755a340b8a3d",
-      "end_uuid": "42df6c118b3b4639953c7740c4c26bc9"
+      "start_uuid": "7fcb85486786439a849bf0665b9fe079",
+      "end_uuid": "505a9e23e3b44ad69d7604e4feed5f3a"
     },
     {
-      "start_uuid": "8757393b058d4b4394369bff1c00d652",
-      "end_uuid": "68c3480be6a042bf9833567ef8ee61e9"
+      "start_uuid": "c69ab4023abd4c6dacbdb6227a8920f4",
+      "end_uuid": "dce8cd34568f48cf8e066bf477ce7f2f"
+    },
+    {
+      "start_uuid": "e5f2c854ab694391bdda9cb49fc91d98",
+      "end_uuid": "1860479eaeaa4b24817de3142623c4df"
+    },
+    {
+      "start_uuid": "e4f4902c71c445f3b392ff798b861865",
+      "end_uuid": "1860479eaeaa4b24817de3142623c4df"
+    },
+    {
+      "start_uuid": "1860479eaeaa4b24817de3142623c4df",
+      "end_uuid": "a0b6fda25f6f4b93b5987ffb07208fc6"
+    },
+    {
+      "start_uuid": "a0b6fda25f6f4b93b5987ffb07208fc6",
+      "end_uuid": "e5f2c854ab694391bdda9cb49fc91d98"
+    },
+    {
+      "start_uuid": "a0b6fda25f6f4b93b5987ffb07208fc6",
+      "end_uuid": "e4f4902c71c445f3b392ff798b861865"
+    },
+    {
+      "start_uuid": "e4f4902c71c445f3b392ff798b861865",
+      "end_uuid": "7fcb85486786439a849bf0665b9fe079"
     }
   ],
   "viewport": {
-    "camera_x": 1129.430853115664,
-    "camera_y": -1143.7274461930772,
-    "camera_zoom": 0.5595738758654909
+    "camera_x": 1804.5689509683089,
+    "camera_y": -1230.70219644582,
+    "camera_zoom": 0.43389863245727023
   },
-  "checksum": "09bd89a22075bfb4"
+  "checksum": "3ae9c7fc2e8baedf"
 }
