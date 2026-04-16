@@ -10,11 +10,10 @@
       "x": 2106.3191557459763,
       "y": -1284.2075683453395,
       "width": 273.8429402633333,
-      "height": 94.88180363210154,
+      "height": 120.0,
       "z_value": 10.0,
       "ports_visible": false,
       "shelf_visible": true,
-      "emoji": "\ud83e\udd70",
       "body_text": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\nhr { height: 1px; border-width: 0; }\nli.unchecked::marker { content: \"\\2610\"; }\nli.checked::marker { content: \"\\2612\"; }\n</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">And that's how we get sweetums cookies</p></body></html>"
     },
     {
@@ -22,14 +21,13 @@
       "node_type": "warm",
       "title": "Omnious",
       "uuid": "41bd4ab8cb004e1db4dc36e57c2c6a8a",
-      "x": 1739.8188253759304,
-      "y": -82.3907242316501,
+      "x": 1765.2642774791416,
+      "y": -79.56345177573769,
       "width": 1080.874108362932,
       "height": 450.39874030858067,
       "z_value": 10.0,
       "ports_visible": false,
       "shelf_visible": true,
-      "emoji": "\ud83d\ude2e",
       "body_text": "\nHere's the full analysis \u2014 **top 10 most repeated patterns** across the codebase, ranked by frequency and extraction value:\n\n| **2** | **Paint data grid** (header \u2192 divider \u2192 label/value rows \u2192 footer) | 3 | `paint_data_grid(painter, rect, header, rows, fonts, colors)` |\n| **3** | **QTimer creation** (new \u2192 interval \u2192 connect \u2192 start) | ~14 | `create_timer(interval, callback, single_shot=False)` |\n| **4** | **Font with max(1, size) clamp** | 20+ | `make_font(family=None, size=None, bold=False)` |\n| **5** | **QPen / QBrush from theme color** | 30+ | `make_pen(color, width=1, style=SolidLine)` / `make_brush(color)` |\n| **6** | **Closest port search** (identical loop in input + output variants) | 4 | `closest_port(ports, scene_pos)` |\n| **8** | **Inset rect from padding/offsets** | 20+ | `inset_rect(base, top, bottom, left, right)` |\n| **9** | **QPropertyAnimation boilerplate** | 12+ | `create_animation(target, prop, start, end, duration, easing)` |\n\nKey observations:\n- Patterns 4 and 5 are the lowest-hanging fruit \u2014 one-liners that eliminate `max(1, ...)` and `QPen(QColor(...))` noise everywhere.\n- Pattern 2 (data grid painting) is higher complexity but would clean up the three monitor nodes significantly.\n"
     },
     {
@@ -44,7 +42,6 @@
       "z_value": 10.0,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83d\ude42\u200d\u2194\ufe0f",
       "label": "Intricate",
       "depth_front": true,
       "node_tint": "#2a3a2f"
@@ -54,14 +51,13 @@
       "node_type": "palette",
       "title": "Palette",
       "uuid": "ba67ff3ee7874e2e8a608f19ba581103",
-      "x": 939.9185979531951,
-      "y": -1167.1113974584507,
+      "x": 240.37553736625694,
+      "y": -1838.1551776024453,
       "width": 485.052199597023,
       "height": 771.7823992339445,
       "z_value": -9.831000000000094,
       "ports_visible": false,
       "shelf_visible": true,
-      "emoji": "\ud83d\ude0d",
       "colors": [
         {
           "label": "#ffd1dc",
@@ -113,7 +109,6 @@
       "z_value": -9.83700000000009,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83d\ude09",
       "label": "Irresisteble",
       "depth_front": false,
       "node_tint": "#2a3a2f"
@@ -130,7 +125,6 @@
       "z_value": -9.83800000000009,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83d\ude2e",
       "label": "Soft",
       "depth_front": false,
       "node_tint": "#2a3a2f"
@@ -140,14 +134,13 @@
       "node_type": "about",
       "title": "Sweet",
       "uuid": "ee3cb76b01dd4363a4ffe7f59bdc8a3f",
-      "x": 1826.326897104186,
-      "y": -1329.7858627286487,
+      "x": 1833.450985262693,
+      "y": -1310.0576185973987,
       "width": 88.0,
       "height": 54.0,
       "z_value": -9.83900000000009,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83e\udd72",
       "label": "Sweet",
       "depth_front": false,
       "node_tint": "#2a3a2f"
@@ -164,7 +157,6 @@
       "z_value": -9.840000000000089,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83d\ude42\u200d\u2194\ufe0f",
       "label": "Don't panic",
       "depth_front": false,
       "node_tint": "#2a3a2f"
@@ -181,7 +173,6 @@
       "z_value": -9.841000000000088,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83d\ude07",
       "label": "Tummi",
       "depth_front": false,
       "node_tint": "#2a3a2f"
@@ -198,25 +189,9 @@
       "z_value": -9.842000000000088,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83d\ude0b",
       "label": "Yummi",
       "depth_front": false,
       "node_tint": "#2a3a2f"
-    },
-    {
-      "node_id": 0,
-      "node_type": "warm",
-      "title": "this",
-      "uuid": "8296dc925a33480c834c17a585f41a1c",
-      "x": 1088.4236608610215,
-      "y": 63.89069707360294,
-      "width": 300.0,
-      "height": 200.0,
-      "z_value": -9.843000000000087,
-      "ports_visible": false,
-      "shelf_visible": true,
-      "emoji": "\ud83e\uddf8",
-      "body_text": "is text"
     },
     {
       "node_id": 0,
@@ -230,7 +205,6 @@
       "z_value": -9.844000000000086,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83e\uddf8",
       "label": "We have come a long way\nStill the same typewriter\nStill the same features\nStill the same energy\nIt evolved",
       "depth_front": false,
       "node_tint": "#2a3a2f"
@@ -247,8 +221,8 @@
       "z_value": -9.845000000000086,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83d\udccc",
       "image_b64": "",
+      "cache_key": "39b03d9e42b6b544970bd0ee28d651375fce0b91f453645187ea958f27429b1b",
       "caption": "A proper typewriter",
       "source_path": "C:\\Users\\thisg\\Desktop\\Cozy Animator\\A proper typewriter.png",
       "show_border": false,
@@ -266,8 +240,8 @@
       "z_value": -9.847000000000085,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83e\udd17",
       "image_b64": "",
+      "cache_key": "e9173ffae9dcb6be456212e7397e21257b4e75ced754b98350c98589269c88b5",
       "caption": "Screenshot 2026-04-08 213106",
       "source_path": "C:\\Users\\thisg\\Pictures\\Screenshots\\Screenshot 2026-04-08 213106.png",
       "show_border": false,
@@ -280,16 +254,15 @@
       "uuid": "0e13509d9c374ae881b538f7218a97bd",
       "x": -1135.6587025724368,
       "y": -955.973014025886,
-      "width": 1572.844744274892,
+      "width": 1581.0543371142044,
       "height": 692.65941574542,
       "z_value": -9.860000000000078,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83d\ude0d",
       "source_path": "C:\\Users\\thisg\\Desktop\\_asset\\Clippy,Blessed be his name\\Waving - Framed.mp4",
       "caption": "Waving - Framed",
       "volume": 50,
-      "playback_pos": 4250,
+      "playback_pos": 4583,
       "looping": true,
       "muted": true,
       "show_border": true,
@@ -302,16 +275,15 @@
       "uuid": "188a29d8ec72428790624f8d03882f78",
       "x": 934.2939322301024,
       "y": -1698.7555944907301,
-      "width": 500.3353414892883,
+      "width": 502.8412117676935,
       "height": 517.8412117676935,
       "z_value": -9.866000000000074,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83e\udd72",
       "source_path": "C:\\Users\\thisg\\Desktop\\_asset\\Clippy,Blessed be his name\\grok-video-8202fa83-a3a0-4732-8fd7-77045e392c8a.mp4",
       "caption": "grok-video-8202fa83-a3a0-4732-8fd7-77045e392c8a",
       "volume": 50,
-      "playback_pos": 2416,
+      "playback_pos": 5294,
       "looping": true,
       "muted": true,
       "show_border": true,
@@ -324,16 +296,15 @@
       "uuid": "dfa2413a3f8745c68aa0af733e3decbe",
       "x": -1726.333333333334,
       "y": -1651.8518518518513,
-      "width": 662.1996045907368,
+      "width": 667.0333645859923,
       "height": 682.0333645859923,
       "z_value": -9.868000000000073,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83d\ude09",
       "source_path": "C:\\Users\\thisg\\Desktop\\_asset\\Clippy,Blessed be his name\\grok-video-8202fa83-a3a0-4732-8fd7-77045e392c8a (1).mp4",
       "caption": "grok-video-8202fa83-a3a0-4732-8fd7-77045e392c8a (1)",
       "volume": 50,
-      "playback_pos": 5921,
+      "playback_pos": 4208,
       "looping": true,
       "muted": true,
       "show_border": true,
@@ -351,7 +322,6 @@
       "z_value": -9.888000000000062,
       "ports_visible": false,
       "shelf_visible": true,
-      "emoji": "\ud83d\ude0d",
       "colors": [
         {
           "label": "Background",
@@ -377,57 +347,16 @@
     },
     {
       "node_id": 0,
-      "node_type": "palette",
-      "title": "Palette",
-      "uuid": "3e8fdd33e5e440a5a14fe330b90a38e3",
-      "x": 488.75769727007787,
-      "y": -681.880330393755,
-      "width": 315.89452110726893,
-      "height": 649.6923945983533,
-      "z_value": -9.889000000000062,
-      "ports_visible": false,
-      "shelf_visible": true,
-      "emoji": "\ud83d\ude0d",
-      "colors": [
-        {
-          "label": "Background",
-          "hex": "#d2d1cf"
-        },
-        {
-          "label": "Border",
-          "hex": "#8a7560"
-        },
-        {
-          "label": "Surface",
-          "hex": "#2a3a2f"
-        },
-        {
-          "label": "Accent",
-          "hex": "#6b5a47"
-        },
-        {
-          "label": "Color",
-          "hex": "#c0a888"
-        },
-        {
-          "label": "Deep",
-          "hex": "#282828"
-        }
-      ]
-    },
-    {
-      "node_id": 0,
       "node_type": "claude_response",
       "title": "Response",
       "uuid": "29d3a3b9c48a456db7357c731f2d8c7f",
-      "x": 406.4377699122192,
-      "y": 17.566108185527867,
+      "x": 403.61049745630726,
+      "y": 67.04337616399386,
       "width": 284.0,
       "height": 174.0,
       "z_value": -9.954000000000025,
       "ports_visible": false,
       "shelf_visible": true,
-      "emoji": "\ud83e\udd70",
       "label": "Yeah, I'm here. What's up?",
       "depth_front": false,
       "node_tint": "#8a9a8a"
@@ -444,7 +373,6 @@
       "z_value": -9.96400000000002,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83e\uddf8",
       "label": "Inner Peace",
       "depth_front": false,
       "node_tint": "#2a3a2f"
@@ -461,7 +389,6 @@
       "z_value": -10.0,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83d\ude32",
       "label": "Elegant",
       "depth_front": false,
       "node_tint": "#1e1e1e"
@@ -471,14 +398,13 @@
       "node_type": "about",
       "title": "Note",
       "uuid": "e5f2c854ab694391bdda9cb49fc91d98",
-      "x": 917.5973146833974,
-      "y": -428.26816086348913,
+      "x": 674.4518834749367,
+      "y": -446.64543182691904,
       "width": 176.14666038916585,
       "height": 44.314198542330416,
       "z_value": -10.0,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83e\udee4",
       "label": "Becoming Yours",
       "depth_front": false,
       "node_tint": ""
@@ -495,7 +421,6 @@
       "z_value": -10.0,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83d\ude32",
       "label": "Ready for the next gentle step whenever you feel like it",
       "depth_front": false,
       "node_tint": "#2a3a2f"
@@ -505,14 +430,13 @@
       "node_type": "about",
       "title": "The space should feel like a comfortable home",
       "uuid": "e4f4902c71c445f3b392ff798b861865",
-      "x": 1268.2710570666743,
-      "y": -394.01750394030915,
+      "x": 1478.9028550321427,
+      "y": -461.87204288220505,
       "width": 487.84705256103507,
       "height": 37.98253838558901,
       "z_value": -10.0,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83d\udccc",
       "label": "The space should feel like a comfortable home",
       "depth_front": false,
       "node_tint": ""
@@ -529,7 +453,6 @@
       "z_value": -10.0,
       "ports_visible": false,
       "shelf_visible": false,
-      "emoji": "\ud83d\ude09",
       "label": "Same energy, always",
       "depth_front": false,
       "node_tint": "#2a3a2f"
@@ -597,10 +520,6 @@
       "end_uuid": "dce8cd34568f48cf8e066bf477ce7f2f"
     },
     {
-      "start_uuid": "3e8fdd33e5e440a5a14fe330b90a38e3",
-      "end_uuid": "dce8cd34568f48cf8e066bf477ce7f2f"
-    },
-    {
       "start_uuid": "e5f2c854ab694391bdda9cb49fc91d98",
       "end_uuid": "1860479eaeaa4b24817de3142623c4df"
     },
@@ -626,9 +545,9 @@
     }
   ],
   "viewport": {
-    "camera_x": 2034.749179425839,
-    "camera_y": -1412.2134757286256,
-    "camera_zoom": 1.8247949366652287
+    "camera_x": 1234.794754903497,
+    "camera_y": -370.9683813014798,
+    "camera_zoom": 0.7547813078237757
   },
-  "checksum": "d424523ed063e317"
+  "checksum": "86a2406e27321ad0"
 }
