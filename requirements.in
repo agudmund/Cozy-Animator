@@ -1,0 +1,7 @@
+# -Cozy Animator - requirements.in pip dependency set
+# -The last of the cozy animator package list moved frame by frame toward something warm, For Enjoying
+# -Built using a single shared braincell by Yours Truly and various Intelligences
+# No version pins; Python is the floor, pip resolves the rest.
+
+PySide6                 # Qt bindings
+pygame                  # animation playback / sound

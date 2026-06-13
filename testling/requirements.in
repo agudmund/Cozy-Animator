@@ -1,3 +1,7 @@
+# -Cozy Animator - testling - requirements.in pip dependency set
+# -The last of the testling package list tucked three warm dependencies under one small blanket, For Enjoying
+# -Built using a single shared braincell by Yours Truly and various Intelligences
+
 PySide6>=6.6.0
 pygame>=2.5.0
 pyenchant>=3.2.0
