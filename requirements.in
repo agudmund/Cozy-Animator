@@ -4,4 +4,3 @@
 # No version pins; Python is the floor, pip resolves the rest.
 
 PySide6                 # Qt bindings
-pygame                  # animation playback / sound
