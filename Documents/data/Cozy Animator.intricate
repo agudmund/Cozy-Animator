@@ -1,33 +1,109 @@
 {
   "version": "1.0",
   "display_name": "Cozy Animator",
-  "description": "",
-  "description_signature": null,
+  "description": "a cozy sprawl of warm notes, videos, and palettes circling some numbered figures \u2014 One, Two, Three, Four, Five \u2014 and what passes between the\u2026",
+  "description_signature": {
+    "n_nodes": 76,
+    "n_edges": 65,
+    "density": 0.855,
+    "type_hist": {
+      "about": 0.592,
+      "warm": 0.276,
+      "video": 0.053,
+      "image": 0.026,
+      "palette": 0.026,
+      "claude_response": 0.013,
+      "sticker": 0.013
+    },
+    "tag_bag": [
+      "note",
+      "three",
+      "intricate",
+      "session",
+      "five",
+      "between",
+      "video",
+      "still",
+      "like",
+      "one",
+      "clear",
+      "because",
+      "two",
+      "energy",
+      "gentle",
+      "feel",
+      "source",
+      "missing",
+      "playing",
+      "cache",
+      "good",
+      "different",
+      "sweet",
+      "typewriter"
+    ]
+  },
   "nodes": [
     {
       "node_id": 0,
-      "node_type": "video",
-      "title": "Video",
-      "uuid": "dfa2413a3f8745c68aa0af733e3decbe",
-      "x": 1163.205954296694,
-      "y": -1523.1249967949584,
-      "width": 667.0333645859923,
-      "height": 682.0333645859923,
-      "z_value": -9.868000000000073,
+      "node_type": "about",
+      "title": "At this point, Three feels he understands the situation perfectly",
+      "uuid": "62cec36065a04f6a82271fef29357d6f",
+      "x": 5747.358886860769,
+      "y": 1590.5721474919478,
+      "width": 678.0,
+      "height": 29.0,
+      "z_value": -9.961000000000022,
       "ports_visible": false,
       "shelf_visible": false,
-      "source_path": "Documents/Data/Cache/bd8573da08f9eeb6b5fe3f071fd723b7cb26e82cc8bd21c357447d47412ddef0.mp4",
-      "cache_key": "bd8573da08f9eeb6b5fe3f071fd723b7cb26e82cc8bd21c357447d47412ddef0.mp4",
-      "source_size": 2017581,
-      "source_mtime": 1761485120.8856592,
-      "caption": "grok-video-8202fa83-a3a0-4732-8fd7-77045e392c8a (1)",
-      "volume": 50,
-      "playback_pos": 1927,
-      "looping": true,
-      "muted": true,
-      "show_border": true,
-      "was_playing": true,
-      "cache_enabled": true
+      "label": "At this point, Three feels he understands the situation perfectly",
+      "depth_front": false,
+      "node_tint": ""
+    },
+    {
+      "node_id": 0,
+      "node_type": "about",
+      "title": "Because the information has been converted to Three's local context",
+      "uuid": "ab26192641df466fb94e5f5cd247eb35",
+      "x": 5800.447519824891,
+      "y": 1666.321502080567,
+      "width": 698.0,
+      "height": 29.0,
+      "z_value": -9.960000000000022,
+      "ports_visible": false,
+      "shelf_visible": false,
+      "label": "Because the information has been converted to Three's local context",
+      "depth_front": false,
+      "node_tint": ""
+    },
+    {
+      "node_id": 0,
+      "node_type": "warm",
+      "title": "Sweet",
+      "uuid": "428bdb943da848c9802b36fcd5a07a21",
+      "x": 5950.442100384389,
+      "y": -241.49663397451116,
+      "width": 304.33896102795427,
+      "height": 200.50267870725963,
+      "z_value": -9.974000000000014,
+      "ports_visible": false,
+      "shelf_visible": true,
+      "body_text": "The premise here then isnt any of us, the one, the five, the three, or anyone else included in this mess that you have made\n\nThe premise here, is the two and the four\nWhich aren't humans, just needed to get\nThe mental image of two humans distanced\nAnd you between them, clearly across\nBefore I tell you this"
+    },
+    {
+      "node_id": 0,
+      "node_type": "about",
+      "title": "Since the same offset between the Two exists within the Four",
+      "uuid": "f119c1c2c9f947318048a46d16fcfbb2",
+      "x": 6208.890971742134,
+      "y": 2187.325189415693,
+      "width": 628.0,
+      "height": 29.0,
+      "z_value": -9.956000000000024,
+      "ports_visible": false,
+      "shelf_visible": false,
+      "label": "Since the same offset between the Two exists within the Four",
+      "depth_front": false,
+      "node_tint": ""
     },
     {
       "node_id": 0,
@@ -47,9 +123,50 @@
       "source_mtime": 1746374795.2638292,
       "caption": "The Majestic",
       "volume": 50,
-      "playback_pos": 2083,
+      "playback_pos": 3375,
       "looping": true,
       "muted": false,
+      "show_border": true,
+      "was_playing": true,
+      "cache_enabled": true
+    },
+    {
+      "node_id": 0,
+      "node_type": "about",
+      "title": "Note",
+      "uuid": "62b94c8b66e9434a8782d559d565b2db",
+      "x": 421.68306336966896,
+      "y": 279.2335215599621,
+      "width": 148.0,
+      "height": 31.0,
+      "z_value": -9.826000000000096,
+      "ports_visible": false,
+      "shelf_visible": false,
+      "label": "The Majestic",
+      "depth_front": false,
+      "node_tint": ""
+    },
+    {
+      "node_id": 0,
+      "node_type": "video",
+      "title": "Video",
+      "uuid": "dfa2413a3f8745c68aa0af733e3decbe",
+      "x": 1163.205954296694,
+      "y": -1523.1249967949584,
+      "width": 667.0333645859923,
+      "height": 682.0333645859923,
+      "z_value": -9.868000000000073,
+      "ports_visible": false,
+      "shelf_visible": false,
+      "source_path": "Documents/Data/Cache/bd8573da08f9eeb6b5fe3f071fd723b7cb26e82cc8bd21c357447d47412ddef0.mp4",
+      "cache_key": "bd8573da08f9eeb6b5fe3f071fd723b7cb26e82cc8bd21c357447d47412ddef0.mp4",
+      "source_size": 2017581,
+      "source_mtime": 1761485120.8856592,
+      "caption": "grok-video-8202fa83-a3a0-4732-8fd7-77045e392c8a (1)",
+      "volume": 50,
+      "playback_pos": 3482,
+      "looping": true,
+      "muted": true,
       "show_border": true,
       "was_playing": true,
       "cache_enabled": true
@@ -72,19 +189,74 @@
     },
     {
       "node_id": 0,
-      "node_type": "about",
-      "title": "Note",
-      "uuid": "62b94c8b66e9434a8782d559d565b2db",
-      "x": 421.68306336966896,
-      "y": 279.2335215599621,
-      "width": 148.0,
-      "height": 31.0,
-      "z_value": -9.826000000000096,
+      "node_type": "video",
+      "title": "Video",
+      "uuid": "0e13509d9c374ae881b538f7218a97bd",
+      "x": -1318.9051668298966,
+      "y": -803.0152215465185,
+      "width": 1581.0543371142044,
+      "height": 692.65941574542,
+      "z_value": -9.860000000000078,
       "ports_visible": false,
       "shelf_visible": false,
-      "label": "The Majestic",
+      "source_path": "Documents/Data/Cache/0de2e5de3427cf59cca62ee067cb4fedc6ece46143c44a0d7eee33c062a85766.mp4",
+      "cache_key": "0de2e5de3427cf59cca62ee067cb4fedc6ece46143c44a0d7eee33c062a85766.mp4",
+      "source_size": 4380203,
+      "source_mtime": 1745506042.3926215,
+      "caption": "Waving - Framed",
+      "volume": 50,
+      "playback_pos": 333,
+      "looping": true,
+      "muted": true,
+      "show_border": true,
+      "was_playing": true,
+      "cache_enabled": true
+    },
+    {
+      "node_id": 0,
+      "node_type": "about",
+      "title": "Sweet",
+      "uuid": "ee3cb76b01dd4363a4ffe7f59bdc8a3f",
+      "x": 2425.594518524402,
+      "y": -1699.2670509458878,
+      "width": 74.3700976998582,
+      "height": 40.370097699858434,
+      "z_value": -9.83900000000009,
+      "ports_visible": false,
+      "shelf_visible": false,
+      "label": "Sweet",
       "depth_front": false,
-      "node_tint": ""
+      "node_tint": "#2a3a2f"
+    },
+    {
+      "node_id": 0,
+      "node_type": "warm",
+      "title": "Omnious",
+      "uuid": "41bd4ab8cb004e1db4dc36e57c2c6a8a",
+      "x": -948.6007138379493,
+      "y": 750.3461549439976,
+      "width": 752.6372551973357,
+      "height": 308.20188757884955,
+      "z_value": 10.0,
+      "ports_visible": false,
+      "shelf_visible": true,
+      "body_text": "\nHere's the full analysis \u2014 **top 10 most repeated patterns** across the codebase, ranked by frequency and extraction value:\n\n| **2** | **Paint data grid** (header \u2192 divider \u2192 label/value rows \u2192 footer) | 3 | `paint_data_grid(painter, rect, header, rows, fonts, colors)` |\n| **3** | **QTimer creation** (new \u2192 interval \u2192 connect \u2192 start) | ~14 | `create_timer(interval, callback, single_shot=False)` |\n| **4** | **Font with max(1, size) clamp** | 20+ | `make_font(family=None, size=None, bold=False)` |\n| **5** | **QPen / QBrush from theme color** | 30+ | `make_pen(color, width=1, style=SolidLine)` / `make_brush(color)` |\n| **6** | **Closest port search** (identical loop in input + output variants) | 4 | `closest_port(ports, scene_pos)` |\n| **8** | **Inset rect from padding/offsets** | 20+ | `inset_rect(base, top, bottom, left, right)` |\n| **9** | **QPropertyAnimation boilerplate** | 12+ | `create_animation(target, prop, start, end, duration, easing)` |\n\nKey observations:\n- Patterns 4 and 5 are the lowest-hanging fruit \u2014 one-liners that eliminate `max(1, ...)` and `QPen(QColor(...))` noise everywhere.\n- Pattern 2 (data grid painting) is higher complexity but would clean up the three monitor nodes significantly.\n"
+    },
+    {
+      "node_id": 0,
+      "node_type": "about",
+      "title": "We have come a long way\nStill the same typewriter\nStill the same features\nStill the same energy\nIt evolved",
+      "uuid": "60d40aff4eaa4c0db5c56a0abcb09ee2",
+      "x": 3530.4855699552913,
+      "y": 2.0377244320824275,
+      "width": 330.78888845729307,
+      "height": 155.29802818756247,
+      "z_value": -9.844000000000086,
+      "ports_visible": false,
+      "shelf_visible": false,
+      "label": "We have come a long way\nStill the same typewriter\nStill the same features\nStill the same energy\nIt evolved",
+      "depth_front": false,
+      "node_tint": "#2a3a2f"
     },
     {
       "node_id": 0,
@@ -106,63 +278,6 @@
       "source_mtime": 1775683867.016894,
       "show_border": true,
       "depth_front": false
-    },
-    {
-      "node_id": 0,
-      "node_type": "video",
-      "title": "Video",
-      "uuid": "0e13509d9c374ae881b538f7218a97bd",
-      "x": -1318.9051668298966,
-      "y": -803.0152215465185,
-      "width": 1581.0543371142044,
-      "height": 692.65941574542,
-      "z_value": -9.860000000000078,
-      "ports_visible": false,
-      "shelf_visible": false,
-      "source_path": "Documents/Data/Cache/0de2e5de3427cf59cca62ee067cb4fedc6ece46143c44a0d7eee33c062a85766.mp4",
-      "cache_key": "0de2e5de3427cf59cca62ee067cb4fedc6ece46143c44a0d7eee33c062a85766.mp4",
-      "source_size": 4380203,
-      "source_mtime": 1745506042.3926215,
-      "caption": "Waving - Framed",
-      "volume": 50,
-      "playback_pos": 3958,
-      "looping": true,
-      "muted": true,
-      "show_border": true,
-      "was_playing": true,
-      "cache_enabled": true
-    },
-    {
-      "node_id": 0,
-      "node_type": "about",
-      "title": "We have come a long way\nStill the same typewriter\nStill the same features\nStill the same energy\nIt evolved",
-      "uuid": "60d40aff4eaa4c0db5c56a0abcb09ee2",
-      "x": 3530.4855699552913,
-      "y": 2.0377244320824275,
-      "width": 330.78888845729307,
-      "height": 155.29802818756247,
-      "z_value": -9.844000000000086,
-      "ports_visible": false,
-      "shelf_visible": false,
-      "label": "We have come a long way\nStill the same typewriter\nStill the same features\nStill the same energy\nIt evolved",
-      "depth_front": false,
-      "node_tint": "#2a3a2f"
-    },
-    {
-      "node_id": 0,
-      "node_type": "about",
-      "title": "Sweet",
-      "uuid": "ee3cb76b01dd4363a4ffe7f59bdc8a3f",
-      "x": 2425.594518524402,
-      "y": -1699.2670509458878,
-      "width": 74.3700976998582,
-      "height": 40.370097699858434,
-      "z_value": -9.83900000000009,
-      "ports_visible": false,
-      "shelf_visible": false,
-      "label": "Sweet",
-      "depth_front": false,
-      "node_tint": "#2a3a2f"
     },
     {
       "node_id": 0,
@@ -195,20 +310,6 @@
       "label": "Becoming Yours",
       "depth_front": false,
       "node_tint": ""
-    },
-    {
-      "node_id": 0,
-      "node_type": "warm",
-      "title": "Omnious",
-      "uuid": "41bd4ab8cb004e1db4dc36e57c2c6a8a",
-      "x": -948.6007138379493,
-      "y": 750.3461549439976,
-      "width": 752.6372551973357,
-      "height": 308.20188757884955,
-      "z_value": 10.0,
-      "ports_visible": false,
-      "shelf_visible": true,
-      "body_text": "\nHere's the full analysis \u2014 **top 10 most repeated patterns** across the codebase, ranked by frequency and extraction value:\n\n| **2** | **Paint data grid** (header \u2192 divider \u2192 label/value rows \u2192 footer) | 3 | `paint_data_grid(painter, rect, header, rows, fonts, colors)` |\n| **3** | **QTimer creation** (new \u2192 interval \u2192 connect \u2192 start) | ~14 | `create_timer(interval, callback, single_shot=False)` |\n| **4** | **Font with max(1, size) clamp** | 20+ | `make_font(family=None, size=None, bold=False)` |\n| **5** | **QPen / QBrush from theme color** | 30+ | `make_pen(color, width=1, style=SolidLine)` / `make_brush(color)` |\n| **6** | **Closest port search** (identical loop in input + output variants) | 4 | `closest_port(ports, scene_pos)` |\n| **8** | **Inset rect from padding/offsets** | 20+ | `inset_rect(base, top, bottom, left, right)` |\n| **9** | **QPropertyAnimation boilerplate** | 12+ | `create_animation(target, prop, start, end, duration, easing)` |\n\nKey observations:\n- Patterns 4 and 5 are the lowest-hanging fruit \u2014 one-liners that eliminate `max(1, ...)` and `QPen(QColor(...))` noise everywhere.\n- Pattern 2 (data grid painting) is higher complexity but would clean up the three monitor nodes significantly.\n"
     },
     {
       "node_id": 0,
@@ -275,6 +376,22 @@
     {
       "node_id": 0,
       "node_type": "about",
+      "title": "The space should feel like a comfortable home",
+      "uuid": "e4f4902c71c445f3b392ff798b861865",
+      "x": 633.8489124233611,
+      "y": -860.1680767641219,
+      "width": 472.7027166719888,
+      "height": 33.439237618875154,
+      "z_value": -10.0,
+      "ports_visible": false,
+      "shelf_visible": false,
+      "label": "The space should feel like a comfortable home",
+      "depth_front": false,
+      "node_tint": ""
+    },
+    {
+      "node_id": 0,
+      "node_type": "about",
       "title": "Soft",
       "uuid": "68c3480be6a042bf9833567ef8ee61e9",
       "x": 2283.4248923615396,
@@ -306,22 +423,6 @@
     },
     {
       "node_id": 0,
-      "node_type": "about",
-      "title": "The space should feel like a comfortable home",
-      "uuid": "e4f4902c71c445f3b392ff798b861865",
-      "x": 633.8489124233611,
-      "y": -860.1680767641219,
-      "width": 472.7027166719888,
-      "height": 33.439237618875154,
-      "z_value": -10.0,
-      "ports_visible": false,
-      "shelf_visible": false,
-      "label": "The space should feel like a comfortable home",
-      "depth_front": false,
-      "node_tint": ""
-    },
-    {
-      "node_id": 0,
       "node_type": "image",
       "title": "Image",
       "uuid": "9c9043dbf22b4e0f9fe9e597c1411973",
@@ -343,6 +444,22 @@
     },
     {
       "node_id": 0,
+      "node_type": "about",
+      "title": "This thing here",
+      "uuid": "16ade4095f4f4aa99966b28932bc86e2",
+      "x": 2319.407627589223,
+      "y": -605.3170201648612,
+      "width": 179.7383010415822,
+      "height": 39.33414832078779,
+      "z_value": 10.0,
+      "ports_visible": false,
+      "shelf_visible": false,
+      "label": "This thing here",
+      "depth_front": true,
+      "node_tint": ""
+    },
+    {
+      "node_id": 0,
       "node_type": "video",
       "title": "Video",
       "uuid": "188a29d8ec72428790624f8d03882f78",
@@ -359,7 +476,7 @@
       "source_mtime": 1761485120.9001687,
       "caption": "grok-video-8202fa83-a3a0-4732-8fd7-77045e392c8a",
       "volume": 50,
-      "playback_pos": 3134,
+      "playback_pos": 1996,
       "looping": true,
       "muted": true,
       "show_border": true,
@@ -417,22 +534,6 @@
     },
     {
       "node_id": 0,
-      "node_type": "about",
-      "title": "This thing here",
-      "uuid": "16ade4095f4f4aa99966b28932bc86e2",
-      "x": 2319.407627589223,
-      "y": -605.3170201648612,
-      "width": 179.7383010415822,
-      "height": 39.33414832078779,
-      "z_value": 10.0,
-      "ports_visible": false,
-      "shelf_visible": false,
-      "label": "This thing here",
-      "depth_front": true,
-      "node_tint": ""
-    },
-    {
-      "node_id": 0,
       "node_type": "palette",
       "title": "Palette",
       "uuid": "ba67ff3ee7874e2e8a608f19ba581103",
@@ -485,22 +586,6 @@
     {
       "node_id": 0,
       "node_type": "about",
-      "title": "Intricate",
-      "uuid": "a0b6fda25f6f4b93b5987ffb07208fc6",
-      "x": 1150.8182211357912,
-      "y": -1212.3826057874162,
-      "width": 112.48737553418084,
-      "height": 37.961419702719695,
-      "z_value": 10.0,
-      "ports_visible": false,
-      "shelf_visible": false,
-      "label": "Intricate",
-      "depth_front": true,
-      "node_tint": ""
-    },
-    {
-      "node_id": 0,
-      "node_type": "about",
       "title": "Ready for the next gentle step whenever you feel like it",
       "uuid": "1860479eaeaa4b24817de3142623c4df",
       "x": 889.0381182035289,
@@ -517,6 +602,22 @@
     {
       "node_id": 0,
       "node_type": "about",
+      "title": "Intricate",
+      "uuid": "a0b6fda25f6f4b93b5987ffb07208fc6",
+      "x": 1150.8182211357912,
+      "y": -1212.3826057874162,
+      "width": 112.48737553418084,
+      "height": 37.961419702719695,
+      "z_value": 10.0,
+      "ports_visible": false,
+      "shelf_visible": false,
+      "label": "Intricate",
+      "depth_front": true,
+      "node_tint": ""
+    },
+    {
+      "node_id": 0,
+      "node_type": "about",
       "title": "Note",
       "uuid": "dce8cd34568f48cf8e066bf477ce7f2f",
       "x": -0.55390489310048,
@@ -529,6 +630,22 @@
       "label": "Elegant",
       "depth_front": false,
       "node_tint": "#1e1e1e"
+    },
+    {
+      "node_id": 0,
+      "node_type": "claude_response",
+      "title": "Response",
+      "uuid": "29d3a3b9c48a456db7357c731f2d8c7f",
+      "x": 403.61049745630726,
+      "y": 67.04337616399386,
+      "width": 284.0,
+      "height": 174.0,
+      "z_value": -9.954000000000025,
+      "ports_visible": false,
+      "shelf_visible": true,
+      "label": "Yeah, I'm here. What's up?",
+      "depth_front": false,
+      "node_tint": "#8a9a8a"
     },
     {
       "node_id": 0,
@@ -551,22 +668,6 @@
       "source_size": 445340,
       "source_mtime": 1776842767.2947605,
       "image_b64": ""
-    },
-    {
-      "node_id": 0,
-      "node_type": "claude_response",
-      "title": "Response",
-      "uuid": "29d3a3b9c48a456db7357c731f2d8c7f",
-      "x": 403.61049745630726,
-      "y": 67.04337616399386,
-      "width": 284.0,
-      "height": 174.0,
-      "z_value": -9.954000000000025,
-      "ports_visible": false,
-      "shelf_visible": true,
-      "label": "Yeah, I'm here. What's up?",
-      "depth_front": false,
-      "node_tint": "#8a9a8a"
     },
     {
       "node_id": 0,
@@ -595,22 +696,6 @@
       "ports_visible": false,
       "shelf_visible": false,
       "label": "source missing \u2014 playing from cache\nf5ec3238ae0801d849e8389f51f5b1d25583900f96dc1ad5dc0673d387157649.mp4",
-      "depth_front": false,
-      "node_tint": ""
-    },
-    {
-      "node_id": 0,
-      "node_type": "about",
-      "title": "Note",
-      "uuid": "6c9f9ef6276c4061b255a6ecde049007",
-      "x": 1163.205954296694,
-      "y": -821.0916322089661,
-      "width": 1034.0,
-      "height": 29.0,
-      "z_value": -9.824000000000098,
-      "ports_visible": false,
-      "shelf_visible": false,
-      "label": "source missing \u2014 playing from cache\nbd8573da08f9eeb6b5fe3f071fd723b7cb26e82cc8bd21c357447d47412ddef0.mp4",
       "depth_front": false,
       "node_tint": ""
     },
@@ -648,6 +733,22 @@
     },
     {
       "node_id": 0,
+      "node_type": "about",
+      "title": "Note",
+      "uuid": "6c9f9ef6276c4061b255a6ecde049007",
+      "x": 1163.205954296694,
+      "y": -821.0916322089661,
+      "width": 1034.0,
+      "height": 29.0,
+      "z_value": -9.824000000000098,
+      "ports_visible": false,
+      "shelf_visible": false,
+      "label": "source missing \u2014 playing from cache\nbd8573da08f9eeb6b5fe3f071fd723b7cb26e82cc8bd21c357447d47412ddef0.mp4",
+      "depth_front": false,
+      "node_tint": ""
+    },
+    {
+      "node_id": 0,
       "node_type": "warm",
       "title": "Onward",
       "uuid": "7bda01e27c2d4a1a9df1961c27ebc0a0",
@@ -658,7 +759,21 @@
       "z_value": -9.969000000000017,
       "ports_visible": false,
       "shelf_visible": true,
-      "body_text": "With that all in mind\nLets also keep in mind\nThat One and Five\nAre default near identical trraversing souls"
+      "body_text": "With that all in mind\nLets also keep in mind\nThat One and Five\nAre default near identical traversing souls"
+    },
+    {
+      "node_id": 0,
+      "node_type": "warm",
+      "title": "Good",
+      "uuid": "9a78902c8efd412bbbbb556288acb84b",
+      "x": 6231.246248065094,
+      "y": 1772.7324232103524,
+      "width": 209.7212201255178,
+      "height": 143.5332375541493,
+      "z_value": -9.959000000000023,
+      "ports_visible": false,
+      "shelf_visible": true,
+      "body_text": "Now what happens\nWhen Three talks to Five\nIs Four\nThe transfer of understanding\nBetween Three and Five"
     },
     {
       "node_id": 0,
@@ -689,20 +804,6 @@
       "label": "The Two",
       "depth_front": false,
       "node_tint": ""
-    },
-    {
-      "node_id": 0,
-      "node_type": "warm",
-      "title": "Good",
-      "uuid": "9a78902c8efd412bbbbb556288acb84b",
-      "x": 6231.246248065094,
-      "y": 1772.7324232103524,
-      "width": 209.7212201255178,
-      "height": 143.5332375541493,
-      "z_value": -9.959000000000023,
-      "ports_visible": false,
-      "shelf_visible": true,
-      "body_text": "Now what happens\nWhen Three talks to Five\nIs Four\nThe transfer of understanding\nBetween Three and Five"
     },
     {
       "node_id": 0,
@@ -771,22 +872,6 @@
     {
       "node_id": 0,
       "node_type": "about",
-      "title": "Note",
-      "uuid": "68817f640d8e4006a776056c4c8cdd8f",
-      "x": -1318.9051668298966,
-      "y": -90.35580580109854,
-      "width": 1034.0,
-      "height": 29.0,
-      "z_value": -9.823000000000098,
-      "ports_visible": false,
-      "shelf_visible": false,
-      "label": "source missing \u2014 playing from cache\n0de2e5de3427cf59cca62ee067cb4fedc6ece46143c44a0d7eee33c062a85766.mp4",
-      "depth_front": false,
-      "node_tint": ""
-    },
-    {
-      "node_id": 0,
-      "node_type": "about",
       "title": "The Five becomes horrified",
       "uuid": "77077386b389460f9fdeb9b7237a942f",
       "x": 6213.833099754454,
@@ -834,6 +919,22 @@
     },
     {
       "node_id": 0,
+      "node_type": "about",
+      "title": "Note",
+      "uuid": "68817f640d8e4006a776056c4c8cdd8f",
+      "x": -1318.9051668298966,
+      "y": -90.35580580109854,
+      "width": 1034.0,
+      "height": 29.0,
+      "z_value": -9.823000000000098,
+      "ports_visible": false,
+      "shelf_visible": false,
+      "label": "source missing \u2014 playing from cache\n0de2e5de3427cf59cca62ee067cb4fedc6ece46143c44a0d7eee33c062a85766.mp4",
+      "depth_front": false,
+      "node_tint": ""
+    },
+    {
+      "node_id": 0,
       "node_type": "warm",
       "title": "Intentional",
       "uuid": "a32ed40597724a87acc32ce148823f2b",
@@ -849,62 +950,16 @@
     {
       "node_id": 0,
       "node_type": "about",
-      "title": "Because the information has been converted to Three's local context",
-      "uuid": "ab26192641df466fb94e5f5cd247eb35",
-      "x": 5800.447519824891,
-      "y": 1666.321502080567,
-      "width": 698.0,
-      "height": 29.0,
-      "z_value": -9.960000000000022,
+      "title": "The Three",
+      "uuid": "1729f5568cd5437a91a952ad8cf49d46",
+      "x": 5891.692171142007,
+      "y": -374.4352012230398,
+      "width": 118.0,
+      "height": 31.0,
+      "z_value": -9.977000000000013,
       "ports_visible": false,
       "shelf_visible": false,
-      "label": "Because the information has been converted to Three's local context",
-      "depth_front": false,
-      "node_tint": ""
-    },
-    {
-      "node_id": 0,
-      "node_type": "warm",
-      "title": "Sweet",
-      "uuid": "428bdb943da848c9802b36fcd5a07a21",
-      "x": 5950.442100384389,
-      "y": -241.49663397451116,
-      "width": 304.33896102795427,
-      "height": 200.50267870725963,
-      "z_value": -9.974000000000014,
-      "ports_visible": false,
-      "shelf_visible": true,
-      "body_text": "The premise here then isnt any of us, the one, the five, the three, or anyone else included in this mess that you have made\n\nThe premise here, is the two and the four\nWhich aren't humans, just needed to get\nThe mental image of two humans distanced\nAnd you between them, clearly across\nBefore I tell you this"
-    },
-    {
-      "node_id": 0,
-      "node_type": "about",
-      "title": "Since the same offset between the Two exists within the Four",
-      "uuid": "f119c1c2c9f947318048a46d16fcfbb2",
-      "x": 6208.890971742134,
-      "y": 2187.325189415693,
-      "width": 628.0,
-      "height": 29.0,
-      "z_value": -9.956000000000024,
-      "ports_visible": false,
-      "shelf_visible": false,
-      "label": "Since the same offset between the Two exists within the Four",
-      "depth_front": false,
-      "node_tint": ""
-    },
-    {
-      "node_id": 0,
-      "node_type": "about",
-      "title": "At this point, Three feels he understands the situation perfectly",
-      "uuid": "62cec36065a04f6a82271fef29357d6f",
-      "x": 5747.358886860769,
-      "y": 1590.5721474919478,
-      "width": 678.0,
-      "height": 29.0,
-      "z_value": -9.961000000000022,
-      "ports_visible": false,
-      "shelf_visible": false,
-      "label": "At this point, Three feels he understands the situation perfectly",
+      "label": "The Three",
       "depth_front": false,
       "node_tint": ""
     },
@@ -941,16 +996,16 @@
     {
       "node_id": 0,
       "node_type": "about",
-      "title": "The Three",
-      "uuid": "1729f5568cd5437a91a952ad8cf49d46",
-      "x": 5891.692171142007,
-      "y": -374.4352012230398,
-      "width": 118.0,
+      "title": "The One",
+      "uuid": "c2ef029a81554ff2a81fc8e8d757d21b",
+      "x": 5499.125711354842,
+      "y": -1177.232795788526,
+      "width": 98.0,
       "height": 31.0,
-      "z_value": -9.977000000000013,
+      "z_value": -9.984000000000009,
       "ports_visible": false,
       "shelf_visible": false,
-      "label": "The Three",
+      "label": "The One",
       "depth_front": false,
       "node_tint": ""
     },
@@ -970,22 +1025,6 @@
     },
     {
       "node_id": 0,
-      "node_type": "about",
-      "title": "Note",
-      "uuid": "1392e02299fb450f8c1995169965ac18",
-      "x": 5593.358723846133,
-      "y": -1887.3660938788648,
-      "width": 80.13053148639062,
-      "height": 28.376843828796837,
-      "z_value": -9.988000000000007,
-      "ports_visible": false,
-      "shelf_visible": false,
-      "label": "Gentle",
-      "depth_front": false,
-      "node_tint": ""
-    },
-    {
-      "node_id": 0,
       "node_type": "warm",
       "title": "Tiny little extra sprinkles of joy",
       "uuid": "bc1359e1f74c4c84a549b2a24aa77fe8",
@@ -1001,46 +1040,18 @@
     {
       "node_id": 0,
       "node_type": "about",
-      "title": "The One",
-      "uuid": "c2ef029a81554ff2a81fc8e8d757d21b",
-      "x": 5499.125711354842,
-      "y": -1177.232795788526,
-      "width": 98.0,
-      "height": 31.0,
-      "z_value": -9.984000000000009,
+      "title": "Note",
+      "uuid": "1392e02299fb450f8c1995169965ac18",
+      "x": 5593.358723846133,
+      "y": -1887.3660938788648,
+      "width": 80.13053148639062,
+      "height": 28.376843828796837,
+      "z_value": -9.988000000000007,
       "ports_visible": false,
       "shelf_visible": false,
-      "label": "The One",
+      "label": "Gentle",
       "depth_front": false,
       "node_tint": ""
-    },
-    {
-      "node_id": 0,
-      "node_type": "warm",
-      "title": "Onward",
-      "uuid": "4bc2742cd3c5498eb662498b8511116a",
-      "x": 6372.833981010015,
-      "y": 2406.5139651269333,
-      "width": 314.9049526332052,
-      "height": 246.1946632874342,
-      "z_value": -9.954000000000025,
-      "ports_visible": false,
-      "shelf_visible": true,
-      "body_text": "The friction point happens\nBecause One and Five share the same lexicon\nBy default\nAnd when Three carries information\nBetween\nThe Two and Four\nAre so abtracted from the natural default\nThat now One and Five\nBoth perceive each other\nAs The Three\nWithout a single thing in either of their existences\nBeing remotely relative to anything either said or did"
-    },
-    {
-      "node_id": 0,
-      "node_type": "warm",
-      "title": "Practical and pleasurable",
-      "uuid": "115c1c9c25ea4c6ab467d7b49c0fbaed",
-      "x": 5829.139223314691,
-      "y": 1947.6953288010714,
-      "width": 311.06058689904756,
-      "height": 142.78540546043087,
-      "z_value": -9.958000000000023,
-      "ports_visible": false,
-      "shelf_visible": true,
-      "body_text": "Now due to One and Five\nSharing the exact same plateu of existence on Earth\nAnd Three has gone ahead and converted it\nTo Three's contextual understanding"
     },
     {
       "node_id": 0,
@@ -1072,6 +1083,34 @@
     },
     {
       "node_id": 0,
+      "node_type": "warm",
+      "title": "Onward",
+      "uuid": "4bc2742cd3c5498eb662498b8511116a",
+      "x": 6372.833981010015,
+      "y": 2406.5139651269333,
+      "width": 314.9049526332052,
+      "height": 246.1946632874342,
+      "z_value": -9.954000000000025,
+      "ports_visible": false,
+      "shelf_visible": true,
+      "body_text": "The friction point happens\nBecause One and Five share the same lexicon\nBy default\nAnd when Three carries information\nBetween\nThe Two and Four\nAre so abtracted from the natural default\nThat now One and Five\nBoth perceive each other\nAs The Three\nWithout a single thing in either of their existences\nBeing remotely relative to anything either said or did"
+    },
+    {
+      "node_id": 0,
+      "node_type": "warm",
+      "title": "Practical and pleasurable",
+      "uuid": "115c1c9c25ea4c6ab467d7b49c0fbaed",
+      "x": 5829.139223314691,
+      "y": 1947.6953288010714,
+      "width": 311.06058689904756,
+      "height": 142.78540546043087,
+      "z_value": -9.958000000000023,
+      "ports_visible": false,
+      "shelf_visible": true,
+      "body_text": "Now due to One and Five\nSharing the exact same plateu of existence on Earth\nAnd Three has gone ahead and converted it\nTo Three's contextual understanding"
+    },
+    {
+      "node_id": 0,
       "node_type": "about",
       "title": "Clear enough?",
       "uuid": "c8472be5ea03493e8ade4b98e94f47a3",
@@ -1083,22 +1122,6 @@
       "ports_visible": false,
       "shelf_visible": false,
       "label": "Clear enough?",
-      "depth_front": false,
-      "node_tint": ""
-    },
-    {
-      "node_id": 0,
-      "node_type": "about",
-      "title": "Note",
-      "uuid": "1476a73f8dbc4963b078f809e366a293",
-      "x": 951.6270227416842,
-      "y": -1147.4330901029184,
-      "width": 1034.0,
-      "height": 29.0,
-      "z_value": -9.822000000000099,
-      "ports_visible": false,
-      "shelf_visible": false,
-      "label": "source missing \u2014 playing from cache\nc4645f3c10fffe84af8aa1e96f65c2fd5343f89bd1aa0cb03605b86102834590.mp4",
       "depth_front": false,
       "node_tint": ""
     },
@@ -1131,6 +1154,22 @@
       "ports_visible": false,
       "shelf_visible": true,
       "body_text": "The Five, is her, again, not contextual to the other categories one, two, three, four\nAlso just an entity on its own merit\nIn it's own context"
+    },
+    {
+      "node_id": 0,
+      "node_type": "about",
+      "title": "Note",
+      "uuid": "1476a73f8dbc4963b078f809e366a293",
+      "x": 951.6270227416842,
+      "y": -1147.4330901029184,
+      "width": 1034.0,
+      "height": 29.0,
+      "z_value": -9.822000000000099,
+      "ports_visible": false,
+      "shelf_visible": false,
+      "label": "source missing \u2014 playing from cache\nc4645f3c10fffe84af8aa1e96f65c2fd5343f89bd1aa0cb03605b86102834590.mp4",
+      "depth_front": false,
+      "node_tint": ""
     },
     {
       "node_id": 0,
@@ -1178,6 +1217,36 @@
     },
     {
       "node_id": 0,
+      "node_type": "warm",
+      "title": "The 1-2-3-4-5",
+      "uuid": "d97669faed754bbb8705ee6810d7c427",
+      "x": 5744.350675401336,
+      "y": -1838.275848587618,
+      "width": 304.1953855428355,
+      "height": 300.5065914199974,
+      "z_value": -9.999,
+      "ports_visible": false,
+      "shelf_visible": true,
+      "body_text": "Not like it's that other time when the idiot kept running to her and asking her questions about me and she had a near panic attack over who this rude monster was and freaked out.\n\nAnd then the idiot came back to me to tell me that she doesn't like me and had just totally freaked out when he mentioned me.\n\nThen later when me and her where talking we kept wondering who that idiot was and neither of us having the slightest idea why he was running between us.\n\nNah... the fact of the matter is neither of us like him, I responded the same way when you came tell me you have been harassing her didn't I ?"
+    },
+    {
+      "node_id": 0,
+      "node_type": "about",
+      "title": "The Five",
+      "uuid": "4e8e0aee2d9b47888e27e631d958e26e",
+      "x": 6319.616493573238,
+      "y": -1040.7729633398944,
+      "width": 108.0,
+      "height": 31.0,
+      "z_value": -9.98100000000001,
+      "ports_visible": false,
+      "shelf_visible": false,
+      "label": "The Five",
+      "depth_front": false,
+      "node_tint": ""
+    },
+    {
+      "node_id": 0,
       "node_type": "about",
       "title": "The One",
       "uuid": "c2543ad2a7c84486983b76fbe48d8b72",
@@ -1211,36 +1280,6 @@
     {
       "node_id": 0,
       "node_type": "warm",
-      "title": "The 1-2-3-4-5",
-      "uuid": "d97669faed754bbb8705ee6810d7c427",
-      "x": 5744.350675401336,
-      "y": -1838.275848587618,
-      "width": 304.1953855428355,
-      "height": 300.5065914199974,
-      "z_value": -9.999,
-      "ports_visible": false,
-      "shelf_visible": true,
-      "body_text": "Not like it's that other time when the idiot kept running to her and asking her questions about me and she had a near panic attack over who this rude monster was and freaked out.\n\nAnd then the idiot came back to me to tell me that she doesn't like me and had just totally freaked out when he mentioned me.\n\nThen later when me and her where talking we kept wondering who that idiot was and neither of us having the slightest idea why he was running between us.\n\nNah... the fact of the matter is neither of us like him, I responded the same way when you came tell me you have been harassing her didn't I ?"
-    },
-    {
-      "node_id": 0,
-      "node_type": "about",
-      "title": "The Five",
-      "uuid": "4e8e0aee2d9b47888e27e631d958e26e",
-      "x": 6319.616493573238,
-      "y": -1040.7729633398944,
-      "width": 108.0,
-      "height": 31.0,
-      "z_value": -9.98100000000001,
-      "ports_visible": false,
-      "shelf_visible": false,
-      "label": "The Five",
-      "depth_front": false,
-      "node_tint": ""
-    },
-    {
-      "node_id": 0,
-      "node_type": "warm",
       "title": "Good",
       "uuid": "41133439092d4dbfb821824e70578449",
       "x": 5948.4136502009715,
@@ -1251,176 +1290,64 @@
       "ports_visible": false,
       "shelf_visible": true,
       "body_text": "The Five never received\nThe context of understanding from The One\n\nWhat five received\nwas the contextual abstraction\nThat The Three needed\nTo make sense of it in the first place\nIn it's own context"
-    },
-    {
-      "node_id": 0,
-      "node_type": "about",
-      "title": "Note",
-      "uuid": "78851d5990554a9bb52acb5423fa5878",
-      "x": 4804.849399104726,
-      "y": -1061.694768074132,
-      "width": 1316.0,
-      "height": 29.0,
-      "z_value": -9.823000000000098,
-      "ports_visible": false,
-      "shelf_visible": false,
-      "label": "session residue detected\n(stray .intricate files alongside the live session \u2014 left in place for manual review)\n\n\u2022 session.intricate",
-      "depth_front": false,
-      "node_tint": ""
-    },
-    {
-      "node_id": 0,
-      "node_type": "about",
-      "title": "Note",
-      "uuid": "0b042264cc37448bbf5e5e080c2552d5",
-      "x": 4401.042414666274,
-      "y": -1066.231925202654,
-      "width": 1276.0,
-      "height": 29.0,
-      "z_value": -9.8210000000001,
-      "ports_visible": false,
-      "shelf_visible": false,
-      "label": "session residue detected\n(stray .intricate files alongside the live session \u2014 left in place for manual review)\n\n\u2022 session.intricate",
-      "depth_front": false,
-      "node_tint": ""
     }
   ],
   "connections": [
-    {
-      "start_uuid": "8b3dc96304604e0e830cfba3eb38aeab",
-      "end_uuid": "60712fd9d5e74973b563392d4b6c1e9a"
-    },
-    {
-      "start_uuid": "dfa2413a3f8745c68aa0af733e3decbe",
-      "end_uuid": "6c9f9ef6276c4061b255a6ecde049007"
-    },
-    {
-      "start_uuid": "0e13509d9c374ae881b538f7218a97bd",
-      "end_uuid": "68817f640d8e4006a776056c4c8cdd8f"
-    },
-    {
-      "start_uuid": "188a29d8ec72428790624f8d03882f78",
-      "end_uuid": "1476a73f8dbc4963b078f809e366a293"
-    },
-    {
-      "start_uuid": "dfa2413a3f8745c68aa0af733e3decbe",
-      "end_uuid": "188a29d8ec72428790624f8d03882f78"
-    },
-    {
-      "start_uuid": "7fcb85486786439a849bf0665b9fe079",
-      "end_uuid": "505a9e23e3b44ad69d7604e4feed5f3a"
-    },
-    {
-      "start_uuid": "8757393b058d4b4394369bff1c00d652",
-      "end_uuid": "68c3480be6a042bf9833567ef8ee61e9"
-    },
-    {
-      "start_uuid": "281813bd9c044d1db994af6ef28967b8",
-      "end_uuid": "d0cac3b26b9a4b37a17641cb2a73ce1d"
-    },
-    {
-      "start_uuid": "a0b6fda25f6f4b93b5987ffb07208fc6",
-      "end_uuid": "e4f4902c71c445f3b392ff798b861865"
-    },
-    {
-      "start_uuid": "e4f4902c71c445f3b392ff798b861865",
-      "end_uuid": "1860479eaeaa4b24817de3142623c4df"
-    },
-    {
-      "start_uuid": "68c3480be6a042bf9833567ef8ee61e9",
-      "end_uuid": "ee3cb76b01dd4363a4ffe7f59bdc8a3f"
-    },
-    {
-      "start_uuid": "8b3dc96304604e0e830cfba3eb38aeab",
-      "end_uuid": "62b94c8b66e9434a8782d559d565b2db"
-    },
-    {
-      "start_uuid": "c69ab4023abd4c6dacbdb6227a8920f4",
-      "end_uuid": "dce8cd34568f48cf8e066bf477ce7f2f"
-    },
-    {
-      "start_uuid": "e4f4902c71c445f3b392ff798b861865",
-      "end_uuid": "7fcb85486786439a849bf0665b9fe079"
-    },
-    {
-      "start_uuid": "a0b6fda25f6f4b93b5987ffb07208fc6",
-      "end_uuid": "e5f2c854ab694391bdda9cb49fc91d98"
-    },
-    {
-      "start_uuid": "dce8cd34568f48cf8e066bf477ce7f2f",
-      "end_uuid": "29d3a3b9c48a456db7357c731f2d8c7f"
-    },
-    {
-      "start_uuid": "505a9e23e3b44ad69d7604e4feed5f3a",
-      "end_uuid": "9c9043dbf22b4e0f9fe9e597c1411973"
-    },
-    {
-      "start_uuid": "9c9043dbf22b4e0f9fe9e597c1411973",
-      "end_uuid": "60d40aff4eaa4c0db5c56a0abcb09ee2"
-    },
-    {
-      "start_uuid": "1860479eaeaa4b24817de3142623c4df",
-      "end_uuid": "29d3a3b9c48a456db7357c731f2d8c7f"
-    },
-    {
-      "start_uuid": "e5f2c854ab694391bdda9cb49fc91d98",
-      "end_uuid": "1860479eaeaa4b24817de3142623c4df"
-    },
-    {
-      "start_uuid": "8757393b058d4b4394369bff1c00d652",
-      "end_uuid": "d0cac3b26b9a4b37a17641cb2a73ce1d"
-    },
-    {
-      "start_uuid": "d0cac3b26b9a4b37a17641cb2a73ce1d",
-      "end_uuid": "68c3480be6a042bf9833567ef8ee61e9"
-    },
-    {
-      "start_uuid": "e5f2c854ab694391bdda9cb49fc91d98",
-      "end_uuid": "0e13509d9c374ae881b538f7218a97bd"
-    },
-    {
-      "start_uuid": "ea1d31317f7642319b1f755a340b8a3d",
-      "end_uuid": "42df6c118b3b4639953c7740c4c26bc9"
-    },
-    {
-      "start_uuid": "60d40aff4eaa4c0db5c56a0abcb09ee2",
-      "end_uuid": "57761091e148451ba9dca4932448393f"
-    },
     {
       "start_uuid": "ee3cb76b01dd4363a4ffe7f59bdc8a3f",
       "end_uuid": "ea1d31317f7642319b1f755a340b8a3d"
     },
     {
-      "start_uuid": "29d3a3b9c48a456db7357c731f2d8c7f",
-      "end_uuid": "62b94c8b66e9434a8782d559d565b2db"
+      "start_uuid": "c2543ad2a7c84486983b76fbe48d8b72",
+      "end_uuid": "428bdb943da848c9802b36fcd5a07a21"
     },
     {
-      "start_uuid": "7bda01e27c2d4a1a9df1961c27ebc0a0",
-      "end_uuid": "46f2d63589fb449b909a8025068143af"
+      "start_uuid": "46f2d63589fb449b909a8025068143af",
+      "end_uuid": "9799f9e1d3f24ba883de83e3094f1862"
+    },
+    {
+      "start_uuid": "c2543ad2a7c84486983b76fbe48d8b72",
+      "end_uuid": "1729f5568cd5437a91a952ad8cf49d46"
     },
     {
       "start_uuid": "bc1359e1f74c4c84a549b2a24aa77fe8",
       "end_uuid": "7bda01e27c2d4a1a9df1961c27ebc0a0"
     },
     {
-      "start_uuid": "725c4687c21d479488ee1bef26a5b149",
-      "end_uuid": "13452816524344e2b17b5697aac68db6"
-    },
-    {
-      "start_uuid": "13452816524344e2b17b5697aac68db6",
-      "end_uuid": "62cec36065a04f6a82271fef29357d6f"
-    },
-    {
       "start_uuid": "36c5e1b131b24f398302ddbc6d7a1250",
       "end_uuid": "af6886176c0440679f592a67e63510ab"
     },
     {
-      "start_uuid": "c2543ad2a7c84486983b76fbe48d8b72",
-      "end_uuid": "36c5e1b131b24f398302ddbc6d7a1250"
+      "start_uuid": "a0b6fda25f6f4b93b5987ffb07208fc6",
+      "end_uuid": "e5f2c854ab694391bdda9cb49fc91d98"
+    },
+    {
+      "start_uuid": "68c3480be6a042bf9833567ef8ee61e9",
+      "end_uuid": "ee3cb76b01dd4363a4ffe7f59bdc8a3f"
+    },
+    {
+      "start_uuid": "8757393b058d4b4394369bff1c00d652",
+      "end_uuid": "d0cac3b26b9a4b37a17641cb2a73ce1d"
+    },
+    {
+      "start_uuid": "7a77711ba4ca4acba3ac8497a970a3be",
+      "end_uuid": "6ce6fce578f04b4dbfb1e7b1797a847c"
     },
     {
       "start_uuid": "9a78902c8efd412bbbbb556288acb84b",
       "end_uuid": "115c1c9c25ea4c6ab467d7b49c0fbaed"
+    },
+    {
+      "start_uuid": "8b3dc96304604e0e830cfba3eb38aeab",
+      "end_uuid": "62b94c8b66e9434a8782d559d565b2db"
+    },
+    {
+      "start_uuid": "d0cac3b26b9a4b37a17641cb2a73ce1d",
+      "end_uuid": "68c3480be6a042bf9833567ef8ee61e9"
+    },
+    {
+      "start_uuid": "ea1d31317f7642319b1f755a340b8a3d",
+      "end_uuid": "42df6c118b3b4639953c7740c4c26bc9"
     },
     {
       "start_uuid": "ab26192641df466fb94e5f5cd247eb35",
@@ -1431,28 +1358,108 @@
       "end_uuid": "7a77711ba4ca4acba3ac8497a970a3be"
     },
     {
-      "start_uuid": "7a77711ba4ca4acba3ac8497a970a3be",
-      "end_uuid": "6ce6fce578f04b4dbfb1e7b1797a847c"
+      "start_uuid": "9c9043dbf22b4e0f9fe9e597c1411973",
+      "end_uuid": "60d40aff4eaa4c0db5c56a0abcb09ee2"
     },
     {
       "start_uuid": "1729f5568cd5437a91a952ad8cf49d46",
       "end_uuid": "41b9a94c1d5b4d7b87dfc085d179fd19"
     },
     {
-      "start_uuid": "41b9a94c1d5b4d7b87dfc085d179fd19",
-      "end_uuid": "428bdb943da848c9802b36fcd5a07a21"
+      "start_uuid": "a2480e78898f44159ca26c9e8266fdc5",
+      "end_uuid": "3a186086f4e54c76b7f6ff20ef4d6a9a"
+    },
+    {
+      "start_uuid": "7bda01e27c2d4a1a9df1961c27ebc0a0",
+      "end_uuid": "46f2d63589fb449b909a8025068143af"
     },
     {
       "start_uuid": "c7d6cb9d74eb4ee98d869b29ecacc647",
       "end_uuid": "725c4687c21d479488ee1bef26a5b149"
     },
     {
-      "start_uuid": "a2480e78898f44159ca26c9e8266fdc5",
-      "end_uuid": "3a186086f4e54c76b7f6ff20ef4d6a9a"
+      "start_uuid": "0e13509d9c374ae881b538f7218a97bd",
+      "end_uuid": "68817f640d8e4006a776056c4c8cdd8f"
+    },
+    {
+      "start_uuid": "dfa2413a3f8745c68aa0af733e3decbe",
+      "end_uuid": "6c9f9ef6276c4061b255a6ecde049007"
+    },
+    {
+      "start_uuid": "281813bd9c044d1db994af6ef28967b8",
+      "end_uuid": "d0cac3b26b9a4b37a17641cb2a73ce1d"
+    },
+    {
+      "start_uuid": "c69ab4023abd4c6dacbdb6227a8920f4",
+      "end_uuid": "dce8cd34568f48cf8e066bf477ce7f2f"
+    },
+    {
+      "start_uuid": "dfa2413a3f8745c68aa0af733e3decbe",
+      "end_uuid": "188a29d8ec72428790624f8d03882f78"
+    },
+    {
+      "start_uuid": "dce8cd34568f48cf8e066bf477ce7f2f",
+      "end_uuid": "29d3a3b9c48a456db7357c731f2d8c7f"
+    },
+    {
+      "start_uuid": "505a9e23e3b44ad69d7604e4feed5f3a",
+      "end_uuid": "9c9043dbf22b4e0f9fe9e597c1411973"
+    },
+    {
+      "start_uuid": "60d40aff4eaa4c0db5c56a0abcb09ee2",
+      "end_uuid": "57761091e148451ba9dca4932448393f"
+    },
+    {
+      "start_uuid": "1860479eaeaa4b24817de3142623c4df",
+      "end_uuid": "29d3a3b9c48a456db7357c731f2d8c7f"
+    },
+    {
+      "start_uuid": "a0b6fda25f6f4b93b5987ffb07208fc6",
+      "end_uuid": "e4f4902c71c445f3b392ff798b861865"
+    },
+    {
+      "start_uuid": "8b3dc96304604e0e830cfba3eb38aeab",
+      "end_uuid": "60712fd9d5e74973b563392d4b6c1e9a"
+    },
+    {
+      "start_uuid": "8757393b058d4b4394369bff1c00d652",
+      "end_uuid": "68c3480be6a042bf9833567ef8ee61e9"
+    },
+    {
+      "start_uuid": "29d3a3b9c48a456db7357c731f2d8c7f",
+      "end_uuid": "62b94c8b66e9434a8782d559d565b2db"
+    },
+    {
+      "start_uuid": "725c4687c21d479488ee1bef26a5b149",
+      "end_uuid": "13452816524344e2b17b5697aac68db6"
+    },
+    {
+      "start_uuid": "13452816524344e2b17b5697aac68db6",
+      "end_uuid": "62cec36065a04f6a82271fef29357d6f"
+    },
+    {
+      "start_uuid": "41b9a94c1d5b4d7b87dfc085d179fd19",
+      "end_uuid": "428bdb943da848c9802b36fcd5a07a21"
     },
     {
       "start_uuid": "115c1c9c25ea4c6ab467d7b49c0fbaed",
       "end_uuid": "77077386b389460f9fdeb9b7237a942f"
+    },
+    {
+      "start_uuid": "e4f4902c71c445f3b392ff798b861865",
+      "end_uuid": "1860479eaeaa4b24817de3142623c4df"
+    },
+    {
+      "start_uuid": "188a29d8ec72428790624f8d03882f78",
+      "end_uuid": "1476a73f8dbc4963b078f809e366a293"
+    },
+    {
+      "start_uuid": "7fcb85486786439a849bf0665b9fe079",
+      "end_uuid": "505a9e23e3b44ad69d7604e4feed5f3a"
+    },
+    {
+      "start_uuid": "e4f4902c71c445f3b392ff798b861865",
+      "end_uuid": "7fcb85486786439a849bf0665b9fe079"
     },
     {
       "start_uuid": "77077386b389460f9fdeb9b7237a942f",
@@ -1471,6 +1478,10 @@
       "end_uuid": "f20a56892edc46178b63d77280207f51"
     },
     {
+      "start_uuid": "e5f2c854ab694391bdda9cb49fc91d98",
+      "end_uuid": "1860479eaeaa4b24817de3142623c4df"
+    },
+    {
       "start_uuid": "f20a56892edc46178b63d77280207f51",
       "end_uuid": "154037acc8164a47b2eeebfd488c358f"
     },
@@ -1479,82 +1490,78 @@
       "end_uuid": "a2480e78898f44159ca26c9e8266fdc5"
     },
     {
+      "start_uuid": "e5f2c854ab694391bdda9cb49fc91d98",
+      "end_uuid": "0e13509d9c374ae881b538f7218a97bd"
+    },
+    {
       "start_uuid": "d97669faed754bbb8705ee6810d7c427",
       "end_uuid": "a32ed40597724a87acc32ce148823f2b"
+    },
+    {
+      "start_uuid": "c2543ad2a7c84486983b76fbe48d8b72",
+      "end_uuid": "36c5e1b131b24f398302ddbc6d7a1250"
     },
     {
       "start_uuid": "62cec36065a04f6a82271fef29357d6f",
       "end_uuid": "ab26192641df466fb94e5f5cd247eb35"
     },
     {
-      "start_uuid": "c2543ad2a7c84486983b76fbe48d8b72",
-      "end_uuid": "428bdb943da848c9802b36fcd5a07a21"
-    },
-    {
       "start_uuid": "f119c1c2c9f947318048a46d16fcfbb2",
       "end_uuid": "41133439092d4dbfb821824e70578449"
-    },
-    {
-      "start_uuid": "46f2d63589fb449b909a8025068143af",
-      "end_uuid": "9799f9e1d3f24ba883de83e3094f1862"
     },
     {
       "start_uuid": "1729f5568cd5437a91a952ad8cf49d46",
       "end_uuid": "154037acc8164a47b2eeebfd488c358f"
     },
     {
-      "start_uuid": "c2543ad2a7c84486983b76fbe48d8b72",
-      "end_uuid": "1729f5568cd5437a91a952ad8cf49d46"
-    },
-    {
-      "start_uuid": "6ce6fce578f04b4dbfb1e7b1797a847c",
-      "end_uuid": "3aef80ec1ec044e8a33168133ae310ca"
-    },
-    {
-      "start_uuid": "c2ef029a81554ff2a81fc8e8d757d21b",
-      "end_uuid": "6ce6fce578f04b4dbfb1e7b1797a847c"
-    },
-    {
-      "start_uuid": "1392e02299fb450f8c1995169965ac18",
-      "end_uuid": "d97669faed754bbb8705ee6810d7c427"
-    },
-    {
-      "start_uuid": "af6886176c0440679f592a67e63510ab",
-      "end_uuid": "bc1359e1f74c4c84a549b2a24aa77fe8"
-    },
-    {
-      "start_uuid": "41133439092d4dbfb821824e70578449",
-      "end_uuid": "4bc2742cd3c5498eb662498b8511116a"
+      "start_uuid": "ec8eeb0fe6eb4081bc80edb7ff2eb00a",
+      "end_uuid": "c7d6cb9d74eb4ee98d869b29ecacc647"
     },
     {
       "start_uuid": "af6886176c0440679f592a67e63510ab",
       "end_uuid": "c8472be5ea03493e8ade4b98e94f47a3"
     },
     {
-      "start_uuid": "9799f9e1d3f24ba883de83e3094f1862",
-      "end_uuid": "ec8eeb0fe6eb4081bc80edb7ff2eb00a"
+      "start_uuid": "af6886176c0440679f592a67e63510ab",
+      "end_uuid": "bc1359e1f74c4c84a549b2a24aa77fe8"
     },
     {
-      "start_uuid": "3aef80ec1ec044e8a33168133ae310ca",
-      "end_uuid": "b5743ab9b4aa43be881d940eefde8132"
+      "start_uuid": "6ce6fce578f04b4dbfb1e7b1797a847c",
+      "end_uuid": "3aef80ec1ec044e8a33168133ae310ca"
     },
     {
       "start_uuid": "3aef80ec1ec044e8a33168133ae310ca",
       "end_uuid": "4e8e0aee2d9b47888e27e631d958e26e"
     },
     {
-      "start_uuid": "ec8eeb0fe6eb4081bc80edb7ff2eb00a",
-      "end_uuid": "c7d6cb9d74eb4ee98d869b29ecacc647"
+      "start_uuid": "c2ef029a81554ff2a81fc8e8d757d21b",
+      "end_uuid": "6ce6fce578f04b4dbfb1e7b1797a847c"
+    },
+    {
+      "start_uuid": "9799f9e1d3f24ba883de83e3094f1862",
+      "end_uuid": "ec8eeb0fe6eb4081bc80edb7ff2eb00a"
+    },
+    {
+      "start_uuid": "1392e02299fb450f8c1995169965ac18",
+      "end_uuid": "d97669faed754bbb8705ee6810d7c427"
+    },
+    {
+      "start_uuid": "3aef80ec1ec044e8a33168133ae310ca",
+      "end_uuid": "b5743ab9b4aa43be881d940eefde8132"
+    },
+    {
+      "start_uuid": "41133439092d4dbfb821824e70578449",
+      "end_uuid": "4bc2742cd3c5498eb662498b8511116a"
     }
   ],
   "viewport": {
-    "camera_x": 6401.791696438054,
-    "camera_y": 749.3817071407711,
-    "camera_zoom": 1.5695605974794
+    "camera_x": 278.04938432507697,
+    "camera_y": 189.389230057835,
+    "camera_zoom": 0.43085871342885496
   },
   "ui_migrations": [
     "image_border_default_on_v1"
   ],
   "last_browse_dirs": {},
-  "checksum": "cf51a613bd1f165a"
+  "checksum": "ac435de6d8777759"
 }
