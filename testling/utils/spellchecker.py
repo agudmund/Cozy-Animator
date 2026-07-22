@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+-Cozy Animator - testling/utils/spellchecker.py spell highlighting and suggestions
+-The last of the spellcheckers underlined gently, never once raising its voice, For Enjoying
+-Built using a single shared braincell by Yours Truly and various Intelligences
+"""
+
 # utils/spellchecker.py
 """Spell checking highlighter and suggestion utilities for Cozy Animator."""
 

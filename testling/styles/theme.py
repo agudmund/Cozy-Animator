@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+-Cozy Animator - testling/styles/theme.py theme constants and shared styles
+-The last of the themes dressed the dark in exactly the colours it always wears, For Enjoying
+-Built using a single shared braincell by Yours Truly and various Intelligences
+"""
+
 # styles/theme.py
 """Theme constants and shared styles for Cozy Animator."""
 

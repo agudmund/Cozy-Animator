@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+-Cozy Animator - testling/main.py text animator entry point
+-The last of the testlings ran the whole show just to see the letters dance once more, For Enjoying
+-Built using a single shared braincell by Yours Truly and various Intelligences
+"""
+
 # main.py
 import sys
 

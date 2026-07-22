@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+-Cozy Animator - testling/main_window.py the text animator stage
+-The last of the animator windows let every word take the stage in its own time, For Enjoying
+-Built using a single shared braincell by Yours Truly and various Intelligences
+"""
+
 # main_window.py
 import logging
 import random

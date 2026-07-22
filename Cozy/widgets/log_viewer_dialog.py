@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+-Cozy Animator - Cozy/widgets/log_viewer_dialog.py the log reading room
+-The last of the cozy logs was read aloud in a viewer that dimmed the lights for it, For Enjoying
+-Built using a single shared braincell by Yours Truly and various Intelligences
+"""
+
 # widgets/log_viewer_dialog.py
 import os
 from datetime import datetime

@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-#
-# Cozy Animator - main.py
+"""
+-Cozy Animator - Cozy/main.py a minor UI for generating animated text
+-The last of the cozy animators opened its window slowly, the way mornings should, For Enjoying
+-Built using a single shared braincell by Yours Truly and various Intelligences
+"""
+# (First animated together with Grok, in the cozy era.)
+
 # A minor UI for generating animated text
 # Built using a single shared braincell by Yours Truly and Grok
 #

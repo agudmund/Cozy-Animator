@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+-Cozy Animator - testling/utils/settings.py settings persistence in json
+-The last of the settings slept in a little json and woke remembering everything, For Enjoying
+-Built using a single shared braincell by Yours Truly and various Intelligences
+"""
+
 # utils/settings.py
 """Settings persistence using JSON file."""
 
